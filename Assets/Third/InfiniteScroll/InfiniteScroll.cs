@@ -1,5 +1,4 @@
-
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // The MIT License
 // InfiniteScroll https://github.com/mopsicus/infinite-scroll-unity
 // Copyright (c) 2018-2021 Mopsicus <mail@mopsicus.ru>
@@ -13,7 +12,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace RockIM.Client.Scripts.Third.Components {
+namespace Third.InfiniteScroll {
 
 	/// <summary>
 	/// Infinite scroller for long lists
@@ -58,12 +57,12 @@ namespace RockIM.Client.Scripts.Third.Components {
 		/// <summary>
 		/// Delegate for widths
 		/// </summary>
-		public delegate int WidthItem (int index);
+		public delegate int WidthtItem (int index);
 
 		/// <summary>
 		/// Event for get item width
 		/// </summary>
-		public event WidthItem OnWidth;
+		public event HeightItem OnWidth;
 
 		/// <summary>
 		/// Callback on item fill
@@ -409,7 +408,7 @@ namespace RockIM.Client.Scripts.Third.Components {
 			if (_leftPosition < 0f) {
 				return;
 			}
-        	if (!_positions.ContainsKey(_previousPosition) || !_heights.ContainsKey(_previousPosition)) {
+        	if (!_positions.ContainsKey(_previousPosition) || !_widths.ContainsKey(_previousPosition)) {
             	return;
         	}				
 			float itemPosition = Mathf.Abs (_positions[_previousPosition]) + _widths[_previousPosition];
