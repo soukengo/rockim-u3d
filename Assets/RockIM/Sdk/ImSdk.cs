@@ -1,23 +1,23 @@
 using System;
 using System.Threading.Tasks;
 using RockIM.Sdk.Api.V1;
+using RockIM.Sdk.Framework;
 using RockIM.Sdk.Internal.V1;
 
 namespace RockIM.Sdk
 {
     public abstract class ImSdk
     {
-        private static readonly Lazy<IClient> _v1 = new(new ClientV1());
-        public static IClient V1 => _v1.Value;
-
-
-        private ImSdk()
-        {
-        }
+        private static readonly Lazy<IClient> V1Lazy = new(new ClientV1());
+        public static IClient V1 => V1Lazy.Value;
 
         public static void Async<T>(Func<T> syncMethod, Action<T> callback)
         {
-            Task.Run(() => { callback(syncMethod()); });
+            Task.Run(() =>
+            {
+                var ret = syncMethod();
+                AsyncManager.Callback(() => callback(ret));
+            });
         }
     }
 }

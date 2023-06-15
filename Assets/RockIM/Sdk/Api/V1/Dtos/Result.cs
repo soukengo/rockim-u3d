@@ -1,7 +1,6 @@
 using System;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Utils;
-using UnityEngine;
 
 namespace RockIM.Sdk.Api.v1.Dtos
 {

@@ -1,6 +1,7 @@
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.v1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Response;
+using RockIM.Sdk.Framework;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Service;

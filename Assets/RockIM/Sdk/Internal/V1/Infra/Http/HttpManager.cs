@@ -12,7 +12,6 @@ using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Utils;
 using RockIM.Shared;
-using UnityEngine;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
@@ -105,7 +104,6 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
                 var error = new Error();
                 if (isJson)
                 {
-                    Debug.Log("resp: " + contentString);
                     error = JsonUtils.FromJson<Error>(contentString);
                 }
                 else

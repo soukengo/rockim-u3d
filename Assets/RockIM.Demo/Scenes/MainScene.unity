@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 92285444}
   - component: {fileID: 92285446}
   - component: {fileID: 92285445}
+  - component: {fileID: 92285447}
   m_Layer: 5
   m_Name: ChatPanel
   m_TagString: Untagged
@@ -841,6 +842,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92285443}
   m_CullTransparentMesh: 1
+--- !u!114 &92285447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92285443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9ca33671aa4c1abd12550490e5e920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultOpen: 1
 --- !u!1 &147123057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431778486}
+  - component: {fileID: 431778487}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1171,6 +1186,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431778487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431778485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab5e1229ba143b6970f3485a33b35b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514179191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,9 +2288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d8d21033874d3d99cb9978b37fe417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scroll: {fileID: 2027238643}
-  Count: 20
-  PullCount: 10
+  scroll: {fileID: 2027238643}
+  count: 100
+  pullCount: 25
 --- !u!1 &1879923626
 GameObject:
   m_ObjectHideFlags: 0
