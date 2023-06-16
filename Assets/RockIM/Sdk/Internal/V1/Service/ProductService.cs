@@ -1,4 +1,4 @@
-using RockIM.Sdk.Api.v1.Dtos;
+using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Domain.Repository;
 

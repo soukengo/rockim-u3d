@@ -1,10 +1,10 @@
 using Google.Protobuf;
-using RockIM.Sdk.Api.v1.Dtos;
+using RockIM.Sdk.Internal.V1.Domain.Data;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
     public interface IHttpManager
     {
-        public Result<T> Call<T>(string action, IMessage req, T reply) where T : IMessage;
+        public Result<T> Call<T>(string action, IMessage req) where T : IMessage, new();
     }
 }

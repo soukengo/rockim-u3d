@@ -1,4 +1,4 @@
-using RockIM.Sdk.Internal.V1.Domain.Models.Entities;
+using RockIM.Sdk.Api.V1.Entities;
 
 namespace RockIM.Sdk.Api.V1.Dtos.Request
 {

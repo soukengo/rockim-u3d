@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
-using RockIM.Sdk.Api.v1.Dtos;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Internal.V1.Context;
+using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Utils;
 using RockIM.Shared;
+using MetaData = RockIM.Sdk.Internal.V1.Domain.Data.MetaData;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
@@ -22,44 +23,33 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
 
         private readonly HttpClient _client;
 
-        private readonly string _contentType = MimeUtils.Protobuf;
+        private const string ContentType = MimeUtils.Protobuf;
 
 
-        public HttpManager(SdkConfig sdkConfig)
+        public HttpManager(SdkContext context)
         {
-            _client = new HttpClient(new CustomHttpClientHandler(new List<IFilter>
+            var filters = new List<IFilter>
             {
-                new SignFilter(sdkConfig),
-            }));
-            _client.BaseAddress = new Uri(sdkConfig.APIConfig.ServerUrl);
+                new SignFilter(context.Config),
+            };
+            if (context.Authorization != null)
+            {
+                filters.Add(new AuthFilter(context.Authorization));
+            }
+
+            _client = new HttpClient(new CustomHttpClientHandler(filters));
+            _client.BaseAddress = new Uri(context.Config.APIConfig.ServerUrl);
         }
 
-        public HttpManager(SdkConfig sdkConfig, Authorization authorization)
-        {
-            _client = new HttpClient(new CustomHttpClientHandler(new List<IFilter>
-            {
-                new SignFilter(sdkConfig),
-                new AuthFilter(authorization)
-            }));
-            _client.BaseAddress = new Uri(sdkConfig.APIConfig.ServerUrl);
-        }
-
-        public Result<T> Call<T>(string action, IMessage req, T message) where T : IMessage
+        public Result<T> Call<T>(string action, IMessage req) where T : IMessage, new()
         {
             var request = new HttpRequestMessage();
             request.Method = HttpMethod.Post;
             request.RequestUri = new Uri(action);
-            request.Headers.Add("Accept", _contentType);
-            if (MimeUtils.IsJson(_contentType))
-            {
-                request.Content = new StringContent(JsonUtils.ToJson(req));
-            }
-            else
-            {
-                request.Content = new ByteArrayContent(req.ToByteArray());
-            }
+            request.Headers.Add("Accept", ContentType);
+            request.Content = MimeUtils.IsJson(ContentType) ? new StringContent(JsonUtils.ToJson(req)) : new ByteArrayContent(req.ToByteArray());
 
-            request.Content.Headers.ContentType = new MediaTypeHeaderValue(_contentType);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
 
             var ret = _client.SendAsync(request);
             ret.Wait();
@@ -72,11 +62,11 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
                 return result;
             }
 
-            return DecodeResult(ret.Result, message);
+            return DecodeResult<T>(ret.Result);
         }
 
 
-        private Result<T> DecodeResult<T>(HttpResponseMessage response, T message) where T : IMessage
+        private static Result<T> DecodeResult<T>(HttpResponseMessage response) where T : IMessage, new()
         {
             var contentAsync = response.Content.ReadAsByteArrayAsync();
             contentAsync.Wait();
@@ -123,6 +113,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
             }
             else
             {
+                var message = new T();
                 message.MergeFrom(contentAsync.Result);
                 result.Data = message;
             }

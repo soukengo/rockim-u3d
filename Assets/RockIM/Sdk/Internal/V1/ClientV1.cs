@@ -1,45 +1,52 @@
 using RockIM.Sdk.Api.V1;
-using RockIM.Sdk.Api.v1.Dtos;
+using RockIM.Sdk.Api.V1.Constants;
+using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Response;
-using RockIM.Sdk.Framework;
+using RockIM.Sdk.Api.V1.Exceptions;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Service;
 
 namespace RockIM.Sdk.Internal.V1
 {
-    public class ClientV1 : IClient
+    public sealed class ClientV1 : Client
     {
-        private readonly SdkConfig _config;
+        private readonly SdkContext _context;
 
-        private Apis _apis;
-        private ProductService _productService;
+        private ApisV1 _apis;
+
+        public override Apis Apis
+        {
+            get
+            {
+                if (_apis == null)
+                {
+                    throw new BusinessException(ErrorReasons.ClientUninitialized, "未初始化");
+                }
+
+                return _apis;
+            }
+        }
 
         public ClientV1()
         {
-            _config = new SdkConfig();
+            _context = new SdkContext();
         }
 
-        public Result<InitResp> Init(Config config)
+        public override APIResult<InitResp> Init(Config config)
         {
-            var result = new Result<InitResp>();
-            _config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
-            _apis = new Apis(_config);
-            var ret = _apis.productService.FetchConfig();
-            result.CopyForm(ret);
+            _context.Config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
+            _apis = new ApisV1(_context);
+            var result = _apis.ProductService.FetchConfig();
+            var data = result.Data;
+            var ret = ResultConverter.Convert(result, (source) => new InitResp());
             if (!result.IsSuccess())
             {
-                return result;
+                return ret;
             }
 
-            _config.ServerConfig = ret.Data;
-            result.Data = new InitResp();
-            return result;
-        }
-
-        public IApis Apis()
-        {
-            return _apis;
+            _context.Config.ServerConfig = data;
+            return ret;
         }
     }
 }

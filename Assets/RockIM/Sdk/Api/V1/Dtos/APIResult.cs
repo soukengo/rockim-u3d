@@ -2,10 +2,10 @@ using System;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Utils;
 
-namespace RockIM.Sdk.Api.v1.Dtos
+namespace RockIM.Sdk.Api.V1.Dtos
 {
     [Serializable]
-    public class Result<T>
+    public class APIResult<T>
     {
         public ResultCode Code { get; set; }
 
@@ -16,11 +16,11 @@ namespace RockIM.Sdk.Api.v1.Dtos
 
         public MetaData Meta { get; set; }
 
-        public Result()
+        public APIResult()
         {
         }
 
-        public Result(ResultCode code, string reason, string message, MetaData meta)
+        public APIResult(ResultCode code, string reason, string message, MetaData meta)
         {
             Code = code;
             Reason = reason;
@@ -31,15 +31,6 @@ namespace RockIM.Sdk.Api.v1.Dtos
         public bool IsSuccess()
         {
             return Code == ResultCode.Success;
-        }
-
-        public Result<T> CopyForm<TR>(Result<TR> source)
-        {
-            Code = source.Code;
-            Reason = source.Reason;
-            Message = source.Message;
-            Meta = source.Meta;
-            return this;
         }
 
         public override string ToString()

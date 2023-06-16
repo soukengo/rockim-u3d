@@ -6,6 +6,7 @@ using RockIM.Demo.Scripts.Models;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Components;
 using RockIM.Sdk.Api.V1;
+using RockIM.Sdk.Api.V1.Dtos.Request;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -69,6 +70,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
             var productId = productIdInput.text;
             var productKey = productKeyInput.text;
             var serverUrl = serverUrlInput.text;
+
             ImSdkManager.Instance.Init(new Config(serverUrl, productId, productKey), (result) =>
             {
                 Debug.Log("初始化结果：" + result);

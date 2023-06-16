@@ -1,5 +1,6 @@
 using RockIM.Api.Client.V1.Protocol.Http;
-using RockIM.Sdk.Api.v1.Dtos;
+using RockIM.Sdk.Api.V1.Dtos;
+using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Domain.Repository;
 using RockIM.Sdk.Internal.V1.Infra.Http;
@@ -18,21 +19,18 @@ namespace RockIM.Sdk.Internal.V1.Infra
 
         public Result<ServerConfig> FetchConfig()
         {
-            var result = new Result<ServerConfig>();
+            var ret = new Result<ServerConfig>();
             var req = new ConfigFetchRequest
             {
-                Base = new APIRequest
-                {
-                    ProductId = "10001"
-                }
+                Base = new APIRequest()
             };
 
-            var resp = new ConfigFetchResponse();
-            var ret = _httpManager.Call("/client/v1/product/config/fetch", req, resp);
-            result.CopyForm(ret);
-            if (!result.IsSuccess())
+            var result = _httpManager.Call<ConfigFetchResponse>(Action.Config, req);
+            var data = result.Data;
+            ret.CopyForm(result);
+            if (!ret.IsSuccess())
             {
-                return result;
+                return ret;
             }
 
             var config = new ServerConfig()
@@ -41,16 +39,16 @@ namespace RockIM.Sdk.Internal.V1.Infra
                 {
                     Tcp = new Tcp()
                     {
-                        Address = ret.Data.Socket.Tcp?.Address
+                        Address = data.Socket.Tcp?.Address
                     },
                     WebSocket = new WebSocket()
                     {
-                        Address = ret.Data.Socket.Ws?.Address,
+                        Address = data.Socket.Ws?.Address,
                     }
                 }
             };
-            result.Data = config;
-            return result;
+            ret.Data = config;
+            return ret;
         }
     }
 }
