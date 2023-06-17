@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using RockIM.Demo.Scripts.UI.Base;
+using RockIM.Demo.Scripts.UI.Events;
 using Third.InfiniteScroll;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 {
-    public class MessageListComponent : MonoBehaviour
+    public class MessageListComponent : CComponent
     {
         [SerializeField] public InfiniteScroll scroll;
 
@@ -16,6 +18,16 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         private readonly List<int> _list = new List<int>();
 
         private readonly List<int> _heights = new List<int>();
+
+        private void OnEnable()
+        {
+            ChatUIEventManager.Instance.OnChatMenuSelected += OnChatMenuSelected;
+        }
+
+        private void OnDisable()
+        {
+            ChatUIEventManager.Instance.OnChatMenuSelected -= OnChatMenuSelected;
+        }
 
         void Start()
         {
@@ -65,6 +77,11 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             }
 
             scroll.ApplyDataTo(_list.Count, pullCount, direction);
+        }
+
+        private static void OnChatMenuSelected(string key)
+        {
+            Debug.Log("OnChatMenuSelected: MessageList");
         }
     }
 }

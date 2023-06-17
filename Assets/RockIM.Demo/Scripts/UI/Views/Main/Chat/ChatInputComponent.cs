@@ -1,19 +1,40 @@
+using RockIM.Demo.Scripts.UI.Base;
+using RockIM.Demo.Scripts.UI.Events;
+using RockIM.Sdk;
+using RockIM.Sdk.Api.V1.Dtos.Request;
+using RockIM.Sdk.Api.V1.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 {
-    public class ChatInputComponent : MonoBehaviour
+    public class ChatInputComponent : CComponent
     {
         public Button sendButton;
 
-        private void Start()
+
+        private void OnEnable()
         {
-            sendButton.onClick.AddListener(OnClickSendButton);
+            ChatUIEventManager.Instance.OnChatMenuSelected += OnChatMenuSelected;
         }
 
-        private static void OnClickSendButton()
+        private void OnDisable()
         {
+            ChatUIEventManager.Instance.OnChatMenuSelected -= OnChatMenuSelected;
+        }
+
+        private void Start()
+        {
+            sendButton.onClick.AddListener(() =>
+            {
+                var req = new MessageSendReq(new GroupConversationID("", ""));
+                ImSdk.Async(() => ImSdk.V1.Apis.Authorized.Message.Send(req), (result) => { });
+            });
+        }
+
+        private static void OnChatMenuSelected(string key)
+        {
+            Debug.Log("OnChatMenuSelected: ChatInput");
         }
     }
 }

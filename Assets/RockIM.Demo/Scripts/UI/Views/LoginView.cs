@@ -1,6 +1,7 @@
 using RockIM.Demo.Scripts.UI.Base;
-using RockIM.Demo.Scripts.UI.Components;
+using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Demo.Scripts.UI.Views.Login;
+using UnityEngine.SceneManagement;
 
 namespace RockIM.Demo.Scripts.UI.Views
 {
@@ -8,9 +9,9 @@ namespace RockIM.Demo.Scripts.UI.Views
     {
         protected override void Init()
         {
-            var initPanel = GetPanel<InitPanel>();
             var loginPanel = GetPanel<LoginPanel>();
-            initPanel!.OnInitSuccess = () => { loginPanel!.Show(); };
+            LoginUIEventManager.Instance.OnInitSuccess = () => { loginPanel!.Show(); };
+            LoginUIEventManager.Instance.OnLoginSuccess = () => { SceneManager.LoadScene(SceneNames.Main); };
         }
     }
 }

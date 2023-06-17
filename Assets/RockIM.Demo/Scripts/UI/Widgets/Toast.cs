@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RockIM.Demo.Scripts.UI.Components
+namespace RockIM.Demo.Scripts.UI.Widgets
 {
     public class Toast : MonoBehaviour
     {

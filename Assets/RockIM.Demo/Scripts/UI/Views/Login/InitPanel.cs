@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RockIM.Demo.Scripts.Managers;
-using RockIM.Demo.Scripts.Models;
+using RockIM.Demo.Scripts.Logic.Managers;
+using RockIM.Demo.Scripts.Logic.Models.Chat;
 using RockIM.Demo.Scripts.UI.Base;
-using RockIM.Demo.Scripts.UI.Components;
+using RockIM.Demo.Scripts.UI.Events;
+using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk.Api.V1;
-using RockIM.Sdk.Api.V1.Dtos.Request;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +14,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
 {
     public class InitPanel : CPanel
     {
-        [SerializeField] public List<Server> servers = new List<Server>();
+        [SerializeField] public List<ChatServer> servers = new List<ChatServer>();
 
         public Dropdown serverDropdown;
 
@@ -24,15 +24,13 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
 
         public Button confirmButton;
 
-        public Action OnInitSuccess = () => { };
-
         protected override void Init()
         {
         }
 
         private void Start()
         {
-            var serverOptions = servers.Select(t => new Dropdown.OptionData(t.Name)).ToList();
+            var serverOptions = servers.Select(t => new Dropdown.OptionData(t.name)).ToList();
             // 默认选中第一个
             serverDropdown.options = serverOptions;
             if (serverOptions.Count > 0)
@@ -57,9 +55,9 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
             }
 
             var server = servers[idx];
-            serverUrlInput.text = server.Url;
-            productIdInput.text = server.ProductId;
-            productKeyInput.text = server.ProductKey;
+            serverUrlInput.text = server.url;
+            productIdInput.text = server.productId;
+            productKeyInput.text = server.productKey;
         }
 
         /// <summary>
@@ -71,9 +69,8 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
             var productKey = productKeyInput.text;
             var serverUrl = serverUrlInput.text;
 
-            ImSdkManager.Instance.Init(new Config(serverUrl, productId, productKey), (result) =>
+            ImManager.Instance.Init(new Config(serverUrl, productId, productKey), (result) =>
             {
-                Debug.Log("初始化结果：" + result);
                 if (!result.IsSuccess())
                 {
                     ToastManager.ShowToast("初始化失败", true);
@@ -83,7 +80,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
                 ToastManager.ShowToast("初始化成功");
                 Hide();
                 // 通知初始化成功
-                OnInitSuccess();
+                LoginUIEventManager.Instance.OnInitSuccess.Invoke();
             });
         }
     }

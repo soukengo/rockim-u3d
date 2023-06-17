@@ -21,36 +21,36 @@ namespace RockIM.Sdk
         /// 同步调用
         /// </summary>
         /// <param name="syncMethod"></param>
-        /// <param name="callback"></param>
         /// <typeparam name="T"></typeparam>
-        public static void Call<T>(Func<APIResult<T>> syncMethod, Action<APIResult<T>> callback)
+        public static APIResult<T> Call<T>(Func<APIResult<T>> syncMethod)
         {
+            APIResult<T> ret;
             try
             {
-                var ret = syncMethod();
-                AsyncManager.Callback(() => callback(ret));
+                ret = syncMethod();
             }
             catch (BusinessException e)
             {
-                var ret = new APIResult<T>
+                ret = new APIResult<T>
                 {
                     Code = ResultCode.BadRequest,
                     Reason = e.Reason,
                     Message = e.Message
                 };
-                callback(ret);
             }
             catch (Exception e)
             {
                 Debug.LogError("exception: " + e.StackTrace);
-                var ret = new APIResult<T>
+                ret = new APIResult<T>
                 {
                     Code = ResultCode.Unknown,
                     Reason = ErrorReasons.ClientException,
                     Message = e.StackTrace
                 };
-                callback(ret);
             }
+
+            Debug.Log("Result: " + ret);
+            return ret;
         }
 
         /// <summary>
@@ -61,7 +61,11 @@ namespace RockIM.Sdk
         /// <typeparam name="T"></typeparam>
         public static void Async<T>(Func<APIResult<T>> syncMethod, Action<APIResult<T>> callback)
         {
-            Task.Run(() => { Call(syncMethod, callback); });
+            Task.Run(() =>
+            {
+                var ret = Call(syncMethod);
+                AsyncManager.Callback(() => callback(ret));
+            });
         }
     }
 }

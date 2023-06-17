@@ -1,5 +1,4 @@
 using RockIM.Api.Client.V1.Protocol.Http;
-using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Internal.V1.Domain.Options;
 using RockIM.Sdk.Internal.V1.Domain.Repository;
@@ -19,9 +18,10 @@ namespace RockIM.Sdk.Internal.V1.Infra
         public Result<Authorization> Login(LoginOptions opts)
         {
             var ret = new Result<Authorization>();
-            var req = new ConfigFetchRequest
+            var req = new LoginRequest()
             {
-                Base = new APIRequest()
+                Base = new APIRequest(),
+                AuthCode = opts.AuthCode
             };
 
             var result = _httpManager.Call<LoginResponse>(Action.Login, req);

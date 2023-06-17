@@ -1,11 +1,13 @@
-using System;
 using System.Collections.Generic;
+using RockIM.Demo.Scripts.Logic.Models.Chat;
+using RockIM.Demo.Scripts.UI.Base;
+using RockIM.Demo.Scripts.UI.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 {
-    public class ChatMenuComponent : MonoBehaviour
+    public class ChatMenuComponent : CComponent
     {
         public List<ChatMenuItem> items = new List<ChatMenuItem>();
 
@@ -13,7 +15,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         public GameObject menuContainer;
 
-        private Dictionary<GameObject, ChatMenuItem> menuMap = new Dictionary<GameObject, ChatMenuItem>();
+        private readonly Dictionary<int, string> _menuMap = new Dictionary<int, string>();
 
 
         void Start()
@@ -22,24 +24,37 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             {
                 var item = items[i];
                 var obj = Instantiate(itemPrefab, menuContainer.transform, false);
+                _menuMap[obj.GetInstanceID()] = item.key;
+
                 obj.transform.GetChild(0).GetComponent<Image>().sprite = item.sprite;
                 var toggle = obj.GetComponent<Toggle>();
-                toggle.group = menuContainer.GetComponent<ToggleGroup>();
+                toggle.isOn = false;
+                var group = menuContainer.GetComponent<ToggleGroup>();
+                toggle.onValueChanged.AddListener((isOn) =>
+                {
+                    if (isOn)
+                    {
+                        var activeToggle = group.GetFirstActiveToggle();
+                        if (_menuMap.TryGetValue(activeToggle.gameObject.GetInstanceID(), out var key))
+                        {
+                            OnSelectMenuItem(key);
+                        }
+                    }
+                });
+                toggle.group = group;
                 toggle.isOn = i == 0;
-                menuMap[obj] = item;
             }
         }
+
 
         void Update()
         {
         }
-    }
 
-    [Serializable]
-    public class ChatMenuItem
-    {
-        public string key;
-
-        public Sprite sprite;
+        private static void OnSelectMenuItem(string key)
+        {
+            ChatContext.Instance.CurrentMenuKey = key;
+            ChatUIEventManager.Instance.OnChatMenuSelected?.Invoke(key);
+        }
     }
 }

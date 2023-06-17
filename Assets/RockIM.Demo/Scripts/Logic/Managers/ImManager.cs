@@ -7,13 +7,13 @@ using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Framework;
 using RockIM.Unity.Framework;
 
-namespace RockIM.Demo.Scripts.Managers
+namespace RockIM.Demo.Scripts.Logic.Managers
 {
-    public class ImSdkManager
+    public class ImManager
     {
-        public static readonly ImSdkManager Instance = new ImSdkManager();
+        public static readonly ImManager Instance = new ImManager();
 
-        private ImSdkManager()
+        private ImManager()
         {
             AsyncManager.Handler = UnityAsyncHandler.Instance;
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RockIM.Demo.Scripts.UI.Components
+namespace RockIM.Demo.Scripts.UI.Widgets
 {
     public class ToastManager : MonoBehaviour
     {

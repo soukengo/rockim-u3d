@@ -1,4 +1,4 @@
-using RockIM.Demo.Scripts.UI.Components;
+using RockIM.Demo.Scripts.UI.Widgets;
 using UnityEngine;
 
 namespace RockIM.Demo.Scripts.UI.Base
