@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RockIM.Demo.Scripts.Logic.Models.Chat;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;
 using UnityEngine;
@@ -7,10 +6,8 @@ using UnityEngine.UI;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 {
-    public class ChatMenuComponent : CComponent
+    public class MenuBox : CComponent
     {
-        public List<ChatMenuItem> items = new List<ChatMenuItem>();
-
         public GameObject itemPrefab;
 
         public GameObject menuContainer;
@@ -20,6 +17,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         void Start()
         {
+            var items = ChatContext.Instance.Items;
             for (var i = 0; i < items.Count; i++)
             {
                 var item = items[i];

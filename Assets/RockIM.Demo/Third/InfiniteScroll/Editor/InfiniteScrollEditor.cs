@@ -7,15 +7,15 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Mopsicus.InfiniteScroll {
+namespace RockIM.Demo.Third.InfiniteScroll.Editor {
 
-	[CustomEditor (typeof (Third.InfiniteScroll.InfiniteScroll))]
-	public class InfiniteScrollEditor : Editor {
+	[CustomEditor (typeof (RockIM.Demo.Third.InfiniteScroll.InfiniteScroll))]
+	public class InfiniteScrollEditor : UnityEditor.Editor {
 
 		/// <summary>
 		/// Scroller target
 		/// </summary>
-		private Third.InfiniteScroll.InfiniteScroll _target;
+		private RockIM.Demo.Third.InfiniteScroll.InfiniteScroll _target;
 
 		/// <summary>
 		/// Serialized target object
@@ -131,7 +131,7 @@ namespace Mopsicus.InfiniteScroll {
 		/// Init data
 		/// </summary>
 		private void OnEnable () {
-			_target = (Third.InfiniteScroll.InfiniteScroll) target;
+			_target = (RockIM.Demo.Third.InfiniteScroll.InfiniteScroll) target;
 			_object = new SerializedObject (target);
 			_prefab = _object.FindProperty ("Prefab");
 			_topPadding = _object.FindProperty ("TopPadding");

@@ -25,5 +25,10 @@ namespace RockIM.Sdk.Api.V1.Entities
         {
             return value.Split(ValueSeparator);
         }
+
+        public override string ToString()
+        {
+            return $"{Category}:{Value}";
+        }
     }
 }

@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Third.InfiniteScroll {
+namespace RockIM.Demo.Third.InfiniteScroll {
 
 	/// <summary>
 	/// Infinite scroller for long lists
@@ -1053,6 +1053,7 @@ namespace Third.InfiniteScroll {
 			foreach (int item in _heights.Values) {
 				height += item;
 			}
+
 			height = height / _heights.Count;
 			int fillCount = Mathf.RoundToInt (_container.height / height) + 4;
 			_views = new GameObject[fillCount];

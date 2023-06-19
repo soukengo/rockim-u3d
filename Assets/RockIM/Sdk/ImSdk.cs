@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Constants;
 using RockIM.Sdk.Api.V1.Dtos;
+using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Api.V1.Exceptions;
 using RockIM.Sdk.Framework;
@@ -22,7 +23,7 @@ namespace RockIM.Sdk
         /// </summary>
         /// <param name="syncMethod"></param>
         /// <typeparam name="T"></typeparam>
-        public static APIResult<T> Call<T>(Func<APIResult<T>> syncMethod)
+        protected static APIResult<T> Call<T>(Func<APIResult<T>> syncMethod)
         {
             APIResult<T> ret;
             try
@@ -59,13 +60,20 @@ namespace RockIM.Sdk
         /// <param name="syncMethod"></param>
         /// <param name="callback"></param>
         /// <typeparam name="T"></typeparam>
-        public static void Async<T>(Func<APIResult<T>> syncMethod, Action<APIResult<T>> callback)
+        protected static void Async<T>(Func<APIResult<T>> syncMethod, Action<APIResult<T>> callback)
         {
             Task.Run(() =>
             {
                 var ret = Call(syncMethod);
-                AsyncManager.Callback(() => callback(ret));
+                try
+                {
+                    AsyncManager.Callback(() => callback(ret));
+                }catch (Exception e)
+                {
+                    Debug.LogError("exception: " + e);
+                }
             });
         }
+
     }
 }

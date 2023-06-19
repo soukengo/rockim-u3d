@@ -8,6 +8,8 @@ namespace RockIM.Demo.Scripts.Logic.Models.Chat
     {
         public string key;
 
+        public string bizId = "10001";
+
         public Sprite sprite;
     }
 }

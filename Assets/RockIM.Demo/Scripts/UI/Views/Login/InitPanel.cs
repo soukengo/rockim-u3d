@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RockIM.Demo.Scripts.Logic.Managers;
+using RockIM.Demo.Scripts.Logic;
 using RockIM.Demo.Scripts.Logic.Models.Chat;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;

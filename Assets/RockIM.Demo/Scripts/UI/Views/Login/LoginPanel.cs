@@ -1,5 +1,5 @@
 using System;
-using RockIM.Demo.Scripts.Logic.Managers;
+using RockIM.Demo.Scripts.Logic;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Demo.Scripts.UI.Widgets;
