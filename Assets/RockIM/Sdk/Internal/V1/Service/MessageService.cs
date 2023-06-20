@@ -54,7 +54,7 @@ namespace RockIM.Sdk.Internal.V1.Service
             var data = new MessageSendResp();
             data.Message = new Message
             {
-                ConversationID = req.ConversationID,
+                TargetID = req.TargetID,
                 ID = Guid.NewGuid().ToString(),
                 Content = req.Content,
             };

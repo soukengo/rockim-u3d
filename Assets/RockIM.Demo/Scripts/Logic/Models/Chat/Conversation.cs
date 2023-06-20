@@ -8,13 +8,13 @@ namespace RockIM.Demo.Scripts.Logic.Models.Chat
     {
         public const int MaxMessageCount = 50;
 
-        public ConversationID ConversationID;
+        public TargetID TargetID;
 
         public List<ImMessage> Messages = new List<ImMessage>();
 
-        public Conversation(ConversationID conversationID)
+        public Conversation(TargetID targetID)
         {
-            ConversationID = conversationID;
+            TargetID = targetID;
         }
 
         public bool AppendMessage(MessageDirection direction, List<ImMessage> messages)

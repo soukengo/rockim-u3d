@@ -1,14 +1,14 @@
 namespace RockIM.Sdk.Api.V1.Enums
 {
-    public enum ConversationCategory
+    public enum TargetCategory
     {
         // 未知
         Unknown = 0,
 
-        // 单聊
+        // 用户
         Person = 1,
 
-        // 群聊
+        // 群
         Group = 2,
     }
 }

@@ -25,14 +25,15 @@ namespace RockIM.Shared.Enums {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Ch5yb2NraW0vc2hhcmVkL2VudW1zL3VzZXIucHJvdG8SE3JvY2tpbS5zaGFy",
-            "ZWQuZW51bXMiKQoEVXNlciIhCgZTdGF0dXMSCgoGTk9STUFMEAASCwoHREVM",
-            "RVRFRBABQlcKFmNuLnJvY2tpbS5zaGFyZWQuZW5tdXNQAVolcm9ja2ltc2Vy",
-            "dmVyL2FwaXMvcm9ja2ltL3NoYXJlZC9lbnVtc6oCE1JvY2tJTS5TaGFyZWQu",
-            "RW51bXNiBnByb3RvMw=="));
+            "ZWQuZW51bXMiTQoEVXNlciIhCgZTdGF0dXMSCgoGTk9STUFMEAASCwoHREVM",
+            "RVRFRBABIiIKDVN5c3RlbUFjY291bnQSEQoNUk9DS0lNX1NZU1RFTRAAQlcK",
+            "FmNuLnJvY2tpbS5zaGFyZWQuZW5tdXNQAVolcm9ja2ltc2VydmVyL2FwaXMv",
+            "cm9ja2ltL3NoYXJlZC9lbnVtc6oCE1JvY2tJTS5TaGFyZWQuRW51bXNiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Shared.Enums.User), global::RockIM.Shared.Enums.User.Parser, null, null, new[]{ typeof(global::RockIM.Shared.Enums.User.Types.Status) }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Shared.Enums.User), global::RockIM.Shared.Enums.User.Parser, null, null, new[]{ typeof(global::RockIM.Shared.Enums.User.Types.Status), typeof(global::RockIM.Shared.Enums.User.Types.SystemAccount) }, null, null)
           }));
     }
     #endregion
@@ -209,6 +210,13 @@ namespace RockIM.Shared.Enums {
         /// 已删除
         /// </summary>
         [pbr::OriginalName("DELETED")] Deleted = 1,
+      }
+
+      /// <summary>
+      /// SystemAccount 系统账号
+      /// </summary>
+      public enum SystemAccount {
+        [pbr::OriginalName("ROCKIM_SYSTEM")] RockimSystem = 0,
       }
 
     }

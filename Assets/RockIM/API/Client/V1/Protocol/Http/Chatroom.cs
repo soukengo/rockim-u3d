@@ -27,21 +27,21 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
             "CjFyb2NraW0vYXBpL2NsaWVudC92MS9wcm90b2NvbC9odHRwL2NoYXRyb29t",
             "LnByb3RvEiJyb2NraW0uYXBpLmNsaWVudC52MS5wcm90b2NvbC5odHRwGiZy",
             "b2NraW0vYXBpL2NsaWVudC92MS90eXBlcy9ncm91cC5wcm90bxotcm9ja2lt",
-            "L2FwaS9jbGllbnQvdjEvcHJvdG9jb2wvaHR0cC9odHRwLnByb3RvImwKE0No",
+            "L2FwaS9jbGllbnQvdjEvcHJvdG9jb2wvaHR0cC9odHRwLnByb3RvImMKE0No",
             "YXRSb29tRmluZFJlcXVlc3QSPAoEYmFzZRgBIAEoCzIuLnJvY2tpbS5hcGku",
-            "Y2xpZW50LnYxLnByb3RvY29sLmh0dHAuQVBJUmVxdWVzdBIXCg9jdXN0b21f",
-            "Z3JvdXBfaWQYAiABKAkiSAoUQ2hhdFJvb21GaW5kUmVzcG9uc2USMAoFZ3Jv",
-            "dXAYASABKAsyIS5yb2NraW0uYXBpLmNsaWVudC52MS50eXBlcy5Hcm91cDKK",
-            "AQoLQ2hhdFJvb21BUEkSewoERmluZBI3LnJvY2tpbS5hcGkuY2xpZW50LnYx",
-            "LnByb3RvY29sLmh0dHAuQ2hhdFJvb21GaW5kUmVxdWVzdBo4LnJvY2tpbS5h",
-            "cGkuY2xpZW50LnYxLnByb3RvY29sLmh0dHAuQ2hhdFJvb21GaW5kUmVzcG9u",
-            "c2UiAEJgWjlyb2NraW1zZXJ2ZXIvYXBpcy9yb2NraW0vYXBpL2NsaWVudC92",
-            "MS9wcm90b2NvbC9odHRwO2h0dHCqAiJSb2NrSU0uQXBpLkNsaWVudC5WMS5Q",
-            "cm90b2NvbC5IdHRwYgZwcm90bzM="));
+            "Y2xpZW50LnYxLnByb3RvY29sLmh0dHAuQVBJUmVxdWVzdBIOCgZiaXpfaWQY",
+            "AiABKAkiSAoUQ2hhdFJvb21GaW5kUmVzcG9uc2USMAoFZ3JvdXAYASABKAsy",
+            "IS5yb2NraW0uYXBpLmNsaWVudC52MS50eXBlcy5Hcm91cDKKAQoLQ2hhdFJv",
+            "b21BUEkSewoERmluZBI3LnJvY2tpbS5hcGkuY2xpZW50LnYxLnByb3RvY29s",
+            "Lmh0dHAuQ2hhdFJvb21GaW5kUmVxdWVzdBo4LnJvY2tpbS5hcGkuY2xpZW50",
+            "LnYxLnByb3RvY29sLmh0dHAuQ2hhdFJvb21GaW5kUmVzcG9uc2UiAEJgWjly",
+            "b2NraW1zZXJ2ZXIvYXBpcy9yb2NraW0vYXBpL2NsaWVudC92MS9wcm90b2Nv",
+            "bC9odHRwO2h0dHCqAiJSb2NrSU0uQXBpLkNsaWVudC5WMS5Qcm90b2NvbC5I",
+            "dHRwYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::RockIM.Api.Client.V1.Types.GroupReflection.Descriptor, global::RockIM.Api.Client.V1.Protocol.Http.HttpReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindRequest), global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindRequest.Parser, new[]{ "Base", "CustomGroupId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindRequest), global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindRequest.Parser, new[]{ "Base", "BizId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindResponse), global::RockIM.Api.Client.V1.Protocol.Http.ChatRoomFindResponse.Parser, new[]{ "Group" }, null, null, null, null)
           }));
     }
@@ -87,7 +87,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ChatRoomFindRequest(ChatRoomFindRequest other) : this() {
       base_ = other.base_ != null ? other.base_.Clone() : null;
-      customGroupId_ = other.customGroupId_;
+      bizId_ = other.bizId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -112,18 +112,18 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       }
     }
 
-    /// <summary>Field number for the "custom_group_id" field.</summary>
-    public const int CustomGroupIdFieldNumber = 2;
-    private string customGroupId_ = "";
+    /// <summary>Field number for the "biz_id" field.</summary>
+    public const int BizIdFieldNumber = 2;
+    private string bizId_ = "";
     /// <summary>
     /// 自定义群组ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string CustomGroupId {
-      get { return customGroupId_; }
+    public string BizId {
+      get { return bizId_; }
       set {
-        customGroupId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        bizId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -143,7 +143,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         return true;
       }
       if (!object.Equals(Base, other.Base)) return false;
-      if (CustomGroupId != other.CustomGroupId) return false;
+      if (BizId != other.BizId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -152,7 +152,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
     public override int GetHashCode() {
       int hash = 1;
       if (base_ != null) hash ^= Base.GetHashCode();
-      if (CustomGroupId.Length != 0) hash ^= CustomGroupId.GetHashCode();
+      if (BizId.Length != 0) hash ^= BizId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -175,9 +175,9 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         output.WriteRawTag(10);
         output.WriteMessage(Base);
       }
-      if (CustomGroupId.Length != 0) {
+      if (BizId.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(CustomGroupId);
+        output.WriteString(BizId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -193,9 +193,9 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         output.WriteRawTag(10);
         output.WriteMessage(Base);
       }
-      if (CustomGroupId.Length != 0) {
+      if (BizId.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(CustomGroupId);
+        output.WriteString(BizId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -210,8 +210,8 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       if (base_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Base);
       }
-      if (CustomGroupId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(CustomGroupId);
+      if (BizId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(BizId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -231,8 +231,8 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         }
         Base.MergeFrom(other.Base);
       }
-      if (other.CustomGroupId.Length != 0) {
-        CustomGroupId = other.CustomGroupId;
+      if (other.BizId.Length != 0) {
+        BizId = other.BizId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -257,7 +257,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
             break;
           }
           case 18: {
-            CustomGroupId = input.ReadString();
+            BizId = input.ReadString();
             break;
           }
         }
@@ -283,7 +283,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
             break;
           }
           case 18: {
-            CustomGroupId = input.ReadString();
+            BizId = input.ReadString();
             break;
           }
         }

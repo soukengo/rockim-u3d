@@ -4,13 +4,13 @@ namespace RockIM.Sdk.Api.V1.Dtos.Request
 {
     public class MessageSendReq
     {
-        public readonly ConversationID ConversationID;
+        public readonly TargetID TargetID;
 
         public readonly MessageContent Content;
 
-        public MessageSendReq(ConversationID conversationID, MessageContent content)
+        public MessageSendReq(TargetID targetID, MessageContent content)
         {
-            ConversationID = conversationID;
+            TargetID = targetID;
             Content = content;
         }
     }

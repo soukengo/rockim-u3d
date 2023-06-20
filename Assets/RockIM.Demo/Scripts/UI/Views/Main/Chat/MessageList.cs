@@ -89,7 +89,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
             var req = new MessageListReq
             {
-                ConversationID = conversation.ConversationID,
+                TargetID = conversation.TargetID,
                 Direction = direction,
                 LastMsgId = lastMsgId
             };
@@ -107,17 +107,17 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                     return;
                 }
 
-                AppendMessage(conversation.ConversationID, list, direction);
+                AppendMessage(conversation.TargetID, list, direction);
             });
         }
 
-        public void SwitchConversation(ConversationID conversationID)
+        public void SwitchConversation(TargetID targetID)
         {
-            var conversation = ChatContext.Instance.GetOrCreateConversation(conversationID);
+            var conversation = ChatContext.Instance.GetOrCreateConversation(targetID);
             ApplyMessage(MessageDirection.Newest, conversation.Messages.Count, conversation.Messages.Count, true);
         }
 
-        public void AppendMessage(ConversationID conversationID, List<Message> list,
+        public void AppendMessage(TargetID targetID, List<Message> list,
             MessageDirection direction = MessageDirection.Newest)
         {
             var mi = scroll.Prefab.GetComponent<MessageItem>();
@@ -129,7 +129,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 newList.Add(new ImMessage {Message = item, Height = (int) height});
             }
 
-            var conversation = ChatContext.Instance.GetOrCreateConversation(conversationID);
+            var conversation = ChatContext.Instance.GetOrCreateConversation(targetID);
 
             var isFirst = conversation.Messages.Count == 0;
             var overflow = conversation.AppendMessage(direction, newList);

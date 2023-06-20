@@ -4,6 +4,6 @@ namespace RockIM.Sdk.Api.V1.Dtos.Request
 {
     public class ConversationCreateReq
     {
-        public ConversationID ConversationID;
+        public TargetID TargetID;
     }
 }

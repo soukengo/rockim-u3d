@@ -9,7 +9,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
     {
         public MessageBox messageBox;
 
-        private readonly Dictionary<string, ConversationID> _conversationIds = new Dictionary<string, ConversationID>();
+        private readonly Dictionary<string, TargetID> _conversationIds = new Dictionary<string, TargetID>();
 
         private void OnEnable()
         {
@@ -29,10 +29,10 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             for (var i = 0; i < items.Count; i++)
             {
                 var item = items[i];
-                var conversationID = new GroupConversationID(item.key, item.bizId);
+                var conversationID = new GroupTargetID(item.key, item.bizId);
                 if (i == 0)
                 {
-                    ChatContext.Instance.CurrentConversationID = conversationID;
+                    ChatContext.Instance.CurrentTargetID = conversationID;
                 }
 
                 ChatContext.Instance.GetOrCreateConversation(conversationID);
@@ -48,7 +48,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 return;
             }
 
-            ChatContext.Instance.CurrentConversationID = conversationID;
+            ChatContext.Instance.CurrentTargetID = conversationID;
 
             messageBox.SwitchConversation(conversationID);
         }

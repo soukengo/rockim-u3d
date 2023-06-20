@@ -10,14 +10,14 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         public InputBox inputBox;
 
-        public void SwitchConversation(ConversationID conversationID)
+        public void SwitchConversation(TargetID targetID)
         {
-            messageList.SwitchConversation(conversationID);
+            messageList.SwitchConversation(targetID);
         }
 
         public void OnSendResult(Message message)
         {
-            messageList.AppendMessage(message.ConversationID, new List<Message> {message});
+            messageList.AppendMessage(message.TargetID, new List<Message> {message});
         }
     }
 }

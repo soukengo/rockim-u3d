@@ -25,37 +25,35 @@ namespace RockIM.Api.Client.V1.Types {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cihyb2NraW0vYXBpL2NsaWVudC92MS90eXBlcy9tZXNzYWdlLnByb3RvEhpy",
-            "b2NraW0uYXBpLmNsaWVudC52MS50eXBlcxomcm9ja2ltL3NoYXJlZC9lbnVt",
-            "cy9jb252ZXJzYXRpb24ucHJvdG8aIXJvY2tpbS9zaGFyZWQvZW51bXMvbWVz",
-            "c2FnZS5wcm90byJXCghUYXJnZXRJRBI8CghjYXRlZ29yeRgBIAEoDjIqLnJv",
-            "Y2tpbS5zaGFyZWQuZW51bXMuQ29udmVyc2F0aW9uLkNhdGVnb3J5Eg0KBXZh",
-            "bHVlGAIgASgJIqYCCglJTU1lc3NhZ2USEgoKcHJvZHVjdF9pZBgBIAEoCRIO",
-            "CgZtc2dfaWQYAiABKAkSMgoEZnJvbRgDIAEoCzIkLnJvY2tpbS5hcGkuY2xp",
-            "ZW50LnYxLnR5cGVzLlRhcmdldElEEjAKAnRvGAQgASgLMiQucm9ja2ltLmFw",
-            "aS5jbGllbnQudjEudHlwZXMuVGFyZ2V0SUQSNwoEYm9keRgFIAEoCzIpLnJv",
-            "Y2tpbS5hcGkuY2xpZW50LnYxLnR5cGVzLklNTWVzc2FnZUJvZHkSEAoIc2Vx",
-            "dWVuY2UYBiABKAMSMwoGc3RhdHVzGAcgASgOMiMucm9ja2ltLnNoYXJlZC5l",
-            "bnVtcy5NZXNzYWdlLlN0YXR1cxIPCgd2ZXJzaW9uGAggASgDItYCCg1JTU1l",
-            "c3NhZ2VCb2R5EhEKCXRpbWVzdGFtcBgBIAEoAxI7CgZzZW5kZXIYAiABKAsy",
-            "Ky5yb2NraW0uYXBpLmNsaWVudC52MS50eXBlcy5JTU1lc3NhZ2VTZW5kZXIS",
-            "FQoNY2xpZW50X21zZ19pZBgDIAEoCRI+CgxtZXNzYWdlX3R5cGUYBCABKA4y",
-            "KC5yb2NraW0uc2hhcmVkLmVudW1zLk1lc3NhZ2UuTWVzc2FnZVR5cGUSDwoH",
-            "Y29udGVudBgFIAEoDBJHCgdwYXlsb2FkGAYgAygLMjYucm9ja2ltLmFwaS5j",
-            "bGllbnQudjEudHlwZXMuSU1NZXNzYWdlQm9keS5QYXlsb2FkRW50cnkSFAoM",
-            "bmVlZF9yZWNlaXB0GAcgASgIGi4KDFBheWxvYWRFbnRyeRILCgNrZXkYASAB",
-            "KAkSDQoFdmFsdWUYAiABKAk6AjgBIlEKD0lNTWVzc2FnZVNlbmRlchILCgN1",
-            "aWQYASABKAkSDwoHYWNjb3VudBgCIAEoCRIMCgRuYW1lGAMgASgJEhIKCmF2",
-            "YXRhcl91cmwYBCABKAkiRgoPSU1NZXNzYWdlUGFja2V0EjMKBGxpc3QYASAD",
-            "KAsyJS5yb2NraW0uYXBpLmNsaWVudC52MS50eXBlcy5JTU1lc3NhZ2VCUVoy",
-            "cm9ja2ltc2VydmVyL2FwaXMvcm9ja2ltL2FwaS9jbGllbnQvdjEvdHlwZXM7",
-            "dHlwZXOqAhpSb2NrSU0uQXBpLkNsaWVudC5WMS5UeXBlc2IGcHJvdG8z"));
+            "b2NraW0uYXBpLmNsaWVudC52MS50eXBlcxohcm9ja2ltL3NoYXJlZC9lbnVt",
+            "cy9tZXNzYWdlLnByb3RvIlgKCFRhcmdldElEEj0KCGNhdGVnb3J5GAEgASgO",
+            "Misucm9ja2ltLnNoYXJlZC5lbnVtcy5NZXNzYWdlVGFyZ2V0LkNhdGVnb3J5",
+            "Eg0KBXZhbHVlGAIgASgJIrMCCglJTU1lc3NhZ2USEgoKcHJvZHVjdF9pZBgB",
+            "IAEoCRIOCgZtc2dfaWQYAiABKAkSOwoGc2VuZGVyGAMgASgLMisucm9ja2lt",
+            "LmFwaS5jbGllbnQudjEudHlwZXMuSU1NZXNzYWdlU2VuZGVyEjQKBnRhcmdl",
+            "dBgEIAEoCzIkLnJvY2tpbS5hcGkuY2xpZW50LnYxLnR5cGVzLlRhcmdldElE",
+            "EjcKBGJvZHkYBiABKAsyKS5yb2NraW0uYXBpLmNsaWVudC52MS50eXBlcy5J",
+            "TU1lc3NhZ2VCb2R5EhAKCHNlcXVlbmNlGAcgASgDEjMKBnN0YXR1cxgIIAEo",
+            "DjIjLnJvY2tpbS5zaGFyZWQuZW51bXMuTWVzc2FnZS5TdGF0dXMSDwoHdmVy",
+            "c2lvbhgJIAEoAyKDAgoNSU1NZXNzYWdlQm9keRIRCgl0aW1lc3RhbXAYASAB",
+            "KAMSFQoNY2xpZW50X21zZ19pZBgCIAEoCRI+CgxtZXNzYWdlX3R5cGUYAyAB",
+            "KA4yKC5yb2NraW0uc2hhcmVkLmVudW1zLk1lc3NhZ2UuTWVzc2FnZVR5cGUS",
+            "DwoHY29udGVudBgEIAEoDBJHCgdwYXlsb2FkGAUgAygLMjYucm9ja2ltLmFw",
+            "aS5jbGllbnQudjEudHlwZXMuSU1NZXNzYWdlQm9keS5QYXlsb2FkRW50cnka",
+            "LgoMUGF5bG9hZEVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToC",
+            "OAEiRAoPSU1NZXNzYWdlU2VuZGVyEg8KB2FjY291bnQYASABKAkSDAoEbmFt",
+            "ZRgCIAEoCRISCgphdmF0YXJfdXJsGAMgASgJIkYKD0lNTWVzc2FnZVBhY2tl",
+            "dBIzCgRsaXN0GAEgAygLMiUucm9ja2ltLmFwaS5jbGllbnQudjEudHlwZXMu",
+            "SU1NZXNzYWdlQlFaMnJvY2tpbXNlcnZlci9hcGlzL3JvY2tpbS9hcGkvY2xp",
+            "ZW50L3YxL3R5cGVzO3R5cGVzqgIaUm9ja0lNLkFwaS5DbGllbnQuVjEuVHlw",
+            "ZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::RockIM.Shared.Enums.ConversationReflection.Descriptor, global::RockIM.Shared.Enums.MessageReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::RockIM.Shared.Enums.MessageReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.TargetID), global::RockIM.Api.Client.V1.Types.TargetID.Parser, new[]{ "Category", "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessage), global::RockIM.Api.Client.V1.Types.IMMessage.Parser, new[]{ "ProductId", "MsgId", "From", "To", "Body", "Sequence", "Status", "Version" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessageBody), global::RockIM.Api.Client.V1.Types.IMMessageBody.Parser, new[]{ "Timestamp", "Sender", "ClientMsgId", "MessageType", "Content", "Payload", "NeedReceipt" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessageSender), global::RockIM.Api.Client.V1.Types.IMMessageSender.Parser, new[]{ "Uid", "Account", "Name", "AvatarUrl" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessage), global::RockIM.Api.Client.V1.Types.IMMessage.Parser, new[]{ "ProductId", "MsgId", "Sender", "Target", "Body", "Sequence", "Status", "Version" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessageBody), global::RockIM.Api.Client.V1.Types.IMMessageBody.Parser, new[]{ "Timestamp", "ClientMsgId", "MessageType", "Content", "Payload" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessageSender), global::RockIM.Api.Client.V1.Types.IMMessageSender.Parser, new[]{ "Account", "Name", "AvatarUrl" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.IMMessagePacket), global::RockIM.Api.Client.V1.Types.IMMessagePacket.Parser, new[]{ "List" }, null, null, null, null)
           }));
     }
@@ -113,13 +111,13 @@ namespace RockIM.Api.Client.V1.Types {
 
     /// <summary>Field number for the "category" field.</summary>
     public const int CategoryFieldNumber = 1;
-    private global::RockIM.Shared.Enums.Conversation.Types.Category category_ = global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown;
+    private global::RockIM.Shared.Enums.MessageTarget.Types.Category category_ = global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown;
     /// <summary>
-    /// 会话类型
+    /// 目标类型
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::RockIM.Shared.Enums.Conversation.Types.Category Category {
+    public global::RockIM.Shared.Enums.MessageTarget.Types.Category Category {
       get { return category_; }
       set {
         category_ = value;
@@ -130,7 +128,7 @@ namespace RockIM.Api.Client.V1.Types {
     public const int ValueFieldNumber = 2;
     private string value_ = "";
     /// <summary>
-    /// 值（群聊为customGroupId，私聊为用户account）
+    /// 值（群聊为bizId，私聊为用户account）
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -165,7 +163,7 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Category != global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown) hash ^= Category.GetHashCode();
+      if (Category != global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown) hash ^= Category.GetHashCode();
       if (Value.Length != 0) hash ^= Value.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -185,7 +183,7 @@ namespace RockIM.Api.Client.V1.Types {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Category != global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown) {
+      if (Category != global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Category);
       }
@@ -203,7 +201,7 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Category != global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown) {
+      if (Category != global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Category);
       }
@@ -221,7 +219,7 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Category != global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown) {
+      if (Category != global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Category);
       }
       if (Value.Length != 0) {
@@ -239,7 +237,7 @@ namespace RockIM.Api.Client.V1.Types {
       if (other == null) {
         return;
       }
-      if (other.Category != global::RockIM.Shared.Enums.Conversation.Types.Category.Unknown) {
+      if (other.Category != global::RockIM.Shared.Enums.MessageTarget.Types.Category.Unknown) {
         Category = other.Category;
       }
       if (other.Value.Length != 0) {
@@ -261,7 +259,7 @@ namespace RockIM.Api.Client.V1.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Category = (global::RockIM.Shared.Enums.Conversation.Types.Category) input.ReadEnum();
+            Category = (global::RockIM.Shared.Enums.MessageTarget.Types.Category) input.ReadEnum();
             break;
           }
           case 18: {
@@ -284,7 +282,7 @@ namespace RockIM.Api.Client.V1.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Category = (global::RockIM.Shared.Enums.Conversation.Types.Category) input.ReadEnum();
+            Category = (global::RockIM.Shared.Enums.MessageTarget.Types.Category) input.ReadEnum();
             break;
           }
           case 18: {
@@ -337,8 +335,8 @@ namespace RockIM.Api.Client.V1.Types {
     public IMMessage(IMMessage other) : this() {
       productId_ = other.productId_;
       msgId_ = other.msgId_;
-      from_ = other.from_ != null ? other.from_.Clone() : null;
-      to_ = other.to_ != null ? other.to_.Clone() : null;
+      sender_ = other.sender_ != null ? other.sender_.Clone() : null;
+      target_ = other.target_ != null ? other.target_.Clone() : null;
       body_ = other.body_ != null ? other.body_.Clone() : null;
       sequence_ = other.sequence_;
       status_ = other.status_;
@@ -382,38 +380,38 @@ namespace RockIM.Api.Client.V1.Types {
       }
     }
 
-    /// <summary>Field number for the "from" field.</summary>
-    public const int FromFieldNumber = 3;
-    private global::RockIM.Api.Client.V1.Types.TargetID from_;
+    /// <summary>Field number for the "sender" field.</summary>
+    public const int SenderFieldNumber = 3;
+    private global::RockIM.Api.Client.V1.Types.IMMessageSender sender_;
     /// <summary>
-    /// 来源目标ID
+    /// 消息发送者
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::RockIM.Api.Client.V1.Types.TargetID From {
-      get { return from_; }
+    public global::RockIM.Api.Client.V1.Types.IMMessageSender Sender {
+      get { return sender_; }
       set {
-        from_ = value;
+        sender_ = value;
       }
     }
 
-    /// <summary>Field number for the "to" field.</summary>
-    public const int ToFieldNumber = 4;
-    private global::RockIM.Api.Client.V1.Types.TargetID to_;
+    /// <summary>Field number for the "target" field.</summary>
+    public const int TargetFieldNumber = 4;
+    private global::RockIM.Api.Client.V1.Types.TargetID target_;
     /// <summary>
-    /// 接收者的目标ID
+    /// 目标ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::RockIM.Api.Client.V1.Types.TargetID To {
-      get { return to_; }
+    public global::RockIM.Api.Client.V1.Types.TargetID Target {
+      get { return target_; }
       set {
-        to_ = value;
+        target_ = value;
       }
     }
 
     /// <summary>Field number for the "body" field.</summary>
-    public const int BodyFieldNumber = 5;
+    public const int BodyFieldNumber = 6;
     private global::RockIM.Api.Client.V1.Types.IMMessageBody body_;
     /// <summary>
     /// 消息主体
@@ -428,7 +426,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "sequence" field.</summary>
-    public const int SequenceFieldNumber = 6;
+    public const int SequenceFieldNumber = 7;
     private long sequence_;
     /// <summary>
     /// 消息序号
@@ -443,7 +441,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "status" field.</summary>
-    public const int StatusFieldNumber = 7;
+    public const int StatusFieldNumber = 8;
     private global::RockIM.Shared.Enums.Message.Types.Status status_ = global::RockIM.Shared.Enums.Message.Types.Status.Sending;
     /// <summary>
     /// 消息状态
@@ -458,7 +456,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "version" field.</summary>
-    public const int VersionFieldNumber = 8;
+    public const int VersionFieldNumber = 9;
     private long version_;
     /// <summary>
     /// 消息版本号
@@ -489,8 +487,8 @@ namespace RockIM.Api.Client.V1.Types {
       }
       if (ProductId != other.ProductId) return false;
       if (MsgId != other.MsgId) return false;
-      if (!object.Equals(From, other.From)) return false;
-      if (!object.Equals(To, other.To)) return false;
+      if (!object.Equals(Sender, other.Sender)) return false;
+      if (!object.Equals(Target, other.Target)) return false;
       if (!object.Equals(Body, other.Body)) return false;
       if (Sequence != other.Sequence) return false;
       if (Status != other.Status) return false;
@@ -504,8 +502,8 @@ namespace RockIM.Api.Client.V1.Types {
       int hash = 1;
       if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
       if (MsgId.Length != 0) hash ^= MsgId.GetHashCode();
-      if (from_ != null) hash ^= From.GetHashCode();
-      if (to_ != null) hash ^= To.GetHashCode();
+      if (sender_ != null) hash ^= Sender.GetHashCode();
+      if (target_ != null) hash ^= Target.GetHashCode();
       if (body_ != null) hash ^= Body.GetHashCode();
       if (Sequence != 0L) hash ^= Sequence.GetHashCode();
       if (Status != global::RockIM.Shared.Enums.Message.Types.Status.Sending) hash ^= Status.GetHashCode();
@@ -536,28 +534,28 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(18);
         output.WriteString(MsgId);
       }
-      if (from_ != null) {
+      if (sender_ != null) {
         output.WriteRawTag(26);
-        output.WriteMessage(From);
+        output.WriteMessage(Sender);
       }
-      if (to_ != null) {
+      if (target_ != null) {
         output.WriteRawTag(34);
-        output.WriteMessage(To);
+        output.WriteMessage(Target);
       }
       if (body_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteMessage(Body);
       }
       if (Sequence != 0L) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt64(Sequence);
       }
       if (Status != global::RockIM.Shared.Enums.Message.Types.Status.Sending) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteEnum((int) Status);
       }
       if (Version != 0L) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt64(Version);
       }
       if (_unknownFields != null) {
@@ -578,28 +576,28 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(18);
         output.WriteString(MsgId);
       }
-      if (from_ != null) {
+      if (sender_ != null) {
         output.WriteRawTag(26);
-        output.WriteMessage(From);
+        output.WriteMessage(Sender);
       }
-      if (to_ != null) {
+      if (target_ != null) {
         output.WriteRawTag(34);
-        output.WriteMessage(To);
+        output.WriteMessage(Target);
       }
       if (body_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteMessage(Body);
       }
       if (Sequence != 0L) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt64(Sequence);
       }
       if (Status != global::RockIM.Shared.Enums.Message.Types.Status.Sending) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteEnum((int) Status);
       }
       if (Version != 0L) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt64(Version);
       }
       if (_unknownFields != null) {
@@ -618,11 +616,11 @@ namespace RockIM.Api.Client.V1.Types {
       if (MsgId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(MsgId);
       }
-      if (from_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(From);
+      if (sender_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sender);
       }
-      if (to_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(To);
+      if (target_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Target);
       }
       if (body_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Body);
@@ -654,17 +652,17 @@ namespace RockIM.Api.Client.V1.Types {
       if (other.MsgId.Length != 0) {
         MsgId = other.MsgId;
       }
-      if (other.from_ != null) {
-        if (from_ == null) {
-          From = new global::RockIM.Api.Client.V1.Types.TargetID();
+      if (other.sender_ != null) {
+        if (sender_ == null) {
+          Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
         }
-        From.MergeFrom(other.From);
+        Sender.MergeFrom(other.Sender);
       }
-      if (other.to_ != null) {
-        if (to_ == null) {
-          To = new global::RockIM.Api.Client.V1.Types.TargetID();
+      if (other.target_ != null) {
+        if (target_ == null) {
+          Target = new global::RockIM.Api.Client.V1.Types.TargetID();
         }
-        To.MergeFrom(other.To);
+        Target.MergeFrom(other.Target);
       }
       if (other.body_ != null) {
         if (body_ == null) {
@@ -705,35 +703,35 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 26: {
-            if (from_ == null) {
-              From = new global::RockIM.Api.Client.V1.Types.TargetID();
+            if (sender_ == null) {
+              Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
             }
-            input.ReadMessage(From);
+            input.ReadMessage(Sender);
             break;
           }
           case 34: {
-            if (to_ == null) {
-              To = new global::RockIM.Api.Client.V1.Types.TargetID();
+            if (target_ == null) {
+              Target = new global::RockIM.Api.Client.V1.Types.TargetID();
             }
-            input.ReadMessage(To);
+            input.ReadMessage(Target);
             break;
           }
-          case 42: {
+          case 50: {
             if (body_ == null) {
               Body = new global::RockIM.Api.Client.V1.Types.IMMessageBody();
             }
             input.ReadMessage(Body);
             break;
           }
-          case 48: {
+          case 56: {
             Sequence = input.ReadInt64();
             break;
           }
-          case 56: {
+          case 64: {
             Status = (global::RockIM.Shared.Enums.Message.Types.Status) input.ReadEnum();
             break;
           }
-          case 64: {
+          case 72: {
             Version = input.ReadInt64();
             break;
           }
@@ -761,35 +759,35 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 26: {
-            if (from_ == null) {
-              From = new global::RockIM.Api.Client.V1.Types.TargetID();
+            if (sender_ == null) {
+              Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
             }
-            input.ReadMessage(From);
+            input.ReadMessage(Sender);
             break;
           }
           case 34: {
-            if (to_ == null) {
-              To = new global::RockIM.Api.Client.V1.Types.TargetID();
+            if (target_ == null) {
+              Target = new global::RockIM.Api.Client.V1.Types.TargetID();
             }
-            input.ReadMessage(To);
+            input.ReadMessage(Target);
             break;
           }
-          case 42: {
+          case 50: {
             if (body_ == null) {
               Body = new global::RockIM.Api.Client.V1.Types.IMMessageBody();
             }
             input.ReadMessage(Body);
             break;
           }
-          case 48: {
+          case 56: {
             Sequence = input.ReadInt64();
             break;
           }
-          case 56: {
+          case 64: {
             Status = (global::RockIM.Shared.Enums.Message.Types.Status) input.ReadEnum();
             break;
           }
-          case 64: {
+          case 72: {
             Version = input.ReadInt64();
             break;
           }
@@ -838,12 +836,10 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public IMMessageBody(IMMessageBody other) : this() {
       timestamp_ = other.timestamp_;
-      sender_ = other.sender_ != null ? other.sender_.Clone() : null;
       clientMsgId_ = other.clientMsgId_;
       messageType_ = other.messageType_;
       content_ = other.content_;
       payload_ = other.payload_.Clone();
-      needReceipt_ = other.needReceipt_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -868,23 +864,8 @@ namespace RockIM.Api.Client.V1.Types {
       }
     }
 
-    /// <summary>Field number for the "sender" field.</summary>
-    public const int SenderFieldNumber = 2;
-    private global::RockIM.Api.Client.V1.Types.IMMessageSender sender_;
-    /// <summary>
-    /// 消息发送者
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::RockIM.Api.Client.V1.Types.IMMessageSender Sender {
-      get { return sender_; }
-      set {
-        sender_ = value;
-      }
-    }
-
     /// <summary>Field number for the "client_msg_id" field.</summary>
-    public const int ClientMsgIdFieldNumber = 3;
+    public const int ClientMsgIdFieldNumber = 2;
     private string clientMsgId_ = "";
     /// <summary>
     /// 客户端的消息ID
@@ -899,7 +880,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "message_type" field.</summary>
-    public const int MessageTypeFieldNumber = 4;
+    public const int MessageTypeFieldNumber = 3;
     private global::RockIM.Shared.Enums.Message.Types.MessageType messageType_ = global::RockIM.Shared.Enums.Message.Types.MessageType.Text;
     /// <summary>
     /// 消息类型
@@ -914,7 +895,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "content" field.</summary>
-    public const int ContentFieldNumber = 5;
+    public const int ContentFieldNumber = 4;
     private pb::ByteString content_ = pb::ByteString.Empty;
     /// <summary>
     /// 消息内容
@@ -929,9 +910,9 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "payload" field.</summary>
-    public const int PayloadFieldNumber = 6;
+    public const int PayloadFieldNumber = 5;
     private static readonly pbc::MapField<string, string>.Codec _map_payload_codec
-        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForString(18, ""), 50);
+        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForString(18, ""), 42);
     private readonly pbc::MapField<string, string> payload_ = new pbc::MapField<string, string>();
     /// <summary>
     /// 透传数据
@@ -940,21 +921,6 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::MapField<string, string> Payload {
       get { return payload_; }
-    }
-
-    /// <summary>Field number for the "need_receipt" field.</summary>
-    public const int NeedReceiptFieldNumber = 7;
-    private bool needReceipt_;
-    /// <summary>
-    /// 是否需要已读回执
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool NeedReceipt {
-      get { return needReceipt_; }
-      set {
-        needReceipt_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -973,12 +939,10 @@ namespace RockIM.Api.Client.V1.Types {
         return true;
       }
       if (Timestamp != other.Timestamp) return false;
-      if (!object.Equals(Sender, other.Sender)) return false;
       if (ClientMsgId != other.ClientMsgId) return false;
       if (MessageType != other.MessageType) return false;
       if (Content != other.Content) return false;
       if (!Payload.Equals(other.Payload)) return false;
-      if (NeedReceipt != other.NeedReceipt) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -987,12 +951,10 @@ namespace RockIM.Api.Client.V1.Types {
     public override int GetHashCode() {
       int hash = 1;
       if (Timestamp != 0L) hash ^= Timestamp.GetHashCode();
-      if (sender_ != null) hash ^= Sender.GetHashCode();
       if (ClientMsgId.Length != 0) hash ^= ClientMsgId.GetHashCode();
       if (MessageType != global::RockIM.Shared.Enums.Message.Types.MessageType.Text) hash ^= MessageType.GetHashCode();
       if (Content.Length != 0) hash ^= Content.GetHashCode();
       hash ^= Payload.GetHashCode();
-      if (NeedReceipt != false) hash ^= NeedReceipt.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1015,27 +977,19 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(8);
         output.WriteInt64(Timestamp);
       }
-      if (sender_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Sender);
-      }
       if (ClientMsgId.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(ClientMsgId);
       }
       if (MessageType != global::RockIM.Shared.Enums.Message.Types.MessageType.Text) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(24);
         output.WriteEnum((int) MessageType);
       }
       if (Content.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(34);
         output.WriteBytes(Content);
       }
       payload_.WriteTo(output, _map_payload_codec);
-      if (NeedReceipt != false) {
-        output.WriteRawTag(56);
-        output.WriteBool(NeedReceipt);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1050,27 +1004,19 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(8);
         output.WriteInt64(Timestamp);
       }
-      if (sender_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Sender);
-      }
       if (ClientMsgId.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(ClientMsgId);
       }
       if (MessageType != global::RockIM.Shared.Enums.Message.Types.MessageType.Text) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(24);
         output.WriteEnum((int) MessageType);
       }
       if (Content.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(34);
         output.WriteBytes(Content);
       }
       payload_.WriteTo(ref output, _map_payload_codec);
-      if (NeedReceipt != false) {
-        output.WriteRawTag(56);
-        output.WriteBool(NeedReceipt);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1084,9 +1030,6 @@ namespace RockIM.Api.Client.V1.Types {
       if (Timestamp != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Timestamp);
       }
-      if (sender_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Sender);
-      }
       if (ClientMsgId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ClientMsgId);
       }
@@ -1097,9 +1040,6 @@ namespace RockIM.Api.Client.V1.Types {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Content);
       }
       size += payload_.CalculateSize(_map_payload_codec);
-      if (NeedReceipt != false) {
-        size += 1 + 1;
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1115,12 +1055,6 @@ namespace RockIM.Api.Client.V1.Types {
       if (other.Timestamp != 0L) {
         Timestamp = other.Timestamp;
       }
-      if (other.sender_ != null) {
-        if (sender_ == null) {
-          Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
-        }
-        Sender.MergeFrom(other.Sender);
-      }
       if (other.ClientMsgId.Length != 0) {
         ClientMsgId = other.ClientMsgId;
       }
@@ -1131,9 +1065,6 @@ namespace RockIM.Api.Client.V1.Types {
         Content = other.Content;
       }
       payload_.Add(other.payload_);
-      if (other.NeedReceipt != false) {
-        NeedReceipt = other.NeedReceipt;
-      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1154,30 +1085,19 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 18: {
-            if (sender_ == null) {
-              Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
-            }
-            input.ReadMessage(Sender);
-            break;
-          }
-          case 26: {
             ClientMsgId = input.ReadString();
             break;
           }
-          case 32: {
+          case 24: {
             MessageType = (global::RockIM.Shared.Enums.Message.Types.MessageType) input.ReadEnum();
             break;
           }
-          case 42: {
+          case 34: {
             Content = input.ReadBytes();
             break;
           }
-          case 50: {
+          case 42: {
             payload_.AddEntriesFrom(input, _map_payload_codec);
-            break;
-          }
-          case 56: {
-            NeedReceipt = input.ReadBool();
             break;
           }
         }
@@ -1200,30 +1120,19 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 18: {
-            if (sender_ == null) {
-              Sender = new global::RockIM.Api.Client.V1.Types.IMMessageSender();
-            }
-            input.ReadMessage(Sender);
-            break;
-          }
-          case 26: {
             ClientMsgId = input.ReadString();
             break;
           }
-          case 32: {
+          case 24: {
             MessageType = (global::RockIM.Shared.Enums.Message.Types.MessageType) input.ReadEnum();
             break;
           }
-          case 42: {
+          case 34: {
             Content = input.ReadBytes();
             break;
           }
-          case 50: {
+          case 42: {
             payload_.AddEntriesFrom(ref input, _map_payload_codec);
-            break;
-          }
-          case 56: {
-            NeedReceipt = input.ReadBool();
             break;
           }
         }
@@ -1270,7 +1179,6 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public IMMessageSender(IMMessageSender other) : this() {
-      uid_ = other.uid_;
       account_ = other.account_;
       name_ = other.name_;
       avatarUrl_ = other.avatarUrl_;
@@ -1283,23 +1191,8 @@ namespace RockIM.Api.Client.V1.Types {
       return new IMMessageSender(this);
     }
 
-    /// <summary>Field number for the "uid" field.</summary>
-    public const int UidFieldNumber = 1;
-    private string uid_ = "";
-    /// <summary>
-    /// 发送者uid
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Uid {
-      get { return uid_; }
-      set {
-        uid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "account" field.</summary>
-    public const int AccountFieldNumber = 2;
+    public const int AccountFieldNumber = 1;
     private string account_ = "";
     /// <summary>
     /// 发送者账号
@@ -1314,7 +1207,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 3;
+    public const int NameFieldNumber = 2;
     private string name_ = "";
     /// <summary>
     /// 发送者名称
@@ -1329,7 +1222,7 @@ namespace RockIM.Api.Client.V1.Types {
     }
 
     /// <summary>Field number for the "avatar_url" field.</summary>
-    public const int AvatarUrlFieldNumber = 4;
+    public const int AvatarUrlFieldNumber = 3;
     private string avatarUrl_ = "";
     /// <summary>
     /// 发送者头像
@@ -1358,7 +1251,6 @@ namespace RockIM.Api.Client.V1.Types {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Uid != other.Uid) return false;
       if (Account != other.Account) return false;
       if (Name != other.Name) return false;
       if (AvatarUrl != other.AvatarUrl) return false;
@@ -1369,7 +1261,6 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Uid.Length != 0) hash ^= Uid.GetHashCode();
       if (Account.Length != 0) hash ^= Account.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (AvatarUrl.Length != 0) hash ^= AvatarUrl.GetHashCode();
@@ -1391,20 +1282,16 @@ namespace RockIM.Api.Client.V1.Types {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Uid.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Uid);
-      }
       if (Account.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Account);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
       if (AvatarUrl.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteString(AvatarUrl);
       }
       if (_unknownFields != null) {
@@ -1417,20 +1304,16 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Uid.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Uid);
-      }
       if (Account.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Account);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
       if (AvatarUrl.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteString(AvatarUrl);
       }
       if (_unknownFields != null) {
@@ -1443,9 +1326,6 @@ namespace RockIM.Api.Client.V1.Types {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Uid.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Uid);
-      }
       if (Account.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Account);
       }
@@ -1466,9 +1346,6 @@ namespace RockIM.Api.Client.V1.Types {
     public void MergeFrom(IMMessageSender other) {
       if (other == null) {
         return;
-      }
-      if (other.Uid.Length != 0) {
-        Uid = other.Uid;
       }
       if (other.Account.Length != 0) {
         Account = other.Account;
@@ -1495,18 +1372,14 @@ namespace RockIM.Api.Client.V1.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Uid = input.ReadString();
-            break;
-          }
-          case 18: {
             Account = input.ReadString();
             break;
           }
-          case 26: {
+          case 18: {
             Name = input.ReadString();
             break;
           }
-          case 34: {
+          case 26: {
             AvatarUrl = input.ReadString();
             break;
           }
@@ -1526,18 +1399,14 @@ namespace RockIM.Api.Client.V1.Types {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            Uid = input.ReadString();
-            break;
-          }
-          case 18: {
             Account = input.ReadString();
             break;
           }
-          case 26: {
+          case 18: {
             Name = input.ReadString();
             break;
           }
-          case 34: {
+          case 26: {
             AvatarUrl = input.ReadString();
             break;
           }

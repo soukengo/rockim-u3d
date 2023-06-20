@@ -2,11 +2,11 @@ namespace RockIM.Sdk.Api.V1.Entities
 {
     public class Conversation
     {
-        public ConversationID ConversationID;
+        public TargetID TargetID;
 
-        public Conversation(ConversationID conversationID)
+        public Conversation(TargetID targetID)
         {
-            ConversationID = conversationID;
+            TargetID = targetID;
         }
     }
 }

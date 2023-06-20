@@ -12,33 +12,33 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         public List<ChatMenuItem> Items = new List<ChatMenuItem>();
 
-        public ConversationID CurrentConversationID;
+        public TargetID CurrentTargetID;
 
-        private readonly Dictionary<ConversationID, Conversation> _conversations =
-            new Dictionary<ConversationID, Conversation>();
+        private readonly Dictionary<TargetID, Conversation> _conversations =
+            new Dictionary<TargetID, Conversation>();
 
-        public Conversation CurrentConversation => GetConversation(CurrentConversationID);
+        public Conversation CurrentConversation => GetConversation(CurrentTargetID);
 
-        public Conversation GetConversation(ConversationID conversationID)
+        public Conversation GetConversation(TargetID targetID)
         {
             lock (_conversations)
             {
-                if (conversationID == null)
+                if (targetID == null)
                 {
                     return null;
                 }
 
-                var exists = _conversations.TryGetValue(conversationID, out var value);
+                var exists = _conversations.TryGetValue(targetID, out var value);
                 return !exists ? null : value;
             }
         }
 
-        public Conversation GetOrCreateConversation(ConversationID conversationID)
+        public Conversation GetOrCreateConversation(TargetID targetID)
         {
             lock (_conversations)
             {
-                var conversation = GetConversation(conversationID) ?? new Conversation(conversationID);
-                _conversations[conversationID] = conversation;
+                var conversation = GetConversation(targetID) ?? new Conversation(targetID);
+                _conversations[targetID] = conversation;
                 return conversation;
             }
         }

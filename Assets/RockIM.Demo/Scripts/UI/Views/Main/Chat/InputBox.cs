@@ -26,7 +26,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                     return;
                 }
 
-                var conversationId = ChatContext.Instance.CurrentConversationID;
+                var conversationId = ChatContext.Instance.CurrentTargetID;
 
                 var req = new MessageSendReq(conversationId, new TextMessageContent(content));
                 input.text = "";

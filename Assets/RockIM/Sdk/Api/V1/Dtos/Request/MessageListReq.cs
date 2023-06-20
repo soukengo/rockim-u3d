@@ -5,7 +5,7 @@ namespace RockIM.Sdk.Api.V1.Dtos.Request
 {
     public class MessageListReq
     {
-        public ConversationID ConversationID;
+        public TargetID TargetID;
 
         public MessageDirection Direction;
 

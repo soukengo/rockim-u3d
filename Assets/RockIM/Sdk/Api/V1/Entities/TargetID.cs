@@ -2,15 +2,15 @@ using RockIM.Sdk.Api.V1.Enums;
 
 namespace RockIM.Sdk.Api.V1.Entities
 {
-    public abstract class ConversationID
+    public abstract class TargetID
     {
         private const string ValueSeparator = "#";
 
-        public ConversationCategory Category;
+        public TargetCategory Category;
 
         public string Value;
 
-        public ConversationID(ConversationCategory category, string value)
+        public TargetID(TargetCategory category, string value)
         {
             Category = category;
             Value = value;
