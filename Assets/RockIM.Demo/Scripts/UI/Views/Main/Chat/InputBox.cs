@@ -15,8 +15,6 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         public Button sendButton;
 
-        public ConversationID ConversationID;
-
 
         private void Start()
         {
@@ -28,7 +26,9 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                     return;
                 }
 
-                var req = new MessageSendReq(ConversationID, new TextMessageContent(content));
+                var conversationId = ChatContext.Instance.CurrentConversationID;
+
+                var req = new MessageSendReq(conversationId, new TextMessageContent(content));
                 input.text = "";
                 ImSdkUnity.Async(() => ImSdk.V1.Apis.Authorized.Message.Send(req), (result) =>
                 {

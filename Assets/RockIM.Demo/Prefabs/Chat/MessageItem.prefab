@@ -296,7 +296,7 @@ MonoBehaviour:
   avatarImage: {fileID: 4235397239517941275}
   nameText: {fileID: 4235397238440482410}
   contentText: {fileID: 3534726786479595891}
-  minWidth: 100
+  minWidth: 20
   maxWidth: 800
 --- !u!1 &4235397239417260705
 GameObject:
@@ -642,7 +642,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8282805289184495640
 CanvasRenderer:
@@ -685,4 +685,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12321
+  m_Text: 2

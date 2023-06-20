@@ -17,55 +17,80 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
     {
         [SerializeField] public InfiniteScroll scroll;
 
-        private List<ImMessage> _list = new List<ImMessage>();
-
-        public int maxCount = 50;
-
-        public ConversationID ConversationID;
-
         private void Start()
         {
             scroll.OnFill += OnFillItem;
             scroll.OnHeight += OnHeightItem;
             scroll.OnPull += OnPullItem;
-            PullMessage(InfiniteScroll.Direction.Bottom);
+            PullMessage(MessageDirection.Oldest);
         }
 
         private void OnFillItem(int index, GameObject obj)
         {
-            var item = _list[index];
+            var count = 0;
+            var conversation = ChatContext.Instance.CurrentConversation;
+            if (conversation is {Messages: { }})
+            {
+                count = conversation.Messages.Count;
+            }
+
+            if (count <= index)
+            {
+                return;
+            }
+
+            var item = conversation.Messages[index];
             var mi = obj.GetComponent<MessageItem>();
             mi.SetContent(item.Message.Content.Content);
         }
 
         private int OnHeightItem(int index)
         {
-            return _list[index].Height;
+            var count = 0;
+            var conversation = ChatContext.Instance.CurrentConversation;
+            if (conversation is {Messages: { }})
+            {
+                count = conversation.Messages.Count;
+            }
+
+            if (count <= index)
+            {
+                return 0;
+            }
+
+            var item = conversation.Messages[index];
+            return item.Height;
         }
 
         private void OnPullItem(InfiniteScroll.Direction direction)
         {
-            Debug.Log("direction: "+ direction);
-            PullMessage(direction);
-        }
-
-        // 拉取消息
-        private void PullMessage(InfiniteScroll.Direction direction)
-        {
-            var lastMsgId = "";
-            if (_list.Count > 0)
-            {
-                lastMsgId = _list[0].Message.ID;
-            }
-
             var messageDirection =
                 direction is InfiniteScroll.Direction.Left or InfiniteScroll.Direction.Top
                     ? MessageDirection.Oldest
                     : MessageDirection.Newest;
+            PullMessage(messageDirection);
+        }
+
+        // 拉取消息
+        private void PullMessage(MessageDirection direction)
+        {
+            var conversation = ChatContext.Instance.CurrentConversation;
+            if (conversation == null)
+            {
+                return;
+            }
+
+            var lastMsgId = "";
+            if (conversation.Messages is {Count: > 0})
+            {
+                lastMsgId = conversation.Messages[0].Message.ID;
+            }
+
+
             var req = new MessageListReq
             {
-                ConversationID = ConversationID,
-                Direction = messageDirection,
+                ConversationID = conversation.ConversationID,
+                Direction = direction,
                 LastMsgId = lastMsgId
             };
             ImSdkUnity.Async(() => ImSdk.V1.Apis.Authorized.Message.List(req), (result) =>
@@ -82,12 +107,18 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                     return;
                 }
 
-                AppendMessage(list, direction);
+                AppendMessage(conversation.ConversationID, list, direction);
             });
         }
 
-        public void AppendMessage(List<Message> list,
-            InfiniteScroll.Direction direction = InfiniteScroll.Direction.Bottom)
+        public void SwitchConversation(ConversationID conversationID)
+        {
+            var conversation = ChatContext.Instance.GetOrCreateConversation(conversationID);
+            ApplyMessage(MessageDirection.Newest, conversation.Messages.Count, conversation.Messages.Count, true);
+        }
+
+        public void AppendMessage(ConversationID conversationID, List<Message> list,
+            MessageDirection direction = MessageDirection.Newest)
         {
             var mi = scroll.Prefab.GetComponent<MessageItem>();
             var newList = new List<ImMessage>();
@@ -98,61 +129,46 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 newList.Add(new ImMessage {Message = item, Height = (int) height});
             }
 
-            ApplyMessage(direction, newList);
+            var conversation = ChatContext.Instance.GetOrCreateConversation(conversationID);
+
+            var isFirst = conversation.Messages.Count == 0;
+            var overflow = conversation.AppendMessage(direction, newList);
+
+            ApplyMessage(direction, conversation.Messages.Count, newList.Count, overflow || isFirst);
+
+            Debug.Log("conversation: " + conversation);
         }
 
         /// <summary>
         /// 将消息加载到ui上
         /// </summary>
-        /// <param name="direction"></param>
-        /// <param name="newList"></param>
-        private void ApplyMessage(InfiniteScroll.Direction direction, List<ImMessage> newList)
+        /// <param name="messageDirection"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="newCount"></param>
+        /// <param name="refresh"></param>
+        private void ApplyMessage(MessageDirection messageDirection, int totalCount, int newCount, bool refresh)
         {
-            lock (_list)
+            var direction = InfiniteScroll.Direction.Bottom;
+            if (messageDirection == MessageDirection.Oldest)
             {
-                var oldCount = _list.Count;
-                var isFirst = oldCount == 0;
-                // 第一次加载，初始化
-                if (isFirst)
-                {
-                    _list = newList;
-                    scroll.InitData(_list.Count);
-                }
-                else
-                {
-                    var refresh = false;
-                    if (direction is InfiniteScroll.Direction.Left or InfiniteScroll.Direction.Top)
-                    {
-                        _list.InsertRange(0, newList);
-                        if (_list.Count > maxCount)
-                        {
-                            _list.RemoveRange(maxCount, _list.Count - maxCount);
-                            refresh = true;
-                            scroll.InitData(_list.Count);
-                        }
-                    }
-                    else
-                    {
-                        _list.AddRange(newList);
-                        if (_list.Count > maxCount)
-                        {
-                            _list.RemoveRange(0, _list.Count - maxCount);
-                            refresh = true;
-                        }
-                    }
-
-                    if (refresh)
-                    {
-                        Debug.Log("超过数量，刷新页面");
-                        scroll.InitData(_list.Count);
-                    }
-                    else
-                    {
-                        scroll.ApplyDataTo(_list.Count, newList.Count, direction);
-                        scroll.MoveToSide(direction);
-                    }
-                }
+                direction = InfiniteScroll.Direction.Top;
             }
+
+            if (refresh)
+            {
+                scroll.RecycleAll();
+                if (totalCount == 0)
+                {
+                    return;
+                }
+
+                scroll.InitData(totalCount);
+            }
+            else
+            {
+                scroll.ApplyDataTo(totalCount, newCount, direction);
+            }
+            scroll.MoveToSide(direction);
         }
     }
 }
