@@ -128,7 +128,7 @@ namespace RockIM.Api.Client.V1.Types {
     public const int ValueFieldNumber = 2;
     private string value_ = "";
     /// <summary>
-    /// 值（群聊为bizId，私聊为用户account）
+    /// 值（群聊为customGroupId，私聊为用户account）
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

@@ -1,5 +1,7 @@
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Internal.V1.Context;
+using RockIM.Sdk.Internal.V1.Infra;
+using RockIM.Sdk.Internal.V1.Infra.Http;
 using RockIM.Sdk.Internal.V1.Service;
 
 namespace RockIM.Sdk.Internal.V1
@@ -16,7 +18,8 @@ namespace RockIM.Sdk.Internal.V1
         public AuthorizedApisV1(SdkContext context)
         {
             _context = context;
-            _messageApi = new MessageService();
+            var httpManager = new HttpManager(context);
+            _messageApi = new MessageService(context, new MessageRepository(httpManager));
         }
     }
 }

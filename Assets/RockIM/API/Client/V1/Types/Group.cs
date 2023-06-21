@@ -26,25 +26,25 @@ namespace RockIM.Api.Client.V1.Types {
           string.Concat(
             "CiZyb2NraW0vYXBpL2NsaWVudC92MS90eXBlcy9ncm91cC5wcm90bxIacm9j",
             "a2ltLmFwaS5jbGllbnQudjEudHlwZXMaH3JvY2tpbS9zaGFyZWQvZW51bXMv",
-            "Z3JvdXAucHJvdG8iowIKBUdyb3VwEjUKCGNhdGVnb3J5GAEgASgOMiMucm9j",
+            "Z3JvdXAucHJvdG8irAIKBUdyb3VwEjUKCGNhdGVnb3J5GAEgASgOMiMucm9j",
             "a2ltLnNoYXJlZC5lbnVtcy5Hcm91cC5DYXRlZ29yeRISCgpwcm9kdWN0X2lk",
-            "GAIgASgJEg4KBmJpel9pZBgDIAEoCRIMCgRuYW1lGAQgASgJEhAKCGljb25f",
-            "dXJsGAUgASgJEj0KBmZpZWxkcxgGIAMoCzItLnJvY2tpbS5hcGkuY2xpZW50",
-            "LnYxLnR5cGVzLkdyb3VwLkZpZWxkc0VudHJ5EjEKBnN0YXR1cxgHIAEoDjIh",
-            "LnJvY2tpbS5zaGFyZWQuZW51bXMuR3JvdXAuU3RhdHVzGi0KC0ZpZWxkc0Vu",
-            "dHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiggIKC0dyb3Vw",
-            "TWVtYmVyEhMKC2NyZWF0ZV90aW1lGAEgASgDEhIKCnByb2R1Y3RfaWQYAiAB",
-            "KAkSEAoIZ3JvdXBfaWQYAyABKAkSDwoHYWNjb3VudBgEIAEoCRIzCgRyb2xl",
-            "GAUgASgOMiUucm9ja2ltLnNoYXJlZC5lbnVtcy5Hcm91cC5NZW1iZXJSb2xl",
-            "EkMKBmZpZWxkcxgGIAMoCzIzLnJvY2tpbS5hcGkuY2xpZW50LnYxLnR5cGVz",
-            "Lkdyb3VwTWVtYmVyLkZpZWxkc0VudHJ5Gi0KC0ZpZWxkc0VudHJ5EgsKA2tl",
-            "eRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCUVoycm9ja2ltc2VydmVyL2Fw",
-            "aXMvcm9ja2ltL2FwaS9jbGllbnQvdjEvdHlwZXM7dHlwZXOqAhpSb2NrSU0u",
-            "QXBpLkNsaWVudC5WMS5UeXBlc2IGcHJvdG8z"));
+            "GAIgASgJEhcKD2N1c3RvbV9ncm91cF9pZBgDIAEoCRIMCgRuYW1lGAQgASgJ",
+            "EhAKCGljb25fdXJsGAUgASgJEj0KBmZpZWxkcxgGIAMoCzItLnJvY2tpbS5h",
+            "cGkuY2xpZW50LnYxLnR5cGVzLkdyb3VwLkZpZWxkc0VudHJ5EjEKBnN0YXR1",
+            "cxgHIAEoDjIhLnJvY2tpbS5zaGFyZWQuZW51bXMuR3JvdXAuU3RhdHVzGi0K",
+            "C0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEi",
+            "ggIKC0dyb3VwTWVtYmVyEhMKC2NyZWF0ZV90aW1lGAEgASgDEhIKCnByb2R1",
+            "Y3RfaWQYAiABKAkSEAoIZ3JvdXBfaWQYAyABKAkSDwoHYWNjb3VudBgEIAEo",
+            "CRIzCgRyb2xlGAUgASgOMiUucm9ja2ltLnNoYXJlZC5lbnVtcy5Hcm91cC5N",
+            "ZW1iZXJSb2xlEkMKBmZpZWxkcxgGIAMoCzIzLnJvY2tpbS5hcGkuY2xpZW50",
+            "LnYxLnR5cGVzLkdyb3VwTWVtYmVyLkZpZWxkc0VudHJ5Gi0KC0ZpZWxkc0Vu",
+            "dHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAFCUVoycm9ja2lt",
+            "c2VydmVyL2FwaXMvcm9ja2ltL2FwaS9jbGllbnQvdjEvdHlwZXM7dHlwZXOq",
+            "AhpSb2NrSU0uQXBpLkNsaWVudC5WMS5UeXBlc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::RockIM.Shared.Enums.GroupReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.Group), global::RockIM.Api.Client.V1.Types.Group.Parser, new[]{ "Category", "ProductId", "BizId", "Name", "IconUrl", "Fields", "Status" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.Group), global::RockIM.Api.Client.V1.Types.Group.Parser, new[]{ "Category", "ProductId", "CustomGroupId", "Name", "IconUrl", "Fields", "Status" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Types.GroupMember), global::RockIM.Api.Client.V1.Types.GroupMember.Parser, new[]{ "CreateTime", "ProductId", "GroupId", "Account", "Role", "Fields" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
@@ -91,7 +91,7 @@ namespace RockIM.Api.Client.V1.Types {
     public Group(Group other) : this() {
       category_ = other.category_;
       productId_ = other.productId_;
-      bizId_ = other.bizId_;
+      customGroupId_ = other.customGroupId_;
       name_ = other.name_;
       iconUrl_ = other.iconUrl_;
       fields_ = other.fields_.Clone();
@@ -135,18 +135,18 @@ namespace RockIM.Api.Client.V1.Types {
       }
     }
 
-    /// <summary>Field number for the "biz_id" field.</summary>
-    public const int BizIdFieldNumber = 3;
-    private string bizId_ = "";
+    /// <summary>Field number for the "custom_group_id" field.</summary>
+    public const int CustomGroupIdFieldNumber = 3;
+    private string customGroupId_ = "";
     /// <summary>
     /// 自定义群组ID，由接入方指定（不填的话SDK服务端自动生成）
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string BizId {
-      get { return bizId_; }
+    public string CustomGroupId {
+      get { return customGroupId_; }
       set {
-        bizId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        customGroupId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -226,7 +226,7 @@ namespace RockIM.Api.Client.V1.Types {
       }
       if (Category != other.Category) return false;
       if (ProductId != other.ProductId) return false;
-      if (BizId != other.BizId) return false;
+      if (CustomGroupId != other.CustomGroupId) return false;
       if (Name != other.Name) return false;
       if (IconUrl != other.IconUrl) return false;
       if (!Fields.Equals(other.Fields)) return false;
@@ -240,7 +240,7 @@ namespace RockIM.Api.Client.V1.Types {
       int hash = 1;
       if (Category != global::RockIM.Shared.Enums.Group.Types.Category.Chatroom) hash ^= Category.GetHashCode();
       if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
-      if (BizId.Length != 0) hash ^= BizId.GetHashCode();
+      if (CustomGroupId.Length != 0) hash ^= CustomGroupId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (IconUrl.Length != 0) hash ^= IconUrl.GetHashCode();
       hash ^= Fields.GetHashCode();
@@ -271,9 +271,9 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(18);
         output.WriteString(ProductId);
       }
-      if (BizId.Length != 0) {
+      if (CustomGroupId.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(BizId);
+        output.WriteString(CustomGroupId);
       }
       if (Name.Length != 0) {
         output.WriteRawTag(34);
@@ -306,9 +306,9 @@ namespace RockIM.Api.Client.V1.Types {
         output.WriteRawTag(18);
         output.WriteString(ProductId);
       }
-      if (BizId.Length != 0) {
+      if (CustomGroupId.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(BizId);
+        output.WriteString(CustomGroupId);
       }
       if (Name.Length != 0) {
         output.WriteRawTag(34);
@@ -339,8 +339,8 @@ namespace RockIM.Api.Client.V1.Types {
       if (ProductId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ProductId);
       }
-      if (BizId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(BizId);
+      if (CustomGroupId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CustomGroupId);
       }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
@@ -370,8 +370,8 @@ namespace RockIM.Api.Client.V1.Types {
       if (other.ProductId.Length != 0) {
         ProductId = other.ProductId;
       }
-      if (other.BizId.Length != 0) {
-        BizId = other.BizId;
+      if (other.CustomGroupId.Length != 0) {
+        CustomGroupId = other.CustomGroupId;
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -407,7 +407,7 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 26: {
-            BizId = input.ReadString();
+            CustomGroupId = input.ReadString();
             break;
           }
           case 34: {
@@ -450,7 +450,7 @@ namespace RockIM.Api.Client.V1.Types {
             break;
           }
           case 26: {
-            BizId = input.ReadString();
+            CustomGroupId = input.ReadString();
             break;
           }
           case 34: {

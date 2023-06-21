@@ -101,6 +101,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
                     error.MergeFrom(contentAsync.Result);
                 }
 
+                result.Code = ResultCodeExtensions.FormInt(error.Code);
                 result.Message = error.Message;
                 result.Reason = error.Reason;
                 return result;

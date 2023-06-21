@@ -22,7 +22,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             scroll.OnFill += OnFillItem;
             scroll.OnHeight += OnHeightItem;
             scroll.OnPull += OnPullItem;
-            PullMessage(MessageDirection.Oldest);
+            PullMessage(ChatContext.Instance.CurrentTargetID, MessageDirection.Oldest);
         }
 
         private void OnFillItem(int index, GameObject obj)
@@ -68,13 +68,13 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 direction is InfiniteScroll.Direction.Left or InfiniteScroll.Direction.Top
                     ? MessageDirection.Oldest
                     : MessageDirection.Newest;
-            PullMessage(messageDirection);
+            PullMessage(ChatContext.Instance.CurrentTargetID, messageDirection);
         }
 
         // 拉取消息
-        private void PullMessage(MessageDirection direction)
+        private void PullMessage(TargetID targetID, MessageDirection direction)
         {
-            var conversation = ChatContext.Instance.CurrentConversation;
+            var conversation = ChatContext.Instance.GetConversation(targetID);
             if (conversation == null)
             {
                 return;
@@ -114,19 +114,27 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         public void SwitchConversation(TargetID targetID)
         {
             var conversation = ChatContext.Instance.GetOrCreateConversation(targetID);
-            ApplyMessage(MessageDirection.Newest, conversation.Messages.Count, conversation.Messages.Count, true);
+
+            if (conversation.Messages.Count == 0)
+            {
+                PullMessage(targetID, MessageDirection.Newest);
+            }
+            else
+            {
+                ApplyMessage(MessageDirection.Newest, conversation.Messages.Count, conversation.Messages.Count, true);
+            }
         }
 
         public void AppendMessage(TargetID targetID, List<Message> list,
             MessageDirection direction = MessageDirection.Newest)
         {
             var mi = scroll.Prefab.GetComponent<MessageItem>();
-            var newList = new List<ImMessage>();
+            var newList = new List<DemoMessage>();
             foreach (var item in list)
             {
                 var content = item.Content.Content;
                 var height = mi.SetContent(content);
-                newList.Add(new ImMessage {Message = item, Height = (int) height});
+                newList.Add(new DemoMessage {Message = item, Height = (int) height});
             }
 
             var conversation = ChatContext.Instance.GetOrCreateConversation(targetID);
@@ -168,6 +176,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             {
                 scroll.ApplyDataTo(totalCount, newCount, direction);
             }
+
             scroll.MoveToSide(direction);
         }
     }

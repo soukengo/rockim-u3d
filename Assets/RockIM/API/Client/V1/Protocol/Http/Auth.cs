@@ -26,21 +26,23 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
           string.Concat(
             "Ci1yb2NraW0vYXBpL2NsaWVudC92MS9wcm90b2NvbC9odHRwL2F1dGgucHJv",
             "dG8SInJvY2tpbS5hcGkuY2xpZW50LnYxLnByb3RvY29sLmh0dHAaLXJvY2tp",
-            "bS9hcGkvY2xpZW50L3YxL3Byb3RvY29sL2h0dHAvaHR0cC5wcm90byJfCgxM",
-            "b2dpblJlcXVlc3QSPAoEYmFzZRgBIAEoCzIuLnJvY2tpbS5hcGkuY2xpZW50",
-            "LnYxLnByb3RvY29sLmh0dHAuQVBJUmVxdWVzdBIRCglhdXRoX2NvZGUYAiAB",
-            "KAkiMwoNTG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRITCgtleHBpcmVf",
-            "dGltZRgCIAEoAzJ5CgdBdXRoQVBJEm4KBUxvZ2luEjAucm9ja2ltLmFwaS5j",
-            "bGllbnQudjEucHJvdG9jb2wuaHR0cC5Mb2dpblJlcXVlc3QaMS5yb2NraW0u",
-            "YXBpLmNsaWVudC52MS5wcm90b2NvbC5odHRwLkxvZ2luUmVzcG9uc2UiAEJg",
-            "Wjlyb2NraW1zZXJ2ZXIvYXBpcy9yb2NraW0vYXBpL2NsaWVudC92MS9wcm90",
-            "b2NvbC9odHRwO2h0dHCqAiJSb2NrSU0uQXBpLkNsaWVudC5WMS5Qcm90b2Nv",
-            "bC5IdHRwYgZwcm90bzM="));
+            "bS9hcGkvY2xpZW50L3YxL3Byb3RvY29sL2h0dHAvaHR0cC5wcm90bxolcm9j",
+            "a2ltL2FwaS9jbGllbnQvdjEvdHlwZXMvdXNlci5wcm90byJfCgxMb2dpblJl",
+            "cXVlc3QSPAoEYmFzZRgBIAEoCzIuLnJvY2tpbS5hcGkuY2xpZW50LnYxLnBy",
+            "b3RvY29sLmh0dHAuQVBJUmVxdWVzdBIRCglhdXRoX2NvZGUYAiABKAkiYwoN",
+            "TG9naW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRITCgtleHBpcmVfdGltZRgC",
+            "IAEoAxIuCgR1c2VyGAMgASgLMiAucm9ja2ltLmFwaS5jbGllbnQudjEudHlw",
+            "ZXMuVXNlcjJ5CgdBdXRoQVBJEm4KBUxvZ2luEjAucm9ja2ltLmFwaS5jbGll",
+            "bnQudjEucHJvdG9jb2wuaHR0cC5Mb2dpblJlcXVlc3QaMS5yb2NraW0uYXBp",
+            "LmNsaWVudC52MS5wcm90b2NvbC5odHRwLkxvZ2luUmVzcG9uc2UiAEJgWjly",
+            "b2NraW1zZXJ2ZXIvYXBpcy9yb2NraW0vYXBpL2NsaWVudC92MS9wcm90b2Nv",
+            "bC9odHRwO2h0dHCqAiJSb2NrSU0uQXBpLkNsaWVudC5WMS5Qcm90b2NvbC5I",
+            "dHRwYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::RockIM.Api.Client.V1.Protocol.Http.HttpReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::RockIM.Api.Client.V1.Protocol.Http.HttpReflection.Descriptor, global::RockIM.Api.Client.V1.Types.UserReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.LoginRequest), global::RockIM.Api.Client.V1.Protocol.Http.LoginRequest.Parser, new[]{ "Base", "AuthCode" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.LoginResponse), global::RockIM.Api.Client.V1.Protocol.Http.LoginResponse.Parser, new[]{ "Token", "ExpireTime" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Http.LoginResponse), global::RockIM.Api.Client.V1.Protocol.Http.LoginResponse.Parser, new[]{ "Token", "ExpireTime", "User" }, null, null, null, null)
           }));
     }
     #endregion
@@ -330,6 +332,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
     public LoginResponse(LoginResponse other) : this() {
       token_ = other.token_;
       expireTime_ = other.expireTime_;
+      user_ = other.user_ != null ? other.user_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -369,6 +372,21 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       }
     }
 
+    /// <summary>Field number for the "user" field.</summary>
+    public const int UserFieldNumber = 3;
+    private global::RockIM.Api.Client.V1.Types.User user_;
+    /// <summary>
+    /// 当前登录用户的信息
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::RockIM.Api.Client.V1.Types.User User {
+      get { return user_; }
+      set {
+        user_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -386,6 +404,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       }
       if (Token != other.Token) return false;
       if (ExpireTime != other.ExpireTime) return false;
+      if (!object.Equals(User, other.User)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -395,6 +414,7 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       int hash = 1;
       if (Token.Length != 0) hash ^= Token.GetHashCode();
       if (ExpireTime != 0L) hash ^= ExpireTime.GetHashCode();
+      if (user_ != null) hash ^= User.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -421,6 +441,10 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         output.WriteRawTag(16);
         output.WriteInt64(ExpireTime);
       }
+      if (user_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(User);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -439,6 +463,10 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
         output.WriteRawTag(16);
         output.WriteInt64(ExpireTime);
       }
+      if (user_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(User);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -454,6 +482,9 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       }
       if (ExpireTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(ExpireTime);
+      }
+      if (user_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(User);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -472,6 +503,12 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
       }
       if (other.ExpireTime != 0L) {
         ExpireTime = other.ExpireTime;
+      }
+      if (other.user_ != null) {
+        if (user_ == null) {
+          User = new global::RockIM.Api.Client.V1.Types.User();
+        }
+        User.MergeFrom(other.User);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -496,6 +533,13 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
             ExpireTime = input.ReadInt64();
             break;
           }
+          case 26: {
+            if (user_ == null) {
+              User = new global::RockIM.Api.Client.V1.Types.User();
+            }
+            input.ReadMessage(User);
+            break;
+          }
         }
       }
     #endif
@@ -517,6 +561,13 @@ namespace RockIM.Api.Client.V1.Protocol.Http {
           }
           case 16: {
             ExpireTime = input.ReadInt64();
+            break;
+          }
+          case 26: {
+            if (user_ == null) {
+              User = new global::RockIM.Api.Client.V1.Types.User();
+            }
+            input.ReadMessage(User);
             break;
           }
         }

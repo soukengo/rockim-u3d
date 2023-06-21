@@ -44,7 +44,7 @@ namespace RockIM.Sdk
                 Debug.LogError("exception: " + e.StackTrace);
                 ret = new APIResult<T>
                 {
-                    Code = ResultCode.Unknown,
+                    Code = ResultCode.InternalError,
                     Reason = ErrorReasons.ClientException,
                     Message = e.StackTrace
                 };

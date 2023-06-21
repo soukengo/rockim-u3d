@@ -4,7 +4,6 @@ namespace RockIM.Sdk.Api.V1.Enums
 {
     public enum ResultCode
     {
-        Unknown = 0,
         Success = 200,
         BadRequest = 400,
         Unauthorized = 401,
@@ -23,7 +22,7 @@ namespace RockIM.Sdk.Api.V1.Enums
         {
             if (!Enum.IsDefined(typeof(ResultCode), code))
             {
-                return ResultCode.Unknown;
+                return ResultCode.InternalError;
             }
 
             return (ResultCode) code;

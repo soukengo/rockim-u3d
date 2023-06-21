@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using RockIM.Sdk.Api.V1.Entities;
 
-namespace RockIM.Sdk.Api.V1.Dtos.Request
+namespace RockIM.Sdk.Internal.V1.Domain.Options
 {
-    public class MessageSendReq
+    public class MessageSendOptions
     {
         public readonly TargetID TargetID;
 
         public readonly MessageContent Content;
-        
+
+        public string ClientMsgId;
+
         public Dictionary<string, string> Payload;
 
-        public MessageSendReq(TargetID targetID, MessageContent content)
+        public MessageSendOptions(TargetID targetID, MessageContent content)
         {
             TargetID = targetID;
             Content = content;

@@ -6,6 +6,9 @@ using RockIM.Sdk.Api.V1.Dtos.Request;
 using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Api.V1.Enums;
+using RockIM.Sdk.Internal.V1.Context;
+using RockIM.Sdk.Internal.V1.Domain.Options;
+using RockIM.Sdk.Internal.V1.Domain.Repository;
 
 namespace RockIM.Sdk.Internal.V1.Service
 {
@@ -19,6 +22,17 @@ namespace RockIM.Sdk.Internal.V1.Service
             "确保在使用这段代码之前，将正确的Text组件和最大宽度（maxWidth）分配给脚本的公共字段。这样，当你运行游戏时，文本将根据指定的宽度进行自动换行。",
             "Inspector で下記の設定をすることで無限スクロールを実装できます。FancyScrollView の Loop をオンにするとセルが循環し、先頭のセルの前に末尾のセル、末尾のセルの後に先頭のセルが並ぶようになります。サンプルで使用されている Scroller を使うときは、 Movement Type を Unrestricted に設定することで、スクロール範囲が無制限になります。 1. と組み合わせることで無限スクロールを実現できます。実装例（Examples/03_InfiniteScroll）が含まれていますので、こちらも参考にしてください。FancyScrollRect および FancyGridView は無限スクロールをサポートしていません。"
         };
+
+        private readonly SdkContext _context;
+
+        private readonly IMessageRepository _messageRepository;
+
+        public MessageService(SdkContext context, IMessageRepository messageRepository)
+        {
+            _context = context;
+            _messageRepository = messageRepository;
+        }
+
 
         public APIResult<MessageListResp> List(MessageListReq req)
         {
@@ -47,18 +61,33 @@ namespace RockIM.Sdk.Internal.V1.Service
 
         public APIResult<MessageSendResp> Send(MessageSendReq req)
         {
-            var ret = new APIResult<MessageSendResp>
+            var opts = new MessageSendOptions(req.TargetID, req.Content)
             {
-                Code = ResultCode.Success
+                ClientMsgId = Guid.NewGuid().ToString(),
+                Payload = req.Payload,
             };
-            var data = new MessageSendResp();
-            data.Message = new Message
+            var result = _messageRepository.Send(opts);
+            var currentUser = _context.Authorization.User;
+            var ret = ResultConverter.Convert(result, (source) =>
             {
-                TargetID = req.TargetID,
-                ID = Guid.NewGuid().ToString(),
-                Content = req.Content,
-            };
-            ret.Data = data;
+                var resp = new MessageSendResp();
+                var message = new Message
+                {
+                    ID = "",
+                    TargetID = opts.TargetID,
+                    ClientMsgId = opts.ClientMsgId,
+                    Sender = new MessageSender
+                    {
+                        Account = currentUser.Account,
+                        Name = currentUser.Name,
+                        AvatarUrl = currentUser.AvatarUrl
+                    },
+                    Content = opts.Content,
+                    Status = MessageStatus.Sending,
+                };
+                resp.Message = message;
+                return resp;
+            });
             return ret;
         }
     }

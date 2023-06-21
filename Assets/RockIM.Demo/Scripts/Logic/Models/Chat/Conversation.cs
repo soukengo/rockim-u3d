@@ -10,14 +10,14 @@ namespace RockIM.Demo.Scripts.Logic.Models.Chat
 
         public TargetID TargetID;
 
-        public List<ImMessage> Messages = new List<ImMessage>();
+        public List<DemoMessage> Messages = new List<DemoMessage>();
 
         public Conversation(TargetID targetID)
         {
             TargetID = targetID;
         }
 
-        public bool AppendMessage(MessageDirection direction, List<ImMessage> messages)
+        public bool AppendMessage(MessageDirection direction, List<DemoMessage> messages)
         {
             var overflow = false;
             if (direction == MessageDirection.Newest)

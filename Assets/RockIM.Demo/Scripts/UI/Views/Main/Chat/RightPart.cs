@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Sdk.Api.V1.Entities;
+using RockIM.Sdk.Api.V1.Enums;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 {
@@ -23,13 +24,13 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             ChatUIEventManager.Instance.OnSendResult += OnSendSuccess;
         }
 
-        void Start()
+        protected override void Init()
         {
             var items = ChatContext.Instance.Items;
             for (var i = 0; i < items.Count; i++)
             {
                 var item = items[i];
-                var conversationID = new GroupTargetID(item.key, item.bizId);
+                var conversationID = new TargetID(TargetCategory.Group, item.key + "_" + item.bizId);
                 if (i == 0)
                 {
                     ChatContext.Instance.CurrentTargetID = conversationID;
