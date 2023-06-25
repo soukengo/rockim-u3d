@@ -117,6 +117,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
             if (conversation.Messages.Count == 0)
             {
+                scroll.RecycleAll();
                 PullMessage(targetID, MessageDirection.Newest);
             }
             else
@@ -144,7 +145,6 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
             ApplyMessage(direction, conversation.Messages.Count, newList.Count, overflow || isFirst);
 
-            Debug.Log("conversation: " + conversation);
         }
 
         /// <summary>

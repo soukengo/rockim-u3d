@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Constants;
 using RockIM.Sdk.Api.V1.Dtos;
-using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Api.V1.Exceptions;
 using RockIM.Sdk.Framework;
