@@ -5,9 +5,7 @@ using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Request;
 using RockIM.Sdk.Api.V1.Dtos.Response;
-using RockIM.Sdk.Framework;
 using RockIM.Unity;
-using RockIM.Unity.Framework;
 
 namespace RockIM.Demo.Scripts.Logic
 {
@@ -21,6 +19,7 @@ namespace RockIM.Demo.Scripts.Logic
         public void Login(LoginReq req, Action<APIResult<LoginResp>> callback)
         {
             ImSdkUnity.Async(() => ImSdk.V1.Apis.Auth.Login(req), callback);
+            ImSdk.V1.EventBus.LifeCycle.Connecting += () => { };
         }
     }
 }

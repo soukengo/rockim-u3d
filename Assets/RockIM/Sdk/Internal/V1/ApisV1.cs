@@ -9,14 +9,14 @@ using RockIM.Sdk.Internal.V1.Service;
 
 namespace RockIM.Sdk.Internal.V1
 {
-    public sealed class ApisV1 : Apis
+    public sealed class ApisV1 : IApis
     {
         private AuthorizedApisV1 _authorizedApis;
 
         internal readonly ProductService ProductService;
-        public override IAuthApi Auth { get; protected set; }
+        public IAuthApi Auth { get; }
 
-        public override AuthorizedApis Authorized
+        public IAuthorizedApis Authorized
         {
             get
             {
@@ -27,8 +27,6 @@ namespace RockIM.Sdk.Internal.V1
 
                 return _authorizedApis;
             }
-
-            protected set { }
         }
 
 

@@ -9,13 +9,13 @@ using RockIM.Sdk.Internal.V1.Service;
 
 namespace RockIM.Sdk.Internal.V1
 {
-    public sealed class ClientV1 : Client
+    public sealed class ClientV1 : IClient
     {
         private readonly SdkContext _context;
 
         private ApisV1 _apis;
 
-        public override Apis Apis
+        public IApis Apis
         {
             get
             {
@@ -28,12 +28,15 @@ namespace RockIM.Sdk.Internal.V1
             }
         }
 
+        public IEventBus EventBus { get; }
+
         public ClientV1()
         {
             _context = new SdkContext();
+            EventBus = new EventBus();
         }
 
-        public override APIResult<InitResp> Init(Config config)
+        public APIResult<InitResp> Init(Config config)
         {
             _context.Config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
             _apis = new ApisV1(_context);

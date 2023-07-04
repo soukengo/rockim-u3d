@@ -6,14 +6,14 @@ using RockIM.Sdk.Internal.V1.Service;
 
 namespace RockIM.Sdk.Internal.V1
 {
-    public sealed class AuthorizedApisV1 : AuthorizedApis
+    public sealed class AuthorizedApisV1 : IAuthorizedApis
     {
         private SdkContext _context;
 
 
         private readonly IMessageApi _messageApi;
 
-        public override IMessageApi Message => _messageApi;
+        public IMessageApi Message => _messageApi;
 
         public AuthorizedApisV1(SdkContext context)
         {

@@ -5,20 +5,20 @@ namespace RockIM.Sdk.Api.V1
     /// <summary>
     /// 接口列表
     /// </summary>
-    public abstract class Apis
+    public interface IApis
     {
-        public abstract IAuthApi Auth { get; protected set; }
+        public IAuthApi Auth { get; }
 
         /// <summary>
         /// 必须在登录之后调用，否则调用接口返回 ErrorReasons.ClientUnauthorized
         /// </summary>
-        public abstract AuthorizedApis Authorized { get; protected set; }
+        public IAuthorizedApis Authorized { get; }
     }
 
     /// <summary>
     /// 需要登录认证的接口列表
     /// </summary>
-    public abstract class AuthorizedApis
+    public interface IAuthorizedApis
     {
         public abstract IMessageApi Message { get; }
     }

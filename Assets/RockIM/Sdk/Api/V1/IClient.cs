@@ -3,18 +3,23 @@ using RockIM.Sdk.Api.V1.Dtos.Response;
 
 namespace RockIM.Sdk.Api.V1
 {
-    public abstract class Client
+    public interface IClient
     {
         /// <summary>
         /// 必须在初始化完成之后调用，否则调用接口返回 ErrorReasons.ClientUninitialized
         /// </summary>
-        public abstract Apis Apis { get; }
+        public IApis Apis { get; }
+
+        /// <summary>
+        /// 事件中心，用于注册sdk的各类事件回调
+        /// </summary>
+        public IEventBus EventBus { get; }
 
         /// <summary>
         /// 初始化接口
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public abstract APIResult<InitResp> Init(Config config);
+        public APIResult<InitResp> Init(Config config);
     }
 }

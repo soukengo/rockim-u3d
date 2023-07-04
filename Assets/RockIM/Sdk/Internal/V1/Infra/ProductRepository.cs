@@ -3,7 +3,6 @@ using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Domain.Repository;
 using RockIM.Sdk.Internal.V1.Infra.Http;
-using Socket = RockIM.Sdk.Internal.V1.Domain.Entities.Socket;
 
 namespace RockIM.Sdk.Internal.V1.Infra
 {
@@ -34,7 +33,7 @@ namespace RockIM.Sdk.Internal.V1.Infra
 
             var config = new ServerConfig()
             {
-                Socket = new Socket()
+                Socket = new Domain.Entities.Socket()
                 {
                     Tcp = new Tcp()
                     {

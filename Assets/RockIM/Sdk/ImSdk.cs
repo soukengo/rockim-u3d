@@ -13,8 +13,8 @@ namespace RockIM.Sdk
 {
     public abstract class ImSdk
     {
-        private static readonly Lazy<Client> V1Lazy = new(new ClientV1());
-        public static Client V1 => V1Lazy.Value;
+        private static readonly Lazy<IClient> V1Lazy = new(new ClientV1());
+        public static IClient V1 => V1Lazy.Value;
 
 
         /// <summary>

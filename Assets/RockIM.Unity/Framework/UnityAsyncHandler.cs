@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading;
 using RockIM.Sdk.Framework;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace RockIM.Unity.Framework
 
         private static int _currentThreadId;
 
-        private static readonly Queue<Action> Actions = new Queue<Action>();
+        private static readonly ConcurrentQueue<Action> Actions = new ConcurrentQueue<Action>();
 
         static UnityAsyncHandler()
         {
