@@ -7,7 +7,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
     {
         public Packet Parse(byte[] source)
         {
-            var stream = new MemoryStream();
+            var stream = new MemoryStream(source);
             try
             {
                 return Parse(stream);

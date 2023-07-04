@@ -1,3 +1,4 @@
+using System;
 using RockIM.Sdk.Api.v1;
 
 namespace RockIM.Sdk.Api.V1

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using RockIM.Api.Client.V1.Protocol.Socket;
 using RockIM.Sdk.Framework.Network.Socket;
+using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Shared.Enums;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Socket
@@ -50,10 +51,10 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         public byte[] Data()
         {
             var data = new byte[PacketHeaderSize + Header.Length + Body.Length];
-            BitConverter.GetBytes(Version).CopyTo(data, VersionOffset);
-            data[TypeOffset] = Type;
-            BitConverter.GetBytes(Header.Length).CopyTo(data, HeaderLenOffset);
-            BitConverter.GetBytes(Body.Length).CopyTo(data, BodyLenOffset);
+            BigEndian.FromUint16(Version).CopyTo(data, VersionOffset);
+            BigEndian.FromUint8(Type).CopyTo(data, TypeOffset);
+            BigEndian.FromUint16((ushort) Header.Length).CopyTo(data, HeaderLenOffset);
+            BigEndian.FromUint32((uint) Body.Length).CopyTo(data, BodyLenOffset);
 
             var bodyOffset = HeaderOffset;
 
@@ -85,14 +86,16 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 return null;
             }
 
-            var version = BitConverter.ToUInt16(new ArraySegment<byte>(packetHeader, VersionOffset, TypeOffset));
-            var type = packetHeader[TypeOffset];
-            var headerLen = BitConverter.ToUInt16(new ArraySegment<byte>(packetHeader, HeaderLenOffset, BodyLenOffset));
-            var bodyLen = BitConverter.ToUInt16(new ArraySegment<byte>(packetHeader, BodyLenOffset, HeaderOffset));
+            var version =
+                BigEndian.ToUInt16(new ArraySegment<byte>(packetHeader, VersionOffset, VersionSize).ToArray());
+            var type = BigEndian.ToUInt8(new ArraySegment<byte>(packetHeader, TypeOffset, TypeSize).ToArray());
+            var headerLen =
+                BigEndian.ToUInt16(new ArraySegment<byte>(packetHeader, HeaderLenOffset, HeaderLenSize).ToArray());
+            var bodyLen =
+                BigEndian.ToUInt32(new ArraySegment<byte>(packetHeader, BodyLenOffset, BodyLenSize).ToArray());
 
             var dataLen = headerLen + bodyLen;
-            var bodyOffset = HeaderOffset + headerLen;
-            var lastOffset = bodyOffset + bodyLen;
+
 
             var data = new byte[dataLen];
             var dataLenRead = ins.Read(data);
@@ -101,16 +104,19 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 return null;
             }
 
+            const int headerOffset = 0;
+            var bodyOffset = headerOffset + headerLen;
+
             byte[] header = { };
             byte[] body = { };
             if (headerLen > 0)
             {
-                header = new ArraySegment<byte>(packetHeader, HeaderOffset, bodyOffset).ToArray();
+                header = new ArraySegment<byte>(data, headerOffset, headerLen).ToArray();
             }
 
             if (bodyLen > 0)
             {
-                body = new ArraySegment<byte>(packetHeader, bodyOffset, lastOffset).ToArray();
+                body = new ArraySegment<byte>(data, bodyOffset, (int) bodyLen).ToArray();
             }
 
             var packet = new Packet(version, type, header, body);

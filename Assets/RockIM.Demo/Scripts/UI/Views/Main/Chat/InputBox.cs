@@ -30,7 +30,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
                 var req = new MessageSendReq(conversationId, new TextMessageContent(content));
                 input.text = "";
-                ImSdkUnity.Async(() => ImSdk.V1.Apis.Authorized.Message.Send(req), (result) =>
+                ImSdkUnity.Async(() => ImSdkV1.Apis.Authorized.Message.Send(req), (result) =>
                 {
                     if (!result.IsSuccess())
                     {

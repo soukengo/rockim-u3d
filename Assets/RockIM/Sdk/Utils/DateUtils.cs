@@ -6,8 +6,7 @@ namespace RockIM.Sdk.Utils
     {
         public static long NowTs()
         {
-            var now = DateTimeOffset.Now;
-            return now.Millisecond;
+            return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
     }
 }

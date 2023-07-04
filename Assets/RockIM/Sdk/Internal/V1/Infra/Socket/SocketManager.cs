@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using RockIM.Api.Client.V1.Protocol.Socket;
+using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Framework.Network.Socket;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Data;
@@ -17,7 +18,9 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
         private const int ProtocolVersion = 1;
 
-        private const int HeartbeatInterval = 10;
+        private const int HeartbeatInterval = 10 * 1000;
+
+        private const int ReConnectInterval = 3 * 1000;
 
         private Domain.Entities.Socket _currentConfig;
 
@@ -27,15 +30,22 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
         private readonly SdkContext _context;
 
-        private readonly EventBus _eventBus;
+        private readonly IEventBus _eventBus;
 
         private readonly CancellationTokenSource _shutdown;
 
         private CancellationTokenSource _close;
 
         private long _lastHeartbeat;
+        private long _lastHeartbeatReply;
+        private long _lastConnectTime;
 
-        public SocketManager(SdkContext context, EventBus eventBus)
+
+        public bool IsConnected => _current is {IsConnected: true};
+
+        public bool IsConnecting => _current is {IsConnecting: true};
+
+        public SocketManager(SdkContext context, IEventBus eventBus)
         {
             _context = context;
             _eventBus = eventBus;
@@ -44,8 +54,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         }
 
 
-        public IChannel Connect(Domain.Entities.Socket config)
+        public void Connect(Domain.Entities.Socket config)
         {
+            if (IsConnecting || IsConnected)
+            {
+                return;
+            }
+
+            _currentConfig = config;
             _currentTicket = Guid.NewGuid().ToString();
             _eventBus.LifeCycle.OnConnecting();
             var parser = new PacketParser();
@@ -60,11 +76,25 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             _current = ch;
 
             _close = new CancellationTokenSource();
+            _lastConnectTime = DateUtils.NowTs();
             ch.ConnectAsync();
-
-            return ch;
         }
 
+
+        private void ReConnect()
+        {
+            _current.CloseAsync();
+            var now = DateUtils.NowTs();
+
+            var delay = ReConnectInterval - (now - _lastConnectTime);
+            LoggerContext.Logger.Info("delay: {0}", delay);
+            if (delay > 0)
+            {
+                Thread.Sleep((int) delay);
+            }
+
+            Connect(_currentConfig);
+        }
 
         private void SendPacket<T>(Operation operation, IMessage data, Action<Result<T>> callback)
             where T : IMessage, new()
@@ -88,7 +118,9 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             {
                 Body = ByteString.CopyFrom(dataBytes),
             });
-            var packet = new Packet(ProtocolVersion, (byte) Network.Types.PacketType.Request, headerBytes, bodyBytes);
+            var packet = new Packet(reqId.ToString(), ProtocolVersion, (byte) Network.Types.PacketType.Request,
+                headerBytes,
+                bodyBytes);
             _current.SendAsync(packet, (p) =>
             {
                 if (p is not Packet newPacket)
@@ -128,6 +160,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 }
 
                 Task.Run(HeartbeatLoop);
+                _eventBus.LifeCycle.OnConnected();
             });
         }
 
@@ -145,6 +178,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
             _close.Cancel();
             _eventBus.LifeCycle.OnDisConnected();
+
+            if (_shutdown.Token.IsCancellationRequested)
+            {
+                return;
+            }
+
+            // 触发重连
+            ReConnect();
         }
 
         /// <summary>
@@ -154,7 +195,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         /// <param name="packet"></param>
         private void OnReceived(string ticket, IPacket packet)
         {
-            LoggerContext.Logger.Info("OnReceived {0} {1}", ticket, packet);
+            LoggerContext.Logger.Debug("OnReceived {0} {1}", ticket, packet);
             if (!ticket.Equals(_currentTicket))
             {
                 return;
@@ -168,7 +209,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 return;
             }
 
-            LoggerContext.Logger.Info("OnReceivedError {0} {1}", ticket, e.StackTrace);
+            LoggerContext.Logger.Error("OnReceivedError {0} {1}", ticket, e.StackTrace);
         }
 
         /// <summary>
@@ -179,20 +220,25 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             do
             {
                 var now = DateUtils.NowTs();
-                if (now - _lastHeartbeat < TimeSpan.FromSeconds(HeartbeatInterval).Milliseconds)
+                var delay = HeartbeatInterval - (now - _lastHeartbeat);
+                if (delay > 0)
                 {
+                    Thread.Sleep((int) delay);
                     continue;
                 }
 
+                // LoggerContext.Logger.Debug("Heartbeat request");
+                _lastHeartbeat = DateUtils.NowTs();
                 SendPacket<HeartBeatResponse>(Operation.Heartbeat, new HeartBeatRequest(), (result) =>
                 {
+                    // LoggerContext.Logger.Debug("Heartbeat reply");
                     if (!result.IsSuccess())
                     {
                         LoggerContext.Logger.Error("Heartbeat Error {}", result);
                         return;
                     }
 
-                    _lastHeartbeat = DateUtils.NowTs();
+                    _lastHeartbeatReply = DateUtils.NowTs();
                 });
             } while (!_close.Token.IsCancellationRequested && !_shutdown.Token.IsCancellationRequested);
         }
@@ -201,6 +247,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         {
             _close?.Cancel();
             _current?.CloseAsync();
+            _current = null;
             _shutdown?.Cancel();
         }
     }

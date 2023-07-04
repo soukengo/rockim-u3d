@@ -39,7 +39,7 @@ namespace RockIM.Sdk.Internal.V1
         public APIResult<InitResp> Init(Config config)
         {
             _context.Config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
-            _apis = new ApisV1(_context);
+            _apis = new ApisV1(_context,EventBus);
             var result = _apis.ProductService.FetchConfig();
             var data = result.Data;
             var ret = ResultConverter.Convert(result, (source) => new InitResp());

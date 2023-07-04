@@ -11,6 +11,8 @@ namespace RockIM.Sdk.Internal.V1
 {
     public sealed class ApisV1 : IApis
     {
+        private IEventBus _eventBus;
+
         private AuthorizedApisV1 _authorizedApis;
 
         internal readonly ProductService ProductService;
@@ -30,15 +32,16 @@ namespace RockIM.Sdk.Internal.V1
         }
 
 
-        public ApisV1(SdkContext context)
+        public ApisV1(SdkContext context, IEventBus eventBus)
         {
+            _eventBus = eventBus;
             IHttpManager httpManager = new HttpManager(context);
             ProductService = new ProductService(new ProductRepository(httpManager));
             Auth = new AuthService(context, new AuthRepository(httpManager),
                 (auth) =>
                 {
                     context.Authorization = auth;
-                    _authorizedApis = new AuthorizedApisV1(context);
+                    _authorizedApis = new AuthorizedApisV1(context,_eventBus);
                 });
         }
     }

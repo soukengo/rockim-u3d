@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using RockIM.Sdk.Framework.Logger;
+using RockIM.Sdk.Internal.V1.Context;
 
 namespace RockIM.Sdk.Framework.Network.Socket
 {
@@ -53,7 +54,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("CloseAsync Exception: {0}", e.StackTrace);
+                _logger.Error("CloseAsync Exception: {0}", e);
             }
         }
 
@@ -65,7 +66,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("ConnectAsync Exception: {0}", e.StackTrace);
+                _logger.Error("ConnectAsync Exception: {0}", e);
             }
 
             if (!IsConnected)
@@ -88,7 +89,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("SendAsync Exception: {0}", e.StackTrace);
+                _logger.Error("SendAsync Exception: {0}", e);
             }
         }
 
@@ -188,16 +189,19 @@ namespace RockIM.Sdk.Framework.Network.Socket
                     }
                 }
 
-                completer.TrySetCanceled();
+                // completer.TrySetResult();
             });
 
-            await _adapter.SendAsync(new ArraySegment<byte>(), cts.Token);
+            await _adapter.SendAsync(new ArraySegment<byte>(buffer), cts.Token);
             return await completer.Task;
         }
 
         public void Dispose()
         {
-            _responses.Clear();
+            lock (_responsesLock)
+            {
+                _responses.Clear();
+            }
         }
     }
 }

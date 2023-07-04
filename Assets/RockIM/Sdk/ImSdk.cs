@@ -13,10 +13,6 @@ namespace RockIM.Sdk
 {
     public abstract class ImSdk
     {
-        private static readonly Lazy<IClient> V1Lazy = new(new ClientV1());
-        public static IClient V1 => V1Lazy.Value;
-
-
         /// <summary>
         /// 同步调用
         /// </summary>
@@ -67,12 +63,12 @@ namespace RockIM.Sdk
                 try
                 {
                     AsyncManager.Callback(() => callback(ret));
-                }catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Debug.LogError("exception: " + e);
                 }
             });
         }
-
     }
 }

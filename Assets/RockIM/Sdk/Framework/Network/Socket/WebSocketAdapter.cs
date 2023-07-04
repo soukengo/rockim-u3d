@@ -128,7 +128,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             {
                 var cts = new CancellationTokenSource(_sendTimeoutSec);
                 var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(canceller, cts.Token);
-                var t = _webSocket.SendAsync(buffer, WebSocketMessageType.Text, true, linkedCts.Token);
+                var t = _webSocket.SendAsync(buffer, WebSocketMessageType.Binary, true, linkedCts.Token);
                 t.ConfigureAwait(false);
                 return t;
             }
@@ -171,7 +171,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
 
                     try
                     {
-                        Events.OnReceived(_packetParser.Parse(bufferSegment.Array));
+                        Events.OnReceived(_packetParser.Parse(new ArraySegment<byte>(buffer, 0, bufferReadCount).ToArray()));
                     }
                     catch (Exception e)
                     {

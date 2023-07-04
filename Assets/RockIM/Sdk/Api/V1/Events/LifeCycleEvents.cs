@@ -1,6 +1,7 @@
 using System;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Framework;
+using RockIM.Sdk.Internal.V1.Context;
 
 namespace RockIM.Sdk.Api.V1.Events
 {
@@ -19,17 +20,23 @@ namespace RockIM.Sdk.Api.V1.Events
 
         public void OnConnecting()
         {
+            LoggerContext.Logger.Info("通知：OnConnecting");
             AsyncManager.Callback(() => Connecting?.Invoke());
         }
 
         public void OnConnected()
         {
+            LoggerContext.Logger.Info("通知：OnConnected");
             AsyncManager.Callback(() => Connected?.Invoke());
         }
 
         public void OnDisConnected()
         {
-            AsyncManager.Callback(() => DisConnected?.Invoke());
+            LoggerContext.Logger.Info("通知：OnDisConnected");
+            AsyncManager.Callback(() =>
+            {
+                DisConnected?.Invoke();
+            });
         }
 
         public void OnLogout(LogoutReason obj)

@@ -93,7 +93,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 Direction = direction,
                 LastMsgId = lastMsgId
             };
-            ImSdkUnity.Async(() => ImSdk.V1.Apis.Authorized.Message.List(req), (result) =>
+            ImSdkUnity.Async(() => ImSdkV1.Apis.Authorized.Message.List(req), (result) =>
             {
                 if (!result.IsSuccess())
                 {
@@ -144,7 +144,6 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
             var overflow = conversation.AppendMessage(direction, newList);
 
             ApplyMessage(direction, conversation.Messages.Count, newList.Count, overflow || isFirst);
-
         }
 
         /// <summary>
