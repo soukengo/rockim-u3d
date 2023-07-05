@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using RockIM.Demo.Scripts.Framework;
 using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk;
@@ -41,6 +40,11 @@ namespace RockIM.Demo.Scripts.Logic
         public void Login(LoginReq req, Action<APIResult<LoginResp>> callback)
         {
             ImSdkUnity.Async(() => ImSdkV1.Apis.Auth.Login(req), callback);
+        }
+
+        public void Destroy()
+        {
+            ImSdkV1.Dispose();
         }
     }
 }

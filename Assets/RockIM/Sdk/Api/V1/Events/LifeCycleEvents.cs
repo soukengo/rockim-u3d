@@ -20,23 +20,17 @@ namespace RockIM.Sdk.Api.V1.Events
 
         public void OnConnecting()
         {
-            LoggerContext.Logger.Info("通知：OnConnecting");
             AsyncManager.Callback(() => Connecting?.Invoke());
         }
 
         public void OnConnected()
         {
-            LoggerContext.Logger.Info("通知：OnConnected");
             AsyncManager.Callback(() => Connected?.Invoke());
         }
 
         public void OnDisConnected()
         {
-            LoggerContext.Logger.Info("通知：OnDisConnected");
-            AsyncManager.Callback(() =>
-            {
-                DisConnected?.Invoke();
-            });
+            AsyncManager.Callback(() => DisConnected?.Invoke());
         }
 
         public void OnLogout(LogoutReason obj)

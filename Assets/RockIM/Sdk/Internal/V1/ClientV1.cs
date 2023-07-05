@@ -11,7 +11,7 @@ namespace RockIM.Sdk.Internal.V1
 {
     public sealed class ClientV1 : IClient
     {
-        private readonly SdkContext _context;
+        private SdkContext _context;
 
         private ApisV1 _apis;
 
@@ -39,7 +39,7 @@ namespace RockIM.Sdk.Internal.V1
         public APIResult<InitResp> Init(Config config)
         {
             _context.Config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
-            _apis = new ApisV1(_context,EventBus);
+            _apis = new ApisV1(_context, EventBus);
             var result = _apis.ProductService.FetchConfig();
             var data = result.Data;
             var ret = ResultConverter.Convert(result, (source) => new InitResp());
@@ -50,6 +50,12 @@ namespace RockIM.Sdk.Internal.V1
 
             _context.Config.ServerConfig = data;
             return ret;
+        }
+
+        public void Dispose()
+        {
+            _apis?.Dispose();
+            _context = new SdkContext();
         }
     }
 }

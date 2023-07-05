@@ -16,10 +16,15 @@ namespace RockIM.Sdk.Api.V1
         public IEventBus EventBus { get; }
 
         /// <summary>
-        /// 初始化接口
+        /// 初始化客户端
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
         public APIResult<InitResp> Init(Config config);
+
+        /// <summary>
+        /// 销毁客户端
+        /// </summary>
+        public void Dispose();
     }
 }

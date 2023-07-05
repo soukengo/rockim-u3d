@@ -11,7 +11,7 @@ namespace RockIM.Sdk.Internal.V1
 {
     public sealed class ApisV1 : IApis
     {
-        private IEventBus _eventBus;
+        private readonly IEventBus _eventBus;
 
         private AuthorizedApisV1 _authorizedApis;
 
@@ -43,6 +43,11 @@ namespace RockIM.Sdk.Internal.V1
                     context.Authorization = auth;
                     _authorizedApis = new AuthorizedApisV1(context,_eventBus);
                 });
+        }
+
+        public void Dispose()
+        {
+            _authorizedApis.Dispose();
         }
     }
 }

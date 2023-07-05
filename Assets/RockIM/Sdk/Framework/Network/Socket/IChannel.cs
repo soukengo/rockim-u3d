@@ -10,7 +10,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
 
         void CloseAsync();
 
-        void ConnectAsync(int connectTimeout = 30);
+        void ConnectAsync(int connectTimeout = 3);
 
         void SendAsync(IPacket proto, Action<IPacket> callback);
     }

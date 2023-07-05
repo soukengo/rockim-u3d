@@ -9,7 +9,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
 {
     public class Channel : IChannel
     {
-        private const int DefaultConnectTimeout = 30;
+        private const int DefaultConnectTimeout = 3;
 
         private const int DefaultSendTimeout = 10;
 
@@ -54,7 +54,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("CloseAsync Exception: {0}", e);
+                _logger.Warn("CloseAsync Exception: {0}", e);
             }
         }
 
@@ -66,7 +66,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("ConnectAsync Exception: {0}", e);
+                _logger.Warn("ConnectAsync Exception: {0}", e);
             }
 
             if (!IsConnected)
@@ -89,7 +89,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
             }
             catch (Exception e)
             {
-                _logger.Error("SendAsync Exception: {0}", e);
+                _logger.Warn("SendAsync Exception: {0}", e);
             }
         }
 

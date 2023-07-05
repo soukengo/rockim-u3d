@@ -1,13 +1,14 @@
 using System;
-using System.IO;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Ninja.WebSockets;
 
 namespace RockIM.Sdk.Framework.Network.Socket
 {
+    /// <summary>
+    /// An adapter which uses the WebSocket protocol with RockIM server.
+    /// </summary>
     public class WebSocketAdapter : ISocketAdapter
     {
         private const int KeepAliveIntervalSec = 15;
@@ -26,35 +27,29 @@ namespace RockIM.Sdk.Framework.Network.Socket
         /// </summary>
         public bool IsConnecting { get; private set; }
 
-        private readonly int _maxMessageReadSize;
-        private readonly WebSocketClientOptions _options;
-        private readonly TimeSpan _sendTimeoutSec;
         private CancellationTokenSource _cancellationSource;
-        private WebSocket _webSocket;
         private Uri _uri;
+        private ClientWebSocket _webSocket;
+        private readonly int _maxMessageReadSize;
+        private readonly TimeSpan _sendTimeoutSec;
 
         private readonly IPacketParser<IPacket> _packetParser;
 
-        public WebSocketAdapter(IPacketParser<IPacket> packetParser, int keepAliveIntervalSec = KeepAliveIntervalSec,
-            int sendTimeoutSec = SendTimeoutSec,
-            int maxMessageReadSize = MaxMessageReadSize) :
-            this(packetParser,
-                new WebSocketClientOptions
-                {
-                    IncludeExceptionInCloseResponse = true,
-                    KeepAliveInterval = TimeSpan.FromSeconds(keepAliveIntervalSec),
-                    NoDelay = true
-                }, sendTimeoutSec, maxMessageReadSize)
-        {
-        }
-
-        public WebSocketAdapter(IPacketParser<IPacket> packetParser, WebSocketClientOptions options, int sendTimeoutSec,
-            int maxMessageReadSize)
+        public WebSocketAdapter(IPacketParser<IPacket> packetParser, int sendTimeoutSec = SendTimeoutSec,
+            int maxMessageReadSize = MaxMessageReadSize)
         {
             _packetParser = packetParser;
             _maxMessageReadSize = maxMessageReadSize;
-            _options = options;
             _sendTimeoutSec = TimeSpan.FromSeconds(sendTimeoutSec);
+            _webSocket = new ClientWebSocket();
+            Events = new SocketEvents();
+        }
+
+        public WebSocketAdapter(IPacketParser<IPacket> packetParser, ClientWebSocket webSocket)
+        {
+            _packetParser = packetParser;
+            // There is no way to override options so allow constructor to take a websocket that already has options.
+            _webSocket = webSocket;
             Events = new SocketEvents();
         }
 
@@ -89,16 +84,15 @@ namespace RockIM.Sdk.Framework.Network.Socket
 
             _cancellationSource = new CancellationTokenSource();
             _uri = uri;
+            _webSocket = new ClientWebSocket();
             IsConnecting = true;
 
-            var clientFactory = new WebSocketClientFactory();
             try
             {
                 var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
                 var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cancellationSource.Token, cts.Token);
-                _webSocket = await clientFactory.ConnectAsync(_uri, _options, linkedCts.Token).ConfigureAwait(false);
-                _ = Task.Factory.StartNew(_ => ReceiveLoop(_webSocket, _cancellationSource.Token),
-                    TaskCreationOptions.LongRunning, _cancellationSource.Token);
+                await _webSocket.ConnectAsync(_uri, linkedCts.Token).ConfigureAwait(false);
+                _ = ReceiveLoop(_webSocket, _cancellationSource.Token);
                 Events.OnConnected();
                 IsConnected = true;
             }
@@ -114,8 +108,7 @@ namespace RockIM.Sdk.Framework.Network.Socket
         }
 
         /// <inheritdoc cref="ISocketAdapter.SendAsync"/>
-        public Task SendAsync(ArraySegment<byte> buffer,
-            CancellationToken canceller = default)
+        public Task SendAsync(ArraySegment<byte> buffer, CancellationToken canceller = default)
         {
             if (_webSocket == null || _webSocket.State != WebSocketState.Open)
             {
@@ -175,33 +168,12 @@ namespace RockIM.Sdk.Framework.Network.Socket
                     }
                     catch (Exception e)
                     {
-                        // Don't stop receive loop if received function throws.
                         Events.OnReceivedError(e);
                     }
 
                     bufferReadCount = 0;
                 } while (!canceller.IsCancellationRequested && _webSocket != null &&
                          _webSocket.State == WebSocketState.Open);
-            }
-            catch (EndOfStreamException)
-            {
-                // IGNORE:
-                // "Unexpected end of stream encountered whilst attempting to read 2 bytes."
-            }
-            catch (IOException)
-            {
-                // IGNORE.
-            }
-            catch (SocketException)
-            {
-                // IGNORE:
-                // "Unable to read data from the transport connection: Access denied."
-                // "Unable to read data from the transport connection: Network subsystem is down."
-                // "Unable to write data to the transport connection: The socket has been shut down."
-                // "The socket is not connected"
-                // "Unable to read data from the transport connection: Connection reset by peer."
-                // "Unable to read data from the transport connection: Connection timed out."
-                // "Unable to read data from the transport connection: Connection refused."
             }
             catch (Exception e)
             {

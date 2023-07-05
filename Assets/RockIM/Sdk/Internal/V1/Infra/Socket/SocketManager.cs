@@ -87,7 +87,6 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             var now = DateUtils.NowTs();
 
             var delay = ReConnectInterval - (now - _lastConnectTime);
-            LoggerContext.Logger.Info("delay: {0}", delay);
             if (delay > 0)
             {
                 Thread.Sleep((int) delay);
@@ -101,7 +100,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         {
             if (_current == null)
             {
-                LoggerContext.Logger.Error("SendPacket error,socket not connected");
+                LoggerContext.Logger.Warn("SendPacket error,socket not connected");
                 return;
             }
 
@@ -125,7 +124,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             {
                 if (p is not Packet newPacket)
                 {
-                    LoggerContext.Logger.Error("invalid packet {0}", p);
+                    LoggerContext.Logger.Warn("invalid packet {0}", p);
                     return;
                 }
 
@@ -155,7 +154,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             {
                 if (!result.IsSuccess())
                 {
-                    LoggerContext.Logger.Error("Auth Socket Error {}", result);
+                    LoggerContext.Logger.Warn("Auth Socket Error {}", result);
                     return;
                 }
 
@@ -179,6 +178,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             _close.Cancel();
             _eventBus.LifeCycle.OnDisConnected();
 
+            // 已经shutdown，不再重连
             if (_shutdown.Token.IsCancellationRequested)
             {
                 return;
@@ -209,7 +209,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 return;
             }
 
-            LoggerContext.Logger.Error("OnReceivedError {0} {1}", ticket, e.StackTrace);
+            LoggerContext.Logger.Warn("OnReceivedError {0} {1}", ticket, e.StackTrace);
         }
 
         /// <summary>
@@ -227,14 +227,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                     continue;
                 }
 
-                // LoggerContext.Logger.Debug("Heartbeat request");
+                LoggerContext.Logger.Debug("Heartbeat request");
                 _lastHeartbeat = DateUtils.NowTs();
                 SendPacket<HeartBeatResponse>(Operation.Heartbeat, new HeartBeatRequest(), (result) =>
                 {
-                    // LoggerContext.Logger.Debug("Heartbeat reply");
+                    LoggerContext.Logger.Debug("Heartbeat reply");
                     if (!result.IsSuccess())
                     {
-                        LoggerContext.Logger.Error("Heartbeat Error {}", result);
+                        LoggerContext.Logger.Warn("Heartbeat Error {}", result);
                         return;
                     }
 

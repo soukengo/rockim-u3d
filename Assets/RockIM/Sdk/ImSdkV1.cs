@@ -19,5 +19,10 @@ namespace RockIM.Sdk
         {
             return Client.Init(config);
         }
+
+        public static void Dispose()
+        {
+            Client.Dispose();
+        }
     }
 }
