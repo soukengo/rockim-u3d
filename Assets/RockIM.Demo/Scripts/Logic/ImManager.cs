@@ -27,7 +27,7 @@ namespace RockIM.Demo.Scripts.Logic
             };
             ImSdkV1.EventBus.LifeCycle.DisConnected += () =>
             {
-                Debug.Log("已断开连接");    
+                Debug.Log("已断开连接");
                 ToastManager.ShowToast("已断开连接");
             };
         }

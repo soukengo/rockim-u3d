@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using RockIM.Demo.Scripts.UI.Base;
+using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk.Api.V1.Entities;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat

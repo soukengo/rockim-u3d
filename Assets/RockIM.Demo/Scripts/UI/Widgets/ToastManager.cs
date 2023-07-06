@@ -10,7 +10,7 @@ namespace RockIM.Demo.Scripts.UI.Widgets
 
         private static readonly GameObject Prefab;
 
-        private static readonly Transform Transform;
+        private static Transform _transform;
 
 
         static ToastManager()
@@ -20,12 +20,7 @@ namespace RockIM.Demo.Scripts.UI.Widgets
             Instance = target.AddComponent<ToastManager>();
             DontDestroyOnLoad(target);
             DontDestroyOnLoad(Instance);
-            Transform = target.transform;
-            var canvas = FindObjectOfType<Canvas>();
-            if (canvas != null)
-            {
-                Transform = canvas.transform;
-            }
+            _transform = target.transform;
         }
 
 
@@ -36,7 +31,13 @@ namespace RockIM.Demo.Scripts.UI.Widgets
 
         private void NewToast(string content, bool useMask, float duration)
         {
-            var toast = Instantiate(Prefab, Transform, false);
+            var canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                _transform = canvas.transform;
+            }
+
+            var toast = Instantiate(Prefab, _transform, false);
             var sc = toast.GetComponent<Toast>();
             sc.mask.enabled = useMask;
             sc.message.text = content;

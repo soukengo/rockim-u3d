@@ -37,7 +37,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                         ToastManager.ShowToast(result.Message, true);
                         return;
                     }
-
+                
                     ChatUIEventManager.Instance.OnSendResult.Invoke(result.Data.Message);
                 });
             });

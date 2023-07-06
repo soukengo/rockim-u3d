@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using RockIM.Demo.Scripts.Logic;
@@ -76,7 +75,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
                     ToastManager.ShowToast("初始化失败", true);
                     return;
                 }
-
+            
                 ToastManager.ShowToast("初始化成功");
                 Hide();
                 // 通知初始化成功
