@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RockIM.Demo.Scripts.Logic.Events;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Sdk.Api.V1.Entities;
@@ -14,14 +15,16 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
         private void OnEnable()
         {
-            ChatUIEventManager.Instance.OnChatMenuSelected += OnChatMenuSelected;
-            ChatUIEventManager.Instance.OnSendResult += OnSendSuccess;
+            ChatUIEventManager.Instance.ChatMenuSelected += OnChatMenuSelected;
+            ChatUIEventManager.Instance.SendResult += OnSendSuccess;
+            ChatEventManager.Instance.MessageReceived += OnReceived;
         }
 
         private void OnDisable()
         {
-            ChatUIEventManager.Instance.OnChatMenuSelected -= OnChatMenuSelected;
-            ChatUIEventManager.Instance.OnSendResult += OnSendSuccess;
+            ChatUIEventManager.Instance.ChatMenuSelected -= OnChatMenuSelected;
+            ChatUIEventManager.Instance.SendResult -= OnSendSuccess;
+            ChatEventManager.Instance.MessageReceived -= OnReceived;
         }
 
         protected override void Init()
@@ -57,6 +60,11 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         private void OnSendSuccess(Message message)
         {
             messageBox.OnSendResult(message);
+        }
+
+        private void OnReceived(List<Message> list)
+        {
+            messageBox.OnReceived(list);
         }
     }
 }

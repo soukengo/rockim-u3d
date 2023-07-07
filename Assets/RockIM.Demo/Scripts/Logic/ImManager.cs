@@ -1,5 +1,6 @@
 using System;
 using RockIM.Demo.Scripts.Framework;
+using RockIM.Demo.Scripts.Logic.Events;
 using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk;
 using RockIM.Sdk.Api.V1;
@@ -30,6 +31,7 @@ namespace RockIM.Demo.Scripts.Logic
                 Debug.Log("已断开连接");
                 ToastManager.ShowToast("已断开连接");
             };
+            ImSdkV1.EventBus.Message.Received += (list) => { ChatEventManager.Instance.MessageReceived.Invoke(list); };
         }
 
         public void Init(Config config, Action<APIResult<InitResp>> callback)

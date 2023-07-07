@@ -41,7 +41,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
 
             var item = conversation.Messages[index];
             var mi = obj.GetComponent<MessageItem>();
-            mi.SetContent(item.Message.Content.Content);
+            mi.SetMessage(item);
         }
 
         private int OnHeightItem(int index)
@@ -131,11 +131,13 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         {
             var mi = scroll.Prefab.GetComponent<MessageItem>();
             var newList = new List<DemoMessage>();
+            var currentUser = ImSdkV1.Apis.Authorized.Current.Account;
             foreach (var item in list)
             {
-                var content = item.Content.Content;
-                var height = mi.SetContent(content);
-                newList.Add(new DemoMessage {Message = item, Height = (int) height});
+                var dm = new DemoMessage {Message = item, IsSelf = currentUser.Equals(item.Sender.Account)};
+                var height = mi.CalculateHeight(dm);
+                dm.Height = (int) height;
+                newList.Add(dm);
             }
 
             var conversation = ChatContext.Instance.GetOrCreateConversation(targetID);

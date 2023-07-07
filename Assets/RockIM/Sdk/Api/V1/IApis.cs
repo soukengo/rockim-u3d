@@ -1,5 +1,6 @@
 using System;
 using RockIM.Sdk.Api.v1;
+using RockIM.Sdk.Api.V1.Entities;
 
 namespace RockIM.Sdk.Api.V1
 {
@@ -21,6 +22,8 @@ namespace RockIM.Sdk.Api.V1
     /// </summary>
     public interface IAuthorizedApis
     {
-        public abstract IMessageApi Message { get; }
+        public IMessageApi Message { get; }
+
+        public User Current { get; }
     }
 }

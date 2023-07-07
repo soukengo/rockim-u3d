@@ -40,8 +40,9 @@ namespace RockIM.Sdk.Internal.V1
             Auth = new AuthService(context, new AuthRepository(httpManager),
                 (auth) =>
                 {
+                    LoggerContext.Logger.Info("Auth Success: {0}", auth);
                     context.Authorization = auth;
-                    _authorizedApis = new AuthorizedApisV1(context,_eventBus);
+                    _authorizedApis = new AuthorizedApisV1(context, _eventBus);
                 });
         }
 

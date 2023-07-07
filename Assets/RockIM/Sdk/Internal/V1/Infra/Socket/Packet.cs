@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using RockIM.Api.Client.V1.Protocol.Socket;
 using RockIM.Sdk.Framework.Network.Socket;
-using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Shared.Enums;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Socket

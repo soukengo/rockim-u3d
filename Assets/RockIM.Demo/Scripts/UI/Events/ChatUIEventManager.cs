@@ -6,7 +6,8 @@ namespace RockIM.Demo.Scripts.UI.Events
 {
     public class ChatUIEventManager : Singleton<ChatUIEventManager>
     {
-        public Action<string> OnChatMenuSelected = delegate { };
-        public Action<Message> OnSendResult = delegate { };
+        public Action<string> ChatMenuSelected = delegate { };
+        
+        public Action<Message> SendResult = delegate { };
     }
 }

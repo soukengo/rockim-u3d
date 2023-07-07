@@ -1,5 +1,6 @@
 using System;
 using RockIM.Sdk.Api.V1;
+using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Infra;
 using RockIM.Sdk.Internal.V1.Infra.Http;
@@ -20,6 +21,7 @@ namespace RockIM.Sdk.Internal.V1
 
 
         public IMessageApi Message => _messageService;
+        public User Current => _context.Authorization.User;
 
         public AuthorizedApisV1(SdkContext context, IEventBus eventBus)
         {

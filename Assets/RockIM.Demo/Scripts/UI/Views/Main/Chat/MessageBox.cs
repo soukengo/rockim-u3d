@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using RockIM.Demo.Scripts.UI.Base;
-using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk.Api.V1.Entities;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
@@ -19,6 +18,11 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         public void OnSendResult(Message message)
         {
             messageList.AppendMessage(message.TargetID, new List<Message> {message});
+        }
+
+        public void OnReceived(List<Message> list)
+        {
+            messageList.AppendMessage(list[0].TargetID, list);
         }
     }
 }

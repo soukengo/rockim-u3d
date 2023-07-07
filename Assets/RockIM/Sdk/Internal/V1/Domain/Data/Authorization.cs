@@ -1,5 +1,6 @@
 using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
+using RockIM.Sdk.Utils;
 
 namespace RockIM.Sdk.Internal.V1.Domain.Data
 {
@@ -13,6 +14,11 @@ namespace RockIM.Sdk.Internal.V1.Domain.Data
         {
             AccessToken = accessToken;
             User = user;
+        }
+
+        public override string ToString()
+        {
+            return JsonUtils.ToJson(this);
         }
     }
 }

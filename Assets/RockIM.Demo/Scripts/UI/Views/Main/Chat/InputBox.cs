@@ -1,3 +1,4 @@
+using RockIM.Demo.Scripts.Logic.Events;
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Demo.Scripts.UI.Widgets;
@@ -38,7 +39,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                         return;
                     }
                 
-                    ChatUIEventManager.Instance.OnSendResult.Invoke(result.Data.Message);
+                    // ChatUIEventManager.Instance.SendResult.Invoke(result.Data.Message);
                 });
             });
         }

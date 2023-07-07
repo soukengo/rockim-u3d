@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
@@ -40,6 +41,8 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         private long _lastHeartbeatReply;
         private long _lastConnectTime;
 
+        private readonly PushManager _pushManager;
+
 
         public bool IsConnected => _current is {IsConnected: true};
 
@@ -51,6 +54,8 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             _eventBus = eventBus;
             _shutdown = new CancellationTokenSource();
             _close = new CancellationTokenSource();
+
+            _pushManager = new PushManager(_context, _eventBus);
         }
 
 
@@ -199,6 +204,12 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             if (!ticket.Equals(_currentTicket))
             {
                 return;
+            }
+
+            var p = (Packet) packet;
+            if (Network.Types.PacketType.Push == (Network.Types.PacketType) p.Type)
+            {
+                _pushManager.OnReceived(p);
             }
         }
 

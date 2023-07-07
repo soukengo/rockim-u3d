@@ -52,7 +52,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         private static void OnSelectMenuItem(string key)
         {
             ChatContext.Instance.CurrentMenuKey = key;
-            ChatUIEventManager.Instance.OnChatMenuSelected?.Invoke(key);
+            ChatUIEventManager.Instance.ChatMenuSelected?.Invoke(key);
         }
     }
 }

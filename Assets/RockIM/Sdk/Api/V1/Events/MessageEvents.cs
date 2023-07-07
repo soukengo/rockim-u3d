@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RockIM.Sdk.Api.V1.Entities;
+using RockIM.Sdk.Framework;
 
 namespace RockIM.Sdk.Api.V1.Events
 {
@@ -8,9 +9,9 @@ namespace RockIM.Sdk.Api.V1.Events
     {
         public event Action<List<Message>> Received;
 
-        protected virtual void OnReceived(List<Message> obj)
+        public void OnReceived(List<Message> obj)
         {
-            Received?.Invoke(obj);
+            AsyncManager.Callback(() => Received?.Invoke(obj));
         }
     }
 }

@@ -47,6 +47,6 @@ namespace RockIM.Sdk.Api.V1.Entities
         /// <summary>
         /// 消息版本号
         /// </summary>
-        public int Version { get; set; }
+        public long Version { get; set; }
     }
 }

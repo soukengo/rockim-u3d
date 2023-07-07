@@ -7,9 +7,12 @@ namespace RockIM.Sdk.Internal.V1.Context
     {
         public LifeCycleEvents LifeCycle { get; }
 
+        public MessageEvents Message { get; }
+
         public EventBus()
         {
             LifeCycle = new LifeCycleEvents();
+            Message = new MessageEvents();
         }
     }
 }
