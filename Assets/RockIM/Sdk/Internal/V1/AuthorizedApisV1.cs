@@ -1,6 +1,7 @@
 using System;
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Entities;
+using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Infra;
 using RockIM.Sdk.Internal.V1.Infra.Http;
@@ -22,6 +23,7 @@ namespace RockIM.Sdk.Internal.V1
 
         public IMessageApi Message => _messageService;
         public User Current => _context.Authorization.User;
+        public ConnectionStatus ConnectionStatus => _context.ConnectionStatus;
 
         public AuthorizedApisV1(SdkContext context, IEventBus eventBus)
         {
@@ -29,12 +31,20 @@ namespace RockIM.Sdk.Internal.V1
             _eventBus = eventBus;
             var httpManager = new HttpManager(context);
             _socketManager = new SocketManager(context, eventBus);
+            _eventBus.LifeCycle.ConnectionChange -= UpdateConnectionStatus;
             _socketManager.Connect(context.Config.ServerConfig.Socket);
             _messageService = new MessageService(context, new MessageRepository(httpManager));
         }
 
+        private void UpdateConnectionStatus(ConnectionStatus status)
+        {
+            _context.ConnectionStatus = status;
+        }
+        
+
         public void Dispose()
         {
+            _eventBus.LifeCycle.ConnectionChange -= UpdateConnectionStatus;
             _socketManager.Dispose();
         }
     }

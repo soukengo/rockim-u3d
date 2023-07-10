@@ -1,8 +1,6 @@
 using RockIM.Sdk.Api.V1;
-using RockIM.Sdk.Api.V1.Constants;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Response;
-using RockIM.Sdk.Api.V1.Exceptions;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Entities;
 using RockIM.Sdk.Internal.V1.Service;
@@ -15,18 +13,10 @@ namespace RockIM.Sdk.Internal.V1
 
         private ApisV1 _apis;
 
-        public IApis Apis
-        {
-            get
-            {
-                if (_apis == null)
-                {
-                    throw new BusinessException(ErrorReasons.ClientUninitialized, "未初始化");
-                }
+        private readonly IApis _emptyApis = new EmptyApis();
 
-                return _apis;
-            }
-        }
+
+        public IApis Apis => _apis ?? _emptyApis;
 
         public IEventBus EventBus { get; }
 
@@ -55,6 +45,7 @@ namespace RockIM.Sdk.Internal.V1
         public void Dispose()
         {
             _apis?.Dispose();
+            _apis = null;
             _context = new SdkContext();
         }
     }

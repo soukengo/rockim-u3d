@@ -12,7 +12,6 @@ using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Utils;
 using RockIM.Shared;
-using MetaData = RockIM.Sdk.Internal.V1.Domain.Data.MetaData;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
@@ -21,13 +20,16 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
         private const string ServerHeaderTraceID = "RockIM-Server-TraceID";
         private const string ServerHeaderVersion = "RockIM-Server-Version";
 
+        private const string ContentType = MimeUtils.Protobuf;
+
         private readonly HttpClient _client;
 
-        private const string ContentType = MimeUtils.Protobuf;
+        private SdkContext _context;
 
 
         public HttpManager(SdkContext context)
         {
+            _context = context;
             var filters = new List<IFilter>
             {
                 new SignFilter(context.Config),
@@ -47,7 +49,9 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
             request.Method = HttpMethod.Post;
             request.RequestUri = new Uri(action);
             request.Headers.Add("Accept", ContentType);
-            request.Content = MimeUtils.IsJson(ContentType) ? new StringContent(JsonUtils.ToJson(req)) : new ByteArrayContent(req.ToByteArray());
+            request.Content = MimeUtils.IsJson(ContentType)
+                ? new StringContent(JsonUtils.ToJson(req))
+                : new ByteArrayContent(req.ToByteArray());
 
             request.Content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
 

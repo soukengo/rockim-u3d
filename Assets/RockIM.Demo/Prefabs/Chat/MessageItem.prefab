@@ -1334,7 +1334,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 44, y: 0}
+  m_SizeDelta: {x: 200, y: 22}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8282805289184495640
 CanvasRenderer:
@@ -1377,7 +1377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1111
+  m_Text: 21
 --- !u!1 &9213665906814596365
 GameObject:
   m_ObjectHideFlags: 0

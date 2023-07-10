@@ -1,6 +1,4 @@
-using RockIM.Demo.Scripts.Logic.Events;
 using RockIM.Demo.Scripts.UI.Base;
-using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk;
 using RockIM.Sdk.Api.V1.Dtos.Request;

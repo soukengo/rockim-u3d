@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RockIM.Demo.Scripts.UI.Base
@@ -5,6 +6,8 @@ namespace RockIM.Demo.Scripts.UI.Base
     public abstract class CPanel : MonoBehaviour
     {
         public bool defaultOpen;
+
+        protected bool IsDestroyed;
 
         private void Awake()
         {
@@ -26,6 +29,11 @@ namespace RockIM.Demo.Scripts.UI.Base
         public void Hide()
         {
             gameObject.SetActive(false);
+        }
+
+        public virtual void OnDestroy()
+        {
+            IsDestroyed = true;
         }
     }
 }

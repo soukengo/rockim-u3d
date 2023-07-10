@@ -1,7 +1,8 @@
 using System;
+using RockIM.Sdk.Api.V1.Dtos.Response;
+using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Framework;
-using RockIM.Sdk.Internal.V1.Context;
 
 namespace RockIM.Sdk.Api.V1.Events
 {
@@ -10,30 +11,23 @@ namespace RockIM.Sdk.Api.V1.Events
     /// </summary>
     public sealed class LifeCycleEvents
     {
-        public event Action Connecting;
+        public event Action<User> LoginSuccess;
 
-        public event Action Connected;
+        public event Action<ConnectionStatus> ConnectionChange;
 
-        public event Action DisConnected;
+        public event Action<LogoutResp> Logout;
 
-        public event Action<LogoutReason> Logout;
-
-        public void OnConnecting()
+        public void OnConnectionChange(ConnectionStatus status)
         {
-            AsyncManager.Callback(() => Connecting?.Invoke());
+            AsyncManager.Callback(() => ConnectionChange?.Invoke(status));
         }
 
-        public void OnConnected()
+        public void OnLoginSuccess(User user)
         {
-            AsyncManager.Callback(() => Connected?.Invoke());
+            AsyncManager.Callback(() => LoginSuccess?.Invoke(user));
         }
 
-        public void OnDisConnected()
-        {
-            AsyncManager.Callback(() => DisConnected?.Invoke());
-        }
-
-        public void OnLogout(LogoutReason obj)
+        public void OnLogout(LogoutResp obj)
         {
             AsyncManager.Callback(() => Logout?.Invoke(obj));
         }

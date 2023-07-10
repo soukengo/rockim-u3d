@@ -1,13 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Constants;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Api.V1.Exceptions;
 using RockIM.Sdk.Framework;
-using RockIM.Sdk.Internal.V1;
-using UnityEngine;
+using RockIM.Sdk.Internal.V1.Context;
 
 namespace RockIM.Sdk
 {
@@ -36,7 +34,7 @@ namespace RockIM.Sdk
             }
             catch (Exception e)
             {
-                Debug.LogError("exception: " + e.StackTrace);
+                LoggerContext.Logger.Warn("exception: {0}", e);
                 ret = new APIResult<T>
                 {
                     Code = ResultCode.InternalError,
@@ -45,7 +43,6 @@ namespace RockIM.Sdk
                 };
             }
 
-            Debug.Log("Result: " + ret);
             return ret;
         }
 
@@ -66,7 +63,7 @@ namespace RockIM.Sdk
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError("exception: " + e);
+                    LoggerContext.Logger.Warn("exception: {0}", e);
                 }
             });
         }

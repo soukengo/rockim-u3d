@@ -7,6 +7,7 @@ using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Request;
 using RockIM.Sdk.Api.V1.Dtos.Response;
+using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Unity;
 using UnityEngine;
 
@@ -16,21 +17,6 @@ namespace RockIM.Demo.Scripts.Logic
     {
         static ImManager()
         {
-            ImSdkV1.EventBus.LifeCycle.Connecting += () =>
-            {
-                Debug.Log("连接中");
-                ToastManager.ShowToast("连接中");
-            };
-            ImSdkV1.EventBus.LifeCycle.Connected += () =>
-            {
-                Debug.Log("连接成功");
-                ToastManager.ShowToast("连接成功");
-            };
-            ImSdkV1.EventBus.LifeCycle.DisConnected += () =>
-            {
-                Debug.Log("已断开连接");
-                ToastManager.ShowToast("已断开连接");
-            };
             ImSdkV1.EventBus.Message.Received += (list) => { ChatEventManager.Instance.MessageReceived.Invoke(list); };
         }
 

@@ -42,5 +42,15 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
                 return conversation;
             }
         }
+
+        public void Reset()
+        {
+            CurrentMenuKey = "";
+            CurrentTargetID = null;
+            lock (_conversations)
+            {
+                _conversations.Clear();
+            }
+        }
     }
 }

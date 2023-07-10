@@ -9,6 +9,7 @@ namespace RockIM.Demo.Scripts.UI.Base
     {
         private readonly Dictionary<Type, CPanel> _panelMap = new Dictionary<Type, CPanel>();
 
+        protected bool IsDestroyed;
         private void Awake()
         {
             var panels = Resources.FindObjectsOfTypeAll<CPanel>();
@@ -35,5 +36,11 @@ namespace RockIM.Demo.Scripts.UI.Base
 
             return null;
         }
+        
+        public virtual void OnDestroy()
+        {
+            IsDestroyed = true;
+        }
+        
     }
 }

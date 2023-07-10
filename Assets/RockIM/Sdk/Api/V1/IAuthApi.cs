@@ -16,10 +16,6 @@ namespace RockIM.Sdk.Api.v1
         /// <returns></returns>
         public APIResult<LoginResp> Login(LoginReq req);
 
-        /// <summary>
-        /// 退出登录
-        /// </summary>
-        /// <returns></returns>
-        public APIResult<LoginResp> Logout();
+        
     }
 }

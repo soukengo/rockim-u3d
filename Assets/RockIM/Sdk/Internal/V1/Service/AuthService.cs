@@ -41,10 +41,5 @@ namespace RockIM.Sdk.Internal.V1.Service
             _onAuthSuccess(data);
             return ret;
         }
-
-        public APIResult<LoginResp> Logout()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

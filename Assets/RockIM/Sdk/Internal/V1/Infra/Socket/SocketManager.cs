@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using RockIM.Api.Client.V1.Protocol.Socket;
 using RockIM.Sdk.Api.V1;
+using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Framework.Network.Socket;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Data;
@@ -68,7 +69,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
             _currentConfig = config;
             _currentTicket = Guid.NewGuid().ToString();
-            _eventBus.LifeCycle.OnConnecting();
+            _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Connecting);
             var parser = new PacketParser();
             var events = new SocketEvents();
 
@@ -164,7 +165,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 }
 
                 Task.Run(HeartbeatLoop);
-                _eventBus.LifeCycle.OnConnected();
+                _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Connected);
             });
         }
 
@@ -181,7 +182,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             }
 
             _close.Cancel();
-            _eventBus.LifeCycle.OnDisConnected();
+            _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Disconnected);
 
             // 已经shutdown，不再重连
             if (_shutdown.Token.IsCancellationRequested)
