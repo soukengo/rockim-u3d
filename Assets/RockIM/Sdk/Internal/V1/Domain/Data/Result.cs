@@ -1,5 +1,4 @@
 using System;
-using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Utils;
 

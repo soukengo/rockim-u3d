@@ -1,9 +1,11 @@
 using RockIM.Demo.Scripts.UI.Base;
 using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk;
+using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Api.V1.Enums;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace RockIM.Demo.Scripts.UI.Views.Main.Control
@@ -22,12 +24,14 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Control
         {
             ImSdkV1.EventApis.LifeCycle.ConnectionChange += OnStatusChange;
             ImSdkV1.EventApis.LifeCycle.LoginSuccess += SetUserInfo;
+            ImSdkV1.EventApis.LifeCycle.Logout += OnLogout;
         }
 
         private void OnDisable()
         {
             ImSdkV1.EventApis.LifeCycle.ConnectionChange -= OnStatusChange;
             ImSdkV1.EventApis.LifeCycle.LoginSuccess -= SetUserInfo;
+            ImSdkV1.EventApis.LifeCycle.Logout -= OnLogout;
         }
 
         private void Start()
@@ -41,6 +45,12 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Control
             Debug.Log(status.GetDisplayName());
             ToastManager.ShowToast(status.GetDisplayName());
             SetStatus(status);
+        }
+
+        private void OnLogout(LogoutResp resp)
+        {
+            ToastManager.ShowToast($"OnLogout Account: {resp.Account},Reason: {resp.Reason}");
+            SceneManager.LoadScene(SceneNames.Login);
         }
 
         private void SetUserInfo(User user)

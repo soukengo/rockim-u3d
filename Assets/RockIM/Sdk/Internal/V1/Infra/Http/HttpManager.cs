@@ -14,8 +14,6 @@ using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Utils;
 using RockIM.Shared;
 using RockIM.Shared.Reasons;
-using Google.Protobuf.Reflection;
-using UserReflection = RockIM.Shared.Enums.UserReflection;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
@@ -26,12 +24,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
 
         private const string ContentType = MimeUtils.Protobuf;
 
+        private static readonly string ErrAccessTokenInvalid =
+            ProtobufUtils.GetEnumName(User.Types.ErrorReason.AccessTokenInvalid);
+
         private readonly HttpClient _client;
 
         private SdkContext _context;
 
-        private IEventBus _eventBus;
-
+        private readonly IEventBus _eventBus;
 
         public HttpManager(SdkContext context, IEventBus eventBus)
         {
@@ -52,12 +52,8 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
 
         public Result<T> Call<T>(string action, IMessage req) where T : IMessage, new()
         {
-
-            // User.Types.ErrorReason.AccessTokenInvalid.GetType();
-            // UserReflection.Descriptor.FindTypeByName<OriginalNameAttribute>("");
             var ret = CallApi<T>(action, req);
-            if (ret != null && !ret.IsSuccess() &&
-                User.Types.ErrorReason.AccessTokenInvalid.Equals(ret.Reason))
+            if (ret != null && !ret.IsSuccess() && ErrAccessTokenInvalid.Equals(ret.Reason))
             {
                 _eventBus.LifeCycle.OnAuthExpired();
             }

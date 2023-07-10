@@ -1,7 +1,6 @@
 using System.Linq;
 using RockIM.Api.Client.V1.Protocol.Socket;
 using RockIM.Api.Client.V1.Types;
-using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Internal.V1.Infra.Converter;
 

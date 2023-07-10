@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using RockIM.Api.Client.V1.Types;
 using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Api.V1.Enums;
+using RockIM.Shared.Enums;
+using Message = RockIM.Shared.Enums.Message;
+using TargetID = RockIM.Sdk.Api.V1.Entities.TargetID;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Converter
 {
@@ -15,11 +19,11 @@ namespace RockIM.Sdk.Internal.V1.Infra.Converter
 
         public static RockIM.Api.Client.V1.Types.TargetID ServerTargetId(TargetID source)
         {
-            var category = (RockIM.Shared.Enums.MessageTarget.Types.Category) source.Category;
+            var category = (MessageTarget.Types.Category) source.Category;
             return new RockIM.Api.Client.V1.Types.TargetID {Category = category, Value = source.Value};
         }
 
-        public static MessageSender Sender(RockIM.Api.Client.V1.Types.IMMessageSender source)
+        public static MessageSender Sender(IMMessageSender source)
         {
             return new MessageSender
             {
@@ -29,19 +33,19 @@ namespace RockIM.Sdk.Internal.V1.Infra.Converter
             };
         }
 
-        public static MessageContent Content(RockIM.Api.Client.V1.Types.IMMessageBody source)
+        public static MessageContent Content(IMMessageBody source)
         {
             return new TextMessageContent(source.Content.ToStringUtf8());
         }
 
-        public static MessageStatus Status(RockIM.Shared.Enums.Message.Types.Status source)
+        public static MessageStatus Status(Message.Types.Status source)
         {
             return (MessageStatus) source;
         }
 
-        public static Message Message(RockIM.Api.Client.V1.Types.IMMessage source)
+        public static Api.V1.Entities.Message Message(IMMessage source)
         {
-            return new Message
+            return new Api.V1.Entities.Message
             {
                 ID = source.MsgId,
                 ClientMsgId = source.Body.ClientMsgId,
@@ -55,7 +59,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Converter
             };
         }
 
-        public static List<Message> MessageList(List<RockIM.Api.Client.V1.Types.IMMessage> source)
+        public static List<Api.V1.Entities.Message> MessageList(List<IMMessage> source)
         {
             return source.Select(Message).ToList();
         }

@@ -10,6 +10,7 @@ using RockIM.Sdk.Internal.V1.Domain.Data;
 using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Utils;
 using RockIM.Shared.Enums;
+using User = RockIM.Shared.Reasons.User;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Socket
 {
@@ -22,6 +23,9 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         private const int HeartbeatInterval = 10 * 1000;
 
         private const int ReConnectInterval = 3 * 1000;
+
+        private static readonly string ErrAccessTokenInvalid =
+            ProtobufUtils.GetEnumName(User.Types.ErrorReason.AccessTokenInvalid);
 
         private Domain.Entities.Socket _currentConfig;
 
@@ -159,7 +163,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             {
                 if (!result.IsSuccess())
                 {
-                    LoggerContext.Logger.Warn("Auth Socket Error {}", result);
+                    LoggerContext.Logger.Warn("Auth Socket Error {0}", result);
+                    // 授权已过期，不用重新连了
+                    if (ErrAccessTokenInvalid.Equals(result.Reason))
+                    {
+                        Dispose();
+                        _eventBus.LifeCycle.OnAuthExpired();
+                    }
+
                     return;
                 }
 

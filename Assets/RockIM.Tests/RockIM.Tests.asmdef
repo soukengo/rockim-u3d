@@ -1,0 +1,13 @@
+{
+  "name": "RockIM.Tests",
+  "references": [
+    "RockIM",
+    "Google.Protobuf.Reflection"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [
+    "Editor"
+   ]
+}

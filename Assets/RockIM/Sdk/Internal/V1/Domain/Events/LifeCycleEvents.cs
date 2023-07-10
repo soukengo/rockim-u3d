@@ -3,7 +3,7 @@ using RockIM.Sdk.Framework;
 
 namespace RockIM.Sdk.Internal.V1.Domain.Events
 {
-    public class LifeCycleEvents : RockIM.Sdk.Api.V1.Events.LifeCycleEvents
+    public class LifeCycleEvents : Api.V1.Events.LifeCycleEvents
     {
         public event Action AuthExpired;
 

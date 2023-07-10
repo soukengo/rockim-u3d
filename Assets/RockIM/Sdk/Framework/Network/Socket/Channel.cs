@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using RockIM.Sdk.Framework.Logger;
-using RockIM.Sdk.Internal.V1.Context;
 
 namespace RockIM.Sdk.Framework.Network.Socket
 {

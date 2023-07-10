@@ -1,6 +1,7 @@
 using System;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Internal.V1.Domain.Data;
+using MetaData = RockIM.Sdk.Api.V1.Dtos.MetaData;
 
 namespace RockIM.Sdk.Internal.V1.Service
 {
@@ -24,7 +25,7 @@ namespace RockIM.Sdk.Internal.V1.Service
             };
             if (result.Meta != null)
             {
-                ret.Meta = new RockIM.Sdk.Api.V1.Dtos.MetaData
+                ret.Meta = new MetaData
                 {
                     TraceId = result.Meta.TraceId,
                     Version = result.Meta.Version,

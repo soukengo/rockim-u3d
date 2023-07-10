@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using RockIM.Sdk.Api.V1.Entities;
-using RockIM.Sdk.Internal.V1.Domain.Entities;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Converter
 {
