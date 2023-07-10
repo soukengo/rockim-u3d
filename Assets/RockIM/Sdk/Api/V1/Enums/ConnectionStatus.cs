@@ -7,21 +7,17 @@ namespace RockIM.Sdk.Api.V1.Enums
         Disconnected,
     }
 
-    static class ConnectionStatusExtensions
+    public static class ConnectionStatusExtensions
     {
         public static string GetDisplayName(this ConnectionStatus color)
         {
-            switch (color)
+            return color switch
             {
-                case ConnectionStatus.Connecting:
-                    return "连接中";
-                case ConnectionStatus.Connected:
-                    return "已连接";
-                case ConnectionStatus.Disconnected:
-                    return "未连接";
-                default:
-                    return string.Empty;
-            }
+                ConnectionStatus.Connecting => "连接中",
+                ConnectionStatus.Connected => "已连接",
+                ConnectionStatus.Disconnected => "未连接",
+                _ => string.Empty
+            };
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "RockIM.Demo",
+  "references": [
+    "RockIM",
+    "RockIM.Unity",
+    "Unity.TextMeshPro"
+  ]
+}

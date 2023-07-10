@@ -30,7 +30,7 @@ namespace RockIM.Sdk.Internal.V1
         {
             _context = context;
             _eventBus = eventbus;
-            IHttpManager httpManager = new HttpManager(context);
+            IHttpManager httpManager = new HttpManager(context, eventbus);
             ProductService = new ProductService(new ProductRepository(httpManager));
             Auth = new AuthService(context, new AuthRepository(httpManager),
                 (auth) =>
@@ -40,6 +40,7 @@ namespace RockIM.Sdk.Internal.V1
                     _authorizedApis = new AuthorizedApisV1(context, _eventBus);
                     _eventBus.LifeCycle.OnLoginSuccess(auth.User);
                 });
+            _eventBus.LifeCycle.AuthExpired += OnAuthExpired;
         }
 
         public APIResult<LogoutResp> Logout()
@@ -52,7 +53,6 @@ namespace RockIM.Sdk.Internal.V1
             }
 
             ClearAuth();
-            _eventBus.LifeCycle.OnLogout(resp);
             return new APIResult<LogoutResp> {Code = ResultCode.Success, Data = new LogoutResp()};
         }
 
@@ -60,6 +60,18 @@ namespace RockIM.Sdk.Internal.V1
         {
             _authorizedApis?.Dispose();
             _authorizedApis = null;
+        }
+
+        private void OnAuthExpired()
+        {
+            var account = "";
+            if (_context.Authorization != null)
+            {
+                account = _context.Authorization.User.Account;
+            }
+
+            ClearAuth();
+            _eventBus.LifeCycle.OnLogout(new LogoutResp {Account = account, Reason = LogoutReason.AuthExpired});
         }
 
         public void Dispose()

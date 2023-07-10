@@ -2,7 +2,6 @@ using System;
 using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Entities;
 using RockIM.Sdk.Api.V1.Enums;
-using RockIM.Sdk.Framework;
 
 namespace RockIM.Sdk.Api.V1.Events
 {

@@ -68,7 +68,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
             _currentConfig = config;
             _currentTicket = Guid.NewGuid().ToString();
-            _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Connecting);
+            UpdateConnectionStatus(ConnectionStatus.Connecting);
             var parser = new PacketParser();
             var events = new SocketEvents();
 
@@ -164,7 +164,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                 }
 
                 Task.Run(HeartbeatLoop);
-                _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Connected);
+                UpdateConnectionStatus(ConnectionStatus.Connected);
             });
         }
 
@@ -181,7 +181,8 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
             }
 
             _close.Cancel();
-            _eventBus.LifeCycle.OnConnectionChange(ConnectionStatus.Disconnected);
+
+            UpdateConnectionStatus(ConnectionStatus.Disconnected);
 
             // 已经shutdown，不再重连
             if (_shutdown.Token.IsCancellationRequested)
@@ -252,6 +253,12 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
                     _lastHeartbeatReply = DateUtils.NowTs();
                 });
             } while (!_close.Token.IsCancellationRequested && !_shutdown.Token.IsCancellationRequested);
+        }
+
+        private void UpdateConnectionStatus(ConnectionStatus status)
+        {
+            _context.ConnectionStatus = status;
+            _eventBus.LifeCycle.OnConnectionChange(status);
         }
 
         public void Dispose()

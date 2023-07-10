@@ -1,0 +1,6 @@
+{
+  "name": "RockIM.Unity",
+  "references": [
+    "RockIM"
+  ]
+}

@@ -30,22 +30,14 @@ namespace RockIM.Sdk.Internal.V1
         {
             _context = context;
             _eventBus = eventBus;
-            var httpManager = new HttpManager(context);
+            var httpManager = new HttpManager(context, eventBus);
             _socketManager = new SocketManager(context, eventBus);
-            eventBus.LifeCycle.ConnectionChange -= UpdateConnectionStatus;
             _socketManager.Connect(context.Config.ServerConfig.Socket);
             _messageService = new MessageService(context, new MessageRepository(httpManager));
         }
 
-        private void UpdateConnectionStatus(ConnectionStatus status)
-        {
-            _context.ConnectionStatus = status;
-        }
-
-
         public void Dispose()
         {
-            _eventBus.LifeCycle.ConnectionChange -= UpdateConnectionStatus;
             _socketManager.Dispose();
         }
     }

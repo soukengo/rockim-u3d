@@ -10,8 +10,12 @@ using Google.Protobuf;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Data;
+using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Utils;
 using RockIM.Shared;
+using RockIM.Shared.Reasons;
+using Google.Protobuf.Reflection;
+using UserReflection = RockIM.Shared.Enums.UserReflection;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Http
 {
@@ -26,10 +30,13 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
 
         private SdkContext _context;
 
+        private IEventBus _eventBus;
 
-        public HttpManager(SdkContext context)
+
+        public HttpManager(SdkContext context, IEventBus eventBus)
         {
             _context = context;
+            _eventBus = eventBus;
             var filters = new List<IFilter>
             {
                 new SignFilter(context.Config),
@@ -44,6 +51,21 @@ namespace RockIM.Sdk.Internal.V1.Infra.Http
         }
 
         public Result<T> Call<T>(string action, IMessage req) where T : IMessage, new()
+        {
+
+            // User.Types.ErrorReason.AccessTokenInvalid.GetType();
+            // UserReflection.Descriptor.FindTypeByName<OriginalNameAttribute>("");
+            var ret = CallApi<T>(action, req);
+            if (ret != null && !ret.IsSuccess() &&
+                User.Types.ErrorReason.AccessTokenInvalid.Equals(ret.Reason))
+            {
+                _eventBus.LifeCycle.OnAuthExpired();
+            }
+
+            return ret;
+        }
+
+        private Result<T> CallApi<T>(string action, IMessage req) where T : IMessage, new()
         {
             var request = new HttpRequestMessage();
             request.Method = HttpMethod.Post;
