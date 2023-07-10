@@ -7,7 +7,7 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
         bool IsConnected { get; }
 
         bool IsConnecting { get; }
-        
+
         public void Connect(Domain.Entities.Socket config);
     }
 }

@@ -1,15 +1,12 @@
 using System;
 using RockIM.Demo.Scripts.Framework;
 using RockIM.Demo.Scripts.Logic.Events;
-using RockIM.Demo.Scripts.UI.Widgets;
 using RockIM.Sdk;
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Request;
 using RockIM.Sdk.Api.V1.Dtos.Response;
-using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Unity;
-using UnityEngine;
 
 namespace RockIM.Demo.Scripts.Logic
 {
@@ -17,7 +14,7 @@ namespace RockIM.Demo.Scripts.Logic
     {
         static ImManager()
         {
-            ImSdkV1.EventBus.Message.Received += (list) => { ChatEventManager.Instance.MessageReceived.Invoke(list); };
+            ImSdkV1.EventApis.Message.Received += (list) => { ChatEventManager.Instance.MessageReceived.Invoke(list); };
         }
 
         public void Init(Config config, Action<APIResult<InitResp>> callback)

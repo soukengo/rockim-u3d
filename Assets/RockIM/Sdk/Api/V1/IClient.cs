@@ -13,7 +13,7 @@ namespace RockIM.Sdk.Api.V1
         /// <summary>
         /// 事件中心，用于注册sdk的各类事件回调
         /// </summary>
-        public IEventBus EventBus { get; }
+        public IEventApis EventApis { get; }
 
         /// <summary>
         /// 初始化客户端

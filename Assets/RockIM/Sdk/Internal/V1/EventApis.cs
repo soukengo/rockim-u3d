@@ -1,15 +1,16 @@
 using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Events;
+using RockIM.Sdk.Framework;
 
-namespace RockIM.Sdk.Internal.V1.Context
+namespace RockIM.Sdk.Internal.V1
 {
-    public class EventBus : IEventBus
+    public class EventApis : IEventApis
     {
         public LifeCycleEvents LifeCycle { get; }
 
         public MessageEvents Message { get; }
 
-        public EventBus()
+        public EventApis()
         {
             LifeCycle = new LifeCycleEvents();
             Message = new MessageEvents();

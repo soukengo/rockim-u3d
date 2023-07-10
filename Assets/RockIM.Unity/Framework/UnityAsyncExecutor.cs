@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace RockIM.Unity.Framework
 {
-    public class UnityAsyncHandler : MonoBehaviour, IAsyncHandler
+    public class UnityAsyncExecutor : MonoBehaviour, IAsyncExecutor
     {
-        public static UnityAsyncHandler Instance { get; private set; }
+        public static UnityAsyncExecutor Instance { get; private set; }
 
         private static volatile bool _initialized;
 
@@ -16,7 +16,7 @@ namespace RockIM.Unity.Framework
 
         private static readonly ConcurrentQueue<Action> Actions = new ConcurrentQueue<Action>();
 
-        static UnityAsyncHandler()
+        static UnityAsyncExecutor()
         {
             if (_initialized && _currentThreadId == Thread.CurrentThread.ManagedThreadId)
             {
@@ -27,7 +27,7 @@ namespace RockIM.Unity.Framework
         }
 
 
-        public void Callback(Action action)
+        public void Execute(Action action)
         {
             Actions.Enqueue(action);
         }
@@ -43,8 +43,8 @@ namespace RockIM.Unity.Framework
 
         private static void initOnce()
         {
-            var target = new GameObject(nameof(UnityAsyncHandler));
-            Instance = target.AddComponent<UnityAsyncHandler>();
+            var target = new GameObject(nameof(UnityAsyncExecutor));
+            Instance = target.AddComponent<UnityAsyncExecutor>();
             DontDestroyOnLoad(target);
             DontDestroyOnLoad(Instance);
             _currentThreadId = Thread.CurrentThread.ManagedThreadId;

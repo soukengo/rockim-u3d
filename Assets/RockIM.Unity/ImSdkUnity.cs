@@ -11,7 +11,7 @@ namespace RockIM.Unity
     {
         static ImSdkUnity()
         {
-            AsyncManager.Handler = UnityAsyncHandler.Instance;
+            AsyncManager.Executor = UnityAsyncExecutor.Instance;
             LoggerContext.Logger = new UnityLogger();
         }
 

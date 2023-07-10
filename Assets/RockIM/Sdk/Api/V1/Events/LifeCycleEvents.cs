@@ -9,8 +9,9 @@ namespace RockIM.Sdk.Api.V1.Events
     /// <summary>
     /// sdk生命周期相关事件
     /// </summary>
-    public sealed class LifeCycleEvents
+    public class LifeCycleEvents : EventsHolder
     {
+        
         public event Action<User> LoginSuccess;
 
         public event Action<ConnectionStatus> ConnectionChange;
@@ -19,17 +20,17 @@ namespace RockIM.Sdk.Api.V1.Events
 
         public void OnConnectionChange(ConnectionStatus status)
         {
-            AsyncManager.Callback(() => ConnectionChange?.Invoke(status));
+            Executor.Execute(() => ConnectionChange?.Invoke(status));
         }
 
         public void OnLoginSuccess(User user)
         {
-            AsyncManager.Callback(() => LoginSuccess?.Invoke(user));
+            Executor.Execute(() => LoginSuccess?.Invoke(user));
         }
 
         public void OnLogout(LogoutResp obj)
         {
-            AsyncManager.Callback(() => Logout?.Invoke(obj));
+            Executor.Execute(() => Logout?.Invoke(obj));
         }
     }
 }

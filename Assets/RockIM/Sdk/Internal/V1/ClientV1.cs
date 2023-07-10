@@ -15,21 +15,23 @@ namespace RockIM.Sdk.Internal.V1
 
         private readonly IApis _emptyApis = new EmptyApis();
 
-
         public IApis Apis => _apis ?? _emptyApis;
 
-        public IEventBus EventBus { get; }
+        public IEventApis EventApis { get; }
+
+        private readonly EventBus _eventBus;
 
         public ClientV1()
         {
             _context = new SdkContext();
-            EventBus = new EventBus();
+            EventApis = new EventApis();
+            _eventBus = new EventBus(EventApis);
         }
 
         public APIResult<InitResp> Init(Config config)
         {
             _context.Config.APIConfig = new APIConfig(config.ServerUrl, config.ProductId, config.ProductKey);
-            _apis = new ApisV1(_context, EventBus);
+            _apis = new ApisV1(_context, _eventBus);
             var result = _apis.ProductService.FetchConfig();
             var data = result.Data;
             var ret = ResultConverter.Convert(result, (source) => new InitResp());

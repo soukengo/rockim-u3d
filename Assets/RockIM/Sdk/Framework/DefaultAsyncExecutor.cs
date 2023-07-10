@@ -2,9 +2,9 @@ using System;
 
 namespace RockIM.Sdk.Framework
 {
-    public class DefaultAsyncHandler : IAsyncHandler
+    public class DefaultAsyncExecutor : IAsyncExecutor
     {
-        public void Callback(Action action)
+        public void Execute(Action action)
         {
             action();
         }

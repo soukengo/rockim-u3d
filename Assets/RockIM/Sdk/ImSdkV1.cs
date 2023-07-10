@@ -13,7 +13,7 @@ namespace RockIM.Sdk
 
         public static IApis Apis => Client.Apis;
 
-        public static IEventBus EventBus => Client.EventBus;
+        public static IEventApis EventApis => Client.EventApis;
 
         public static APIResult<InitResp> Init(Config config)
         {

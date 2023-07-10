@@ -20,14 +20,14 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Control
 
         protected override void Init()
         {
-            ImSdkV1.EventBus.LifeCycle.ConnectionChange += OnStatusChange;
-            ImSdkV1.EventBus.LifeCycle.LoginSuccess += SetUserInfo;
+            ImSdkV1.EventApis.LifeCycle.ConnectionChange += OnStatusChange;
+            ImSdkV1.EventApis.LifeCycle.LoginSuccess += SetUserInfo;
         }
 
         private void OnDisable()
         {
-            ImSdkV1.EventBus.LifeCycle.ConnectionChange -= OnStatusChange;
-            ImSdkV1.EventBus.LifeCycle.LoginSuccess -= SetUserInfo;
+            ImSdkV1.EventApis.LifeCycle.ConnectionChange -= OnStatusChange;
+            ImSdkV1.EventApis.LifeCycle.LoginSuccess -= SetUserInfo;
         }
 
         private void Start()

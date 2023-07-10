@@ -59,7 +59,7 @@ namespace RockIM.Sdk
                 var ret = Call(syncMethod);
                 try
                 {
-                    AsyncManager.Callback(() => callback(ret));
+                    AsyncManager.Execute(() => callback(ret));
                 }
                 catch (Exception e)
                 {

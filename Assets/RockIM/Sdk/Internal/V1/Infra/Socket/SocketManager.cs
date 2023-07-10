@@ -1,16 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using RockIM.Api.Client.V1.Protocol.Socket;
-using RockIM.Sdk.Api.V1;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Framework.Network.Socket;
 using RockIM.Sdk.Internal.V1.Context;
 using RockIM.Sdk.Internal.V1.Domain.Data;
+using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Utils;
-using Network = RockIM.Shared.Enums.Network;
+using RockIM.Shared.Enums;
 
 namespace RockIM.Sdk.Internal.V1.Infra.Socket
 {

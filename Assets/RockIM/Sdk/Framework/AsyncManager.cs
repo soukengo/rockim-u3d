@@ -4,11 +4,11 @@ namespace RockIM.Sdk.Framework
 {
     public abstract class AsyncManager
     {
-        public static volatile IAsyncHandler Handler = new DefaultAsyncHandler();
+        public static volatile IAsyncExecutor Executor = new DefaultAsyncExecutor();
 
-        public static void Callback(Action action)
+        public static void Execute(Action action)
         {
-            Handler?.Callback(action);
+            Executor?.Execute(action);
         }
     }
 }

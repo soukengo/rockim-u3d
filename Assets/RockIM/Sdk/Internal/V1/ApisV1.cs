@@ -4,6 +4,7 @@ using RockIM.Sdk.Api.V1.Dtos;
 using RockIM.Sdk.Api.V1.Dtos.Response;
 using RockIM.Sdk.Api.V1.Enums;
 using RockIM.Sdk.Internal.V1.Context;
+using RockIM.Sdk.Internal.V1.Domain.Events;
 using RockIM.Sdk.Internal.V1.Infra;
 using RockIM.Sdk.Internal.V1.Infra.Http;
 using RockIM.Sdk.Internal.V1.Service;
@@ -25,10 +26,10 @@ namespace RockIM.Sdk.Internal.V1
         public IAuthorizedApis Authorized => _authorizedApis ?? _emptyAuthorizedApis;
 
 
-        public ApisV1(SdkContext context, IEventBus eventBus)
+        public ApisV1(SdkContext context, IEventBus eventbus)
         {
             _context = context;
-            _eventBus = eventBus;
+            _eventBus = eventbus;
             IHttpManager httpManager = new HttpManager(context);
             ProductService = new ProductService(new ProductRepository(httpManager));
             Auth = new AuthService(context, new AuthRepository(httpManager),
