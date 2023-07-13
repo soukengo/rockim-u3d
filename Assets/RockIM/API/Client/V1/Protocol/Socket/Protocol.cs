@@ -26,23 +26,23 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
           string.Concat(
             "CjNyb2NraW0vYXBpL2NsaWVudC92MS9wcm90b2NvbC9zb2NrZXQvcHJvdG9j",
             "b2wucHJvdG8SJHJvY2tpbS5hcGkuY2xpZW50LnYxLnByb3RvY29sLnNvY2tl",
-            "dBohcm9ja2ltL3NoYXJlZC9lbnVtcy9uZXR3b3JrLnByb3RvIm0KE1JlcXVl",
-            "c3RQYWNrZXRIZWFkZXISQgoJb3BlcmF0aW9uGAEgASgOMi8ucm9ja2ltLmFw",
-            "aS5jbGllbnQudjEucHJvdG9jb2wuc29ja2V0Lk9wZXJhdGlvbhISCgpyZXF1",
-            "ZXN0X2lkGAIgASgFIiEKEVJlcXVlc3RQYWNrZXRCb2R5EgwKBGJvZHkYASAB",
-            "KAwikQEKFFJlc3BvbnNlUGFja2V0SGVhZGVyEkIKCW9wZXJhdGlvbhgBIAEo",
-            "DjIvLnJvY2tpbS5hcGkuY2xpZW50LnYxLnByb3RvY29sLnNvY2tldC5PcGVy",
-            "YXRpb24SEgoKcmVxdWVzdF9pZBgCIAEoBRIPCgdzdWNjZXNzGAMgASgIEhAK",
-            "CHRyYWNlX2lkGAQgASgJIiIKElJlc3BvbnNlUGFja2V0Qm9keRIMCgRib2R5",
-            "GAEgASgMIlEKEFB1c2hQYWNrZXRIZWFkZXISPQoJb3BlcmF0aW9uGAEgASgO",
-            "Mioucm9ja2ltLnNoYXJlZC5lbnVtcy5OZXR3b3JrLlB1c2hPcGVyYXRpb24i",
-            "HgoOUHVzaFBhY2tldEJvZHkSDAoEYm9keRgBIAEoDCo5CglPcGVyYXRpb24S",
-            "EwoPSU5WQUxJRF9SRVFVRVNUEAASCAoEQVVUSBABEg0KCUhFQVJUQkVBVBAC",
-            "QmZaPXJvY2tpbXNlcnZlci9hcGlzL3JvY2tpbS9hcGkvY2xpZW50L3YxL3By",
-            "b3RvY29sL3NvY2tldDtzb2NrZXSqAiRSb2NrSU0uQXBpLkNsaWVudC5WMS5Q",
-            "cm90b2NvbC5Tb2NrZXRiBnByb3RvMw=="));
+            "dBofcm9ja2ltL3NoYXJlZC9lbnVtcy9jb21ldC5wcm90byJtChNSZXF1ZXN0",
+            "UGFja2V0SGVhZGVyEkIKCW9wZXJhdGlvbhgBIAEoDjIvLnJvY2tpbS5hcGku",
+            "Y2xpZW50LnYxLnByb3RvY29sLnNvY2tldC5PcGVyYXRpb24SEgoKcmVxdWVz",
+            "dF9pZBgCIAEoBSIhChFSZXF1ZXN0UGFja2V0Qm9keRIMCgRib2R5GAEgASgM",
+            "IpEBChRSZXNwb25zZVBhY2tldEhlYWRlchJCCglvcGVyYXRpb24YASABKA4y",
+            "Ly5yb2NraW0uYXBpLmNsaWVudC52MS5wcm90b2NvbC5zb2NrZXQuT3BlcmF0",
+            "aW9uEhIKCnJlcXVlc3RfaWQYAiABKAUSDwoHc3VjY2VzcxgDIAEoCBIQCgh0",
+            "cmFjZV9pZBgEIAEoCSIiChJSZXNwb25zZVBhY2tldEJvZHkSDAoEYm9keRgB",
+            "IAEoDCJPChBQdXNoUGFja2V0SGVhZGVyEjsKCW9wZXJhdGlvbhgBIAEoDjIo",
+            "LnJvY2tpbS5zaGFyZWQuZW51bXMuQ29tZXQuUHVzaE9wZXJhdGlvbiIeCg5Q",
+            "dXNoUGFja2V0Qm9keRIMCgRib2R5GAEgASgMKjkKCU9wZXJhdGlvbhITCg9J",
+            "TlZBTElEX1JFUVVFU1QQABIICgRBVVRIEAESDQoJSEVBUlRCRUFUEAJCZlo9",
+            "cm9ja2ltc2VydmVyL2FwaXMvcm9ja2ltL2FwaS9jbGllbnQvdjEvcHJvdG9j",
+            "b2wvc29ja2V0O3NvY2tldKoCJFJvY2tJTS5BcGkuQ2xpZW50LlYxLlByb3Rv",
+            "Y29sLlNvY2tldGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::RockIM.Shared.Enums.NetworkReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::RockIM.Shared.Enums.CometReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::RockIM.Api.Client.V1.Protocol.Socket.Operation), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Socket.RequestPacketHeader), global::RockIM.Api.Client.V1.Protocol.Socket.RequestPacketHeader.Parser, new[]{ "Operation", "RequestId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Api.Client.V1.Protocol.Socket.RequestPacketBody), global::RockIM.Api.Client.V1.Protocol.Socket.RequestPacketBody.Parser, new[]{ "Body" }, null, null, null, null),
@@ -1051,10 +1051,10 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
 
     /// <summary>Field number for the "operation" field.</summary>
     public const int OperationFieldNumber = 1;
-    private global::RockIM.Shared.Enums.Network.Types.PushOperation operation_ = global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush;
+    private global::RockIM.Shared.Enums.Comet.Types.PushOperation operation_ = global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::RockIM.Shared.Enums.Network.Types.PushOperation Operation {
+    public global::RockIM.Shared.Enums.Comet.Types.PushOperation Operation {
       get { return operation_; }
       set {
         operation_ = value;
@@ -1084,7 +1084,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Operation != global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush) hash ^= Operation.GetHashCode();
+      if (Operation != global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush) hash ^= Operation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1103,7 +1103,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Operation != global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush) {
+      if (Operation != global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Operation);
       }
@@ -1117,7 +1117,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Operation != global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush) {
+      if (Operation != global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Operation);
       }
@@ -1131,7 +1131,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Operation != global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush) {
+      if (Operation != global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Operation);
       }
       if (_unknownFields != null) {
@@ -1146,7 +1146,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
       if (other == null) {
         return;
       }
-      if (other.Operation != global::RockIM.Shared.Enums.Network.Types.PushOperation.InvalidPush) {
+      if (other.Operation != global::RockIM.Shared.Enums.Comet.Types.PushOperation.InvalidPush) {
         Operation = other.Operation;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1165,7 +1165,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Operation = (global::RockIM.Shared.Enums.Network.Types.PushOperation) input.ReadEnum();
+            Operation = (global::RockIM.Shared.Enums.Comet.Types.PushOperation) input.ReadEnum();
             break;
           }
         }
@@ -1184,7 +1184,7 @@ namespace RockIM.Api.Client.V1.Protocol.Socket {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Operation = (global::RockIM.Shared.Enums.Network.Types.PushOperation) input.ReadEnum();
+            Operation = (global::RockIM.Shared.Enums.Comet.Types.PushOperation) input.ReadEnum();
             break;
           }
         }

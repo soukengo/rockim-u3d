@@ -39,6 +39,7 @@ namespace RockIM.Sdk.Api.V1
         public ConnectionStatus ConnectionStatus { get; }
 
         public IMessageApi Message { get; }
+        public IChatRoomApi ChatRoom { get; }
     }
 
     public class EmptyApis : IApis
@@ -74,6 +75,8 @@ namespace RockIM.Sdk.Api.V1
         }
 
         public IMessageApi Message => throw _exception;
+
+        public IChatRoomApi ChatRoom => throw _exception;
 
         public User Current => null;
         public ConnectionStatus ConnectionStatus => ConnectionStatus.Disconnected;

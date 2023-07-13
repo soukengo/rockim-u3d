@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using RockIM.Demo.Scripts.UI.Events;
 using UnityEngine;
 
 namespace RockIM.Demo.Scripts.UI.Base
@@ -10,6 +11,7 @@ namespace RockIM.Demo.Scripts.UI.Base
         private readonly Dictionary<Type, CPanel> _panelMap = new Dictionary<Type, CPanel>();
 
         protected bool IsDestroyed;
+
         private void Awake()
         {
             var panels = Resources.FindObjectsOfTypeAll<CPanel>();
@@ -19,6 +21,7 @@ namespace RockIM.Demo.Scripts.UI.Base
                 _panelMap[panel.GetType()] = panel;
             }
 
+            UIEventManager.Instance.OpenPanel += OnOpenUI;
             Init();
         }
 
@@ -36,11 +39,22 @@ namespace RockIM.Demo.Scripts.UI.Base
 
             return null;
         }
-        
+
         public virtual void OnDestroy()
         {
             IsDestroyed = true;
+            UIEventManager.Instance.OpenPanel -= OnOpenUI;
         }
-        
+
+        private void OnOpenUI(Type type)
+        {
+            var exists = _panelMap.TryGetValue(type, out var panel);
+            if (!exists)
+            {
+                return;
+            }
+
+            panel.SetActive(true);
+        }
     }
 }

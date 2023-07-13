@@ -21,8 +21,11 @@ namespace RockIM.Sdk.Internal.V1
 
         private readonly MessageService _messageService;
 
+        private readonly ChatRoomService _chatRoomService;
+
 
         public IMessageApi Message => _messageService;
+        public IChatRoomApi ChatRoom => _chatRoomService;
         public User Current => _context.Authorization.User;
         public ConnectionStatus ConnectionStatus => _context.ConnectionStatus;
 
@@ -34,6 +37,7 @@ namespace RockIM.Sdk.Internal.V1
             _socketManager = new SocketManager(context, eventBus);
             _socketManager.Connect(context.Config.ServerConfig.Socket);
             _messageService = new MessageService(context, new MessageRepository(httpManager));
+            _chatRoomService = new ChatRoomService(new ChatRoomRepository(httpManager));
         }
 
         public void Dispose()

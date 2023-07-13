@@ -25,10 +25,11 @@ namespace RockIM.Shared.Reasons {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiNyb2NraW0vc2hhcmVkL3JlYXNvbnMvbWVzc2FnZS5wcm90bxIVcm9ja2lt",
-            "LnNoYXJlZC5yZWFzb25zIjIKB01lc3NhZ2UiJwoLRXJyb3JSZWFzb24SGAoU",
-            "VEFSR0VUX05PVF9TVVBQT1JURUQQAEJdChhjbi5yb2NraW0uc2hhcmVkLnJl",
-            "YXNvbnNQAVoncm9ja2ltc2VydmVyL2FwaXMvcm9ja2ltL3NoYXJlZC9yZWFz",
-            "b25zqgIVUm9ja0lNLlNoYXJlZC5SZWFzb25zYgZwcm90bzM="));
+            "LnNoYXJlZC5yZWFzb25zIkgKB01lc3NhZ2UiPQoLRXJyb3JSZWFzb24SGAoU",
+            "VEFSR0VUX05PVF9TVVBQT1JURUQQABIUChBOT1RfR1JPVVBfTUVNQkVSEAFC",
+            "XQoYY24ucm9ja2ltLnNoYXJlZC5yZWFzb25zUAFaJ3JvY2tpbXNlcnZlci9h",
+            "cGlzL3JvY2tpbS9zaGFyZWQvcmVhc29uc6oCFVJvY2tJTS5TaGFyZWQuUmVh",
+            "c29uc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -199,6 +200,10 @@ namespace RockIM.Shared.Reasons {
         /// 不支持的消息接收目标
         /// </summary>
         [pbr::OriginalName("TARGET_NOT_SUPPORTED")] TargetNotSupported = 0,
+        /// <summary>
+        /// 非群成员
+        /// </summary>
+        [pbr::OriginalName("NOT_GROUP_MEMBER")] NotGroupMember = 1,
       }
 
     }

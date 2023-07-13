@@ -16,14 +16,12 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Chat
         private void OnEnable()
         {
             ChatUIEventManager.Instance.ChatMenuSelected += OnChatMenuSelected;
-            ChatUIEventManager.Instance.SendResult += OnSendSuccess;
             ChatEventManager.Instance.MessageReceived += OnReceived;
         }
 
         private void OnDisable()
         {
             ChatUIEventManager.Instance.ChatMenuSelected -= OnChatMenuSelected;
-            ChatUIEventManager.Instance.SendResult -= OnSendSuccess;
             ChatEventManager.Instance.MessageReceived -= OnReceived;
         }
 

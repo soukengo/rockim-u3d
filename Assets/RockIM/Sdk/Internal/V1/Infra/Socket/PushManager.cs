@@ -12,14 +12,14 @@ namespace RockIM.Sdk.Internal.V1.Infra.Socket
 
         private readonly IEventBus _eventBus;
 
-        private readonly Dictionary<Network.Types.PushOperation, IPushProcessor> _processors =
-            new Dictionary<Network.Types.PushOperation, IPushProcessor>();
+        private readonly Dictionary<Comet.Types.PushOperation, IPushProcessor> _processors =
+            new Dictionary<Comet.Types.PushOperation, IPushProcessor>();
 
         public PushManager(SdkContext context, IEventBus eventBus)
         {
             _context = context;
             _eventBus = eventBus;
-            _processors[Network.Types.PushOperation.Messages] = new MessagePushProcessor(_eventBus);
+            _processors[Comet.Types.PushOperation.Messages] = new MessagePushProcessor(_eventBus);
         }
 
         public void OnReceived(Packet packet)

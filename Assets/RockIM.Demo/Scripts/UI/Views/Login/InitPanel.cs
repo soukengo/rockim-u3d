@@ -78,8 +78,8 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
             
                 ToastManager.ShowToast("初始化成功");
                 Hide();
-                // 通知初始化成功
-                LoginUIEventManager.Instance.OnInitSuccess.Invoke();
+                // 切换UI
+                UIEventManager.Instance.OpenPanel.Invoke(typeof(LoginPanel));
             });
         }
     }

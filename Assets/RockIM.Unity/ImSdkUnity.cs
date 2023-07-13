@@ -7,7 +7,7 @@ using RockIM.Unity.Framework;
 
 namespace RockIM.Unity
 {
-    public abstract class ImSdkUnity : ImSdkV1
+    public abstract class ImSdkUnity : ImSdk
     {
         static ImSdkUnity()
         {

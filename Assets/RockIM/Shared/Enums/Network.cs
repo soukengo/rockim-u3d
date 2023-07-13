@@ -25,16 +25,14 @@ namespace RockIM.Shared.Enums {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiFyb2NraW0vc2hhcmVkL2VudW1zL25ldHdvcmsucHJvdG8SE3JvY2tpbS5z",
-            "aGFyZWQuZW51bXMihQEKB05ldHdvcmsiMQoKUGFja2V0VHlwZRILCgdSRVFV",
-            "RVNUEAASDAoIUkVTUE9OU0UQARIICgRQVVNIEAIiRwoNUHVzaE9wZXJhdGlv",
-            "bhIQCgxJTlZBTElEX1BVU0gQABIJCgVFVkVOVBABEgsKB0NPTU1BTkQQAhIM",
-            "CghNRVNTQUdFUxADQlcKFmNuLnJvY2tpbS5zaGFyZWQuZW5tdXNQAVolcm9j",
-            "a2ltc2VydmVyL2FwaXMvcm9ja2ltL3NoYXJlZC9lbnVtc6oCE1JvY2tJTS5T",
-            "aGFyZWQuRW51bXNiBnByb3RvMw=="));
+            "aGFyZWQuZW51bXMiPAoHTmV0d29yayIxCgpQYWNrZXRUeXBlEgsKB1JFUVVF",
+            "U1QQABIMCghSRVNQT05TRRABEggKBFBVU0gQAkJXChZjbi5yb2NraW0uc2hh",
+            "cmVkLmVubXVzUAFaJXJvY2tpbXNlcnZlci9hcGlzL3JvY2tpbS9zaGFyZWQv",
+            "ZW51bXOqAhNSb2NrSU0uU2hhcmVkLkVudW1zYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Shared.Enums.Network), global::RockIM.Shared.Enums.Network.Parser, null, null, new[]{ typeof(global::RockIM.Shared.Enums.Network.Types.PacketType), typeof(global::RockIM.Shared.Enums.Network.Types.PushOperation) }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::RockIM.Shared.Enums.Network), global::RockIM.Shared.Enums.Network.Parser, null, null, new[]{ typeof(global::RockIM.Shared.Enums.Network.Types.PacketType) }, null, null)
           }));
     }
     #endregion
@@ -215,25 +213,6 @@ namespace RockIM.Shared.Enums {
         /// 服务端主动推送
         /// </summary>
         [pbr::OriginalName("PUSH")] Push = 2,
-      }
-
-      public enum PushOperation {
-        /// <summary>
-        /// 无效值
-        /// </summary>
-        [pbr::OriginalName("INVALID_PUSH")] InvalidPush = 0,
-        /// <summary>
-        /// 事件通知
-        /// </summary>
-        [pbr::OriginalName("EVENT")] Event = 1,
-        /// <summary>
-        /// 系统指令
-        /// </summary>
-        [pbr::OriginalName("COMMAND")] Command = 2,
-        /// <summary>
-        /// 消息推送
-        /// </summary>
-        [pbr::OriginalName("MESSAGES")] Messages = 3,
       }
 
     }

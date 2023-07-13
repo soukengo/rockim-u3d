@@ -13,18 +13,21 @@ namespace RockIM.Demo.Scripts.UI.Views.Main.Control
 
         public Button logoutBtn;
 
+        public Button joinChatRoomBtn;
+
         protected override void Init()
         {
-            startChatBtn!.onClick.AddListener(() =>
-            {
-                ChatUIEventManager.Instance.OpenChat.Invoke();
-            });
             logoutBtn!.onClick.AddListener(() =>
             {
-                ImSdkUnity.Async(() => ImSdkV1.Apis.Logout(), (result) =>
-                {
-                    SceneManager.LoadScene(SceneNames.Login);
-                });
+                ImSdkUnity.Async(() => ImSdkV1.Apis.Logout(),
+                    (result) => { SceneManager.LoadScene(SceneNames.Login); });
+            });
+
+            startChatBtn!.onClick.AddListener(() => { UIEventManager.Instance.OpenPanel.Invoke(typeof(ChatPanel)); });
+
+            joinChatRoomBtn!.onClick.AddListener(() =>
+            {
+                UIEventManager.Instance.OpenPanel.Invoke(typeof(ChatRoomJoinPanel));
             });
         }
     }

@@ -25,12 +25,12 @@ namespace RockIM.Shared.Enums {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Ch9yb2NraW0vc2hhcmVkL2VudW1zL2dyb3VwLnByb3RvEhNyb2NraW0uc2hh",
-            "cmVkLmVudW1zIoMBCgVHcm91cCIjCghDYXRlZ29yeRIMCghDSEFUUk9PTRAA",
-            "EgkKBUdST1VQEAEiMgoKTWVtYmVyUm9sZRIMCghPUkRJTkFSWRAAEgsKB01B",
-            "TkFHRVIQARIJCgVPV05FUhADIiEKBlN0YXR1cxIKCgZOT1JNQUwQABILCgdE",
-            "RUxFVEVEEAFCVwoWY24ucm9ja2ltLnNoYXJlZC5lbm11c1ABWiVyb2NraW1z",
-            "ZXJ2ZXIvYXBpcy9yb2NraW0vc2hhcmVkL2VudW1zqgITUm9ja0lNLlNoYXJl",
-            "ZC5FbnVtc2IGcHJvdG8z"));
+            "cmVkLmVudW1zIpIBCgVHcm91cCIyCghDYXRlZ29yeRIMCghDSEFUUk9PTRAA",
+            "EgsKB0dFTkVSQUwQARILCgdCSUdHRVNUEAIiMgoKTWVtYmVyUm9sZRIMCghP",
+            "UkRJTkFSWRAAEgsKB01BTkFHRVIQARIJCgVPV05FUhACIiEKBlN0YXR1cxIK",
+            "CgZOT1JNQUwQABILCgdERUxFVEVEEAFCVwoWY24ucm9ja2ltLnNoYXJlZC5l",
+            "bm11c1ABWiVyb2NraW1zZXJ2ZXIvYXBpcy9yb2NraW0vc2hhcmVkL2VudW1z",
+            "qgITUm9ja0lNLlNoYXJlZC5FbnVtc2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -210,7 +210,11 @@ namespace RockIM.Shared.Enums {
         /// <summary>
         /// 普通群
         /// </summary>
-        [pbr::OriginalName("GROUP")] Group = 1,
+        [pbr::OriginalName("GENERAL")] General = 1,
+        /// <summary>
+        /// 超大群
+        /// </summary>
+        [pbr::OriginalName("BIGGEST")] Biggest = 2,
       }
 
       /// <summary>
@@ -228,7 +232,7 @@ namespace RockIM.Shared.Enums {
         /// <summary>
         /// 群主
         /// </summary>
-        [pbr::OriginalName("OWNER")] Owner = 3,
+        [pbr::OriginalName("OWNER")] Owner = 2,
       }
 
       /// <summary>

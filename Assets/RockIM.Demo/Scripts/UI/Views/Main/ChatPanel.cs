@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using RockIM.Demo.Scripts.Logic;
 using RockIM.Demo.Scripts.Logic.Models.Chat;
 using RockIM.Demo.Scripts.UI.Base;
-using RockIM.Demo.Scripts.UI.Events;
 using RockIM.Demo.Scripts.UI.Views.Main.Chat;
 using UnityEngine.UI;
 
@@ -26,35 +25,8 @@ namespace RockIM.Demo.Scripts.UI.Views.Main
                 ChatContext.Instance.Items = items;
             }
 
-            collapseBtn.onClick.AddListener(() =>
-            {
-                collapseBtn.gameObject.SetActive(false);
-                gameObject.SetActive(false);
-            });
+            collapseBtn.onClick.AddListener(() => { gameObject.SetActive(false); });
         }
-
-        private void OnEnable()
-        {
-            ChatUIEventManager.Instance.OpenChat += OnOpenChat;
-        }
-
-
-        private void OnOpenChat()
-        {
-            if (IsDestroyed)
-            {
-                return;
-            }
-
-            gameObject.SetActive(true);
-            collapseBtn.gameObject.SetActive(true);
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-            ChatUIEventManager.Instance.OpenChat -= OnOpenChat;
-            ImManager.Instance.Destroy();
-        }
+        
     }
 }
