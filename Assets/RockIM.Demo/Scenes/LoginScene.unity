@@ -171,6 +171,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &401854335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3505249454316614091, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
+  m_PrefabInstance: {fileID: 866773268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &401854337 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9189821356480834747, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
+  m_PrefabInstance: {fileID: 866773268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401854335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &401854339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401854335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 401854337}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &418854589
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoginPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7489704929198703546, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -505,6 +569,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7489704929198703546, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 873872602}
+    - targetCorrespondingSourceObject: {fileID: 3505249454316614091, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 401854339}
   m_SourcePrefab: {fileID: 100100000, guid: c8efdd01a7870480b85dc3c8a15e6ba4, type: 3}
 --- !u!224 &866773269 stripped
 RectTransform:
@@ -542,6 +609,7 @@ MonoBehaviour:
   defaultOpen: 0
   authCodeInput: {fileID: 1804334216}
   loginButton: {fileID: 1277713685}
+  backButton: {fileID: 401854339}
 --- !u!114 &1146328102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8143307049905783235, guid: f0a3f152b70374e3090663c091cb252e, type: 3}
@@ -928,6 +996,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 711274847}
     m_Modifications:
+    - target: {fileID: 6980485182219286322, guid: cefa131c14af7439185d5b4a1d9761cc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980485182219286322, guid: cefa131c14af7439185d5b4a1d9761cc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.42352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980485182219286322, guid: cefa131c14af7439185d5b4a1d9761cc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.25490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980485182219286322, guid: cefa131c14af7439185d5b4a1d9761cc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.16470589
+      objectReference: {fileID: 0}
     - target: {fileID: 6980485182219286323, guid: cefa131c14af7439185d5b4a1d9761cc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
