@@ -13,6 +13,7 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
         public InputField authCodeInput;
 
         public Button loginButton;
+        public Button backButton;
 
         protected override void Init()
         {
@@ -31,6 +32,13 @@ namespace RockIM.Demo.Scripts.UI.Views.Login
 
                     SceneManager.LoadScene(SceneNames.Main);
                 });
+            });
+            
+            backButton.onClick.AddListener(() =>
+            {
+                Hide();
+                // 切换UI
+                UIEventManager.Instance.OpenPanel.Invoke(typeof(InitPanel));
             });
         }
     }
